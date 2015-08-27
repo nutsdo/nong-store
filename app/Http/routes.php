@@ -34,3 +34,19 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+
+/*
+ * 后台控制面板
+ * */
+
+Route::group(['middleware' => ['auth'],'prefix' => 'dashboard','namespace' => 'Dashboard'], function()
+{
+    //首页
+    Route::get('/', [
+        'as' => 'dashboard', 'uses' => 'DashboardController@index'
+    ]);
+
+    Route::resource('setting','SettingController',['only'=>['index','store']]);
+
+});
