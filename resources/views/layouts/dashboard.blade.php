@@ -555,7 +555,8 @@
 	<div class="page-loading-overlay">
 		<div class="loader-2"></div>
 	</div>
-
+     <!-- Imported styles on this page -->
+     @yield('css')
      <!-- Bottom Scripts -->
      {!! Html::script("assets/js/bootstrap.min.js") !!}
 

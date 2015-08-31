@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a href="dashboard-2.html">
+                <a href="#">
                     <span class="title">高级设置</span>
                 </a>
             </li>
@@ -58,7 +58,7 @@
         </a>
         <ul>
             <li>
-                <a href="ui-panels.html">
+                <a href="{{ route('dashboard.category.index') }}">
                     <span class="title">分类管理</span>
                 </a>
             </li>
