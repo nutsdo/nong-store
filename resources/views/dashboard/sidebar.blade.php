@@ -58,7 +58,7 @@
         </a>
         <ul>
             <li>
-                <a href="{{ route('dashboard.category.index') }}">
+                <a href="#">
                     <span class="title">分类管理</span>
                 </a>
             </li>
@@ -79,12 +79,12 @@
         </a>
         <ul>
             <li>
-                <a href="mailbox-main.html">
+                <a href="{{ route('dashboard.category.index') }}">
                     <span class="title">产品类目</span>
                 </a>
             </li>
             <li>
-                <a href="mailbox-compose.html">
+                <a href="{{ route('dashboard.products.index') }}">
                     <span class="title">产品列表</span>
                 </a>
             </li>

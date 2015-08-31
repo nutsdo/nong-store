@@ -51,6 +51,9 @@ Route::group(['middleware' => ['auth'],'prefix' => 'dashboard','namespace' => 'D
 
     Route::resource('category','CategoryController');
 
+    Route::resource('products','ProductController');
+
+
 
 
 });
