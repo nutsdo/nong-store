@@ -49,4 +49,8 @@ Route::group(['middleware' => ['auth'],'prefix' => 'dashboard','namespace' => 'D
 
     Route::resource('setting','SettingController',['only'=>['index','store']]);
 
+    Route::resource('category','CategoryController');
+
+
+
 });

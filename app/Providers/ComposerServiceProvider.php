@@ -21,9 +21,10 @@ class ComposerServiceProvider extends ServiceProvider {
     public function boot()
     {
         // Using class based composers...
-        view()->composer(
-            'dashboard.*', 'App\Http\ViewComposers\AuthComposer'
-        );
+        view()->composers([
+            'App\Http\ViewComposers\AuthComposer' =>'dashboard.*',
+            'App\Http\ViewComposers\CategoriesComposer' => 'dashboard.category.index'
+        ]);
 
     }
 
