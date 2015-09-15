@@ -51,6 +51,22 @@ Route::group(['middleware' => ['auth'],'prefix' => 'dashboard','namespace' => 'D
 
     Route::resource('category','CategoryController');
 
+    Route::resource('products','ProductController');
 
+    Route::resource('article_category','ArticleCategoryController');
+
+    Route::resource('articles','ArticleController');
+
+    Route::resource('pages','PageController');
+
+
+});
+
+Route::group(['middleware' => ['auth']], function()
+{
+    //上传
+    Route::post('upload', [
+        'as' => 'upload', 'uses' => 'UploadController@upload'
+    ]);
 
 });
