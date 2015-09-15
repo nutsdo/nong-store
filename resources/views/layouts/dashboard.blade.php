@@ -555,6 +555,7 @@
 	<div class="page-loading-overlay">
 		<div class="loader-2"></div>
 	</div>
+	@yield('others')
      <!-- Imported styles on this page -->
      @yield('css')
      <!-- Bottom Scripts -->
@@ -570,6 +571,7 @@
 	<!-- Imported scripts on this page -->
 	@yield('scripts')
 
+	@yield('editor')
 
 	<!-- JavaScripts initializations and stuff -->
 	{!! Html::script("assets/js/xenon-custom.js") !!}

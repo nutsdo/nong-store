@@ -53,6 +53,15 @@ class CategoryController extends BaseController{
         return view('dashboard.category.create',compact('data','categories'));
     }
 
+    public function update(PostCategoryRequest $input, $id)
+    {
+        $category = Category::find($id);
+
+        $category->update($input->all());
+
+        return redicrect()->route('dashboard.category.index');
+    }
+
     public function show($id)
     {
         return ;

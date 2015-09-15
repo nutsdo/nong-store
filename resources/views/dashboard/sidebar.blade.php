@@ -58,13 +58,19 @@
         </a>
         <ul>
             <li>
-                <a href="#">
-                    <span class="title">分类管理</span>
+                <a href="{{ route('dashboard.article_category.index') }}">
+                    <span class="title">文章分类</span>
                 </a>
             </li>
             <li>
-                <a href="ui-buttons.html">
-                    <span class="title">文章管理</span>
+                <a href="{{ route('dashboard.articles.index') }}">
+                    <span class="title">文章列表</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('dashboard.pages.index') }}">
+                    <span class="title">单页管理</span>
                 </a>
             </li>
 
