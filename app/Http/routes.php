@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::get('/home', function () {
     return view('welcome');
 });
@@ -34,6 +34,23 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+/*
+ * 前台功能路由
+ * */
+Route::group(['namespace' => 'Front'], function()
+{
+    //首页
+    Route::get('/', [
+        'as' => 'home', 'uses' => 'HomeController@index'
+    ]);
+
+    Route::controllers([
+        'products' => 'ProductController'
+    ]);
+
+
+});
 
 
 /*

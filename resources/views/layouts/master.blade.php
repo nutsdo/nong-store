@@ -18,7 +18,6 @@
 
  	<title>Xenon - Login</title>
 
- 	{!! Html::style("http://fonts.useso.com/css?family=Arimo:400,700,400italic") !!}
  	{!! Html::style("assets/css/fonts/linecons/css/linecons.css") !!}
  	{!! Html::style("assets/css/fonts/fontawesome/css/font-awesome.min.css") !!}
  	{!! Html::style("assets/css/bootstrap.css") !!}
