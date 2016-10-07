@@ -42,7 +42,7 @@ Route::group(['middleware' => 'web'], function()
 
 Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Dashboard'], function()
 {
-    Route::auth();
+    //Route::auth();
 
     Route::get('auth/login', 'AuthController@getLogin');
     Route::post('auth/login', 'AuthController@postLogin');
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
 });
 
-Route::group(['middleware' => ['auth']], function()
+Route::group(['middleware' => ['web']], function()
 {
     //上传
     Route::post('upload', [

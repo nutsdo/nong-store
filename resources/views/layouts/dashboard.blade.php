@@ -495,7 +495,7 @@
                             </li>
 
                             <li class="last">
-                                <a href="{{ url('auth/logout') }}">
+                                <a href="{{ url('dashboard/auth/logout') }}">
                                     <i class="fa-lock"></i>
                                     退出
                                 </a>

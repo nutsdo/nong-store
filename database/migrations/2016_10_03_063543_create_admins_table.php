@@ -15,17 +15,17 @@ class CreateAdminsTable extends Migration
         //
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('admin_name');
-            $table->string('admin_email')->unique();
-            $table->string('admin_password', 60);
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password', 60);
             $table->rememberToken();
             $table->timestamps();
         });
 
         \App\Admin::create([
-            'admin_name' => 'admin',
-            'admin_email' => 'admin@admin.com',
-            'admin_password' => Hash::make('secret')
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('secret')
         ]);
     }
 

@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Http\Middleware;
+
 use Closure;
 use Illuminate\Support\Facades\Auth;
-class Authenticate
+
+class AdminAuthenticate
 {
     /**
      * Handle an incoming request.
@@ -18,7 +21,7 @@ class Authenticate
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             }
-            return redirect()->guest('login');
+            return redirect()->guest('dashboard/auth/login');
         }
         return $next($request);
     }

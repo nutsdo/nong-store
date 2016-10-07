@@ -21,7 +21,7 @@
             </div>
 
             <!-- Add class "fade-in-effect" for login form effect -->
-            {!! Form::open(array('url' => array('auth/login'),'method'=>'POST','id'=>'login','class'=>'login-form validate','novalidate'=>'novalidate')) !!}
+            {!! Form::open(array('url' => array('dashboard/auth/login'),'method'=>'POST','id'=>'login','class'=>'login-form validate','novalidate'=>'novalidate')) !!}
                 <div class="login-header">
                     <a href="{{url('/')}}" class="logo">
                         {!! Html::image("assets/images/logo@2x.png",null,['width'=>'80']) !!}

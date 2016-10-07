@@ -1,4 +1,6 @@
 <?php namespace App\Http\Controllers\Dashboard;
+use Illuminate\Support\Facades\Auth;
+
 /**
  * Created by PhpStorm.
  * User: lvdingtao

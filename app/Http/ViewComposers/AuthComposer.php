@@ -21,7 +21,7 @@ class AuthComposer {
      */
     public function compose(View $view)
     {
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
         $view->with('user', $user);
     }
 } 

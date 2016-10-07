@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Created by PhpStorm.
@@ -13,6 +14,6 @@ class BaseController extends Controller{
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth.dashboard:admin');
     }
 } 
