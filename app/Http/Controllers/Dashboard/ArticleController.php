@@ -9,9 +9,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 
-use App\Article;
-use App\ArticleCategory;
 use App\Http\Requests\PostArticleRequest;
+use App\Models\Article;
+use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
 use Kalnoy\Nestedset\Collection;
 
@@ -24,7 +24,7 @@ class ArticleController extends BaseController{
 
     public function index()
     {
-        $articles = Article::paginate(15);
+        $articles = Article::with('category')->paginate(15);
         return view('dashboard.article.index',compact('articles'));
     }
 
@@ -84,7 +84,7 @@ class ArticleController extends BaseController{
 
         foreach ($items as $item)
         {
-            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->name;
+            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->category_name;
         }
 
         return $options;
@@ -98,7 +98,7 @@ class ArticleController extends BaseController{
     protected function getCategoryOptions($except = null)
     {
         /** @var \Kalnoy\Nestedset\QueryBuilder $query */
-        $query = ArticleCategory::select('id', 'name')->withDepth();
+        $query = ArticleCategory::select('id', 'category_name')->withDepth();
 
         if ($except)
         {

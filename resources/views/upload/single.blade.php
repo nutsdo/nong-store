@@ -136,7 +136,7 @@
       });
       myDropzone.on("success", function(file) {
         var data = eval('(' + file.xhr.responseText + ')');
-        $('#pic_url').val(data.path);
+        $('#thumb_url').val(data.path);
         $('#preview_pic').html('<img src="'+ "{{url('')}}/" + data.path +'" width="80">');
 
       });

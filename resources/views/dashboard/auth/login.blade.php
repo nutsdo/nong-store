@@ -33,8 +33,8 @@
 
 
                 <div class="form-group">
-                    {!! Form::label('email', 'Email',['class' => 'control-label']) !!}
-                    {!! Form::text('email', old('email'), ["class"=>"form-control input-dark", "id"=>"email","data-validate"=>"required", "data-message-required"=>"这是必填项"]) !!}
+                    {!! Form::label('admin_email', 'Email',['class' => 'control-label']) !!}
+                    {!! Form::text('admin_email', old('admin_email'), ["class"=>"form-control input-dark", "id"=>"email","data-validate"=>"required", "data-message-required"=>"这是必填项"]) !!}
                 </div>
 
                 <div class="form-group">

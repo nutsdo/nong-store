@@ -9,7 +9,7 @@
 namespace App\Http\ViewComposers;
 
 
-use App\ArticleCategory;
+use App\Models\ArticleCategory;
 use Illuminate\View\View;
 
 class ArticleCategoriesComposer {

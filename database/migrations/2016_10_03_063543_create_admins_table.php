@@ -18,6 +18,9 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->string('avatar');
+            $table->string('role_id');
+            $table->boolean('is_banned');
             $table->rememberToken();
             $table->timestamps();
         });

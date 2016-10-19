@@ -51,9 +51,21 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
     Route::post('auth/register', 'AuthController@postRegister');
 
     //首页
-    Route::get('/', 'DashboardController@index');
+    Route::get('/', [
+        'as'=>'dashboard','uses'=>'DashboardController@index'
+    ]);
 
     Route::resource('setting','SettingController',['only'=>['index','store']]);
+
+    Route::resource('admin','AdminController');
+
+    Route::get('role/{role_id}/permission', [
+        'as'=> 'dashboard.role.permission','uses'=>'RoleController@permission'
+    ]);
+
+    Route::resource('role','RoleController');
+
+    Route::resource('menu','MenuController');
 
     Route::resource('category','CategoryController');
 

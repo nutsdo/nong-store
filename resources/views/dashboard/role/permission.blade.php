@@ -14,7 +14,7 @@
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">文章分类</h1>
+            <h1 class="title">权限设置</h1>
             <p class="description">Plain text boxes, select dropdowns and other basic form elements</p>
         </div>
 
@@ -25,10 +25,10 @@
                         <a href="{{ route('dashboard') }}"><i class="fa-home"></i>首页</a>
                     </li>
                     <li>
-                        <a href="forms-native.html">内容管理</a>
+                        <a href="#">权限管理</a>
                     </li>
                     <li class="active">
-                        <strong>文章分类</strong>
+                        <strong>权限设置</strong>
                     </li>
                 </ol>
 
@@ -37,28 +37,13 @@
     </div>
     <!--面包屑导航 end-->
 
-    <!--主体 start-->
-    <div class="panel panel-default">
-        <div class="panel-body">
-
-            <div class="vertical-top">
-
-                <a href="{{ route('dashboard.article_category.create') }}" class="btn btn-success btn-icon">
-                    <i class="fa-plus-square"></i>
-                    <span>新建分类</span>
-                </a>
-
-            </div>
-
-        </div>
-    </div>
     <div class="panel panel-default">
         <div class="panel-heading">分类管理</div>
         <div class="panel-body">
 
             <div class="row">
                 <div class="col-sm-8">
-                    @include('dashboard.article_category.tree')
+                    @include('dashboard.role.partials.tree')
                 </div>
             </div>
 

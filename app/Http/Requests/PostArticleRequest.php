@@ -24,11 +24,11 @@ class PostArticleRequest extends Request
     public function rules()
     {
         return [
-            "article_category_id" => "required|digits_between:1,5",
+            "category_id" => "required|digits_between:1,5",
             "title" => "required|between:2,50",
-            "author" => "required",
-            "pic_url" => "required",
-            "is_show" => "boolean",
+            //"author" => "required",
+            "thumb_url" => "required",
+            "is_published" => "boolean",
         ];
     }
 }

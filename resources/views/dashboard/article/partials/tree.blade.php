@@ -16,7 +16,7 @@
             <div class="uk-nestable-item">
                 <div class="uk-nestable-handle"></div>
                 <div data-nestable-action="toggle"></div>
-                <div class="list-label">{{ $category->name }}</div>
+                <div class="list-label">{{ $category->category_name }}</div>
                 <span class="actions">
                     <a href="{{ route('dashboard.category.edit', [ $category->getKey() ]) }}" title="修改分类">
                         <span class="glyphicon glyphicon-pencil"></span>

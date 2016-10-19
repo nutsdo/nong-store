@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Admin;
+use App\Models\Admin;
 use Validator;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -19,7 +19,9 @@ class AuthController extends Controller
     protected $guard = 'admin';
     protected $loginView = 'dashboard.auth.login';
     protected $registerView = 'dashboard.auth.register';
+    protected $redirectAfterLogout = '/dashboard/auth/login';
 
+    protected $username = 'admin_email';
     public function __construct()
     {
         $this->middleware('guest:admin', ['except' => 'getLogout']);
@@ -29,8 +31,8 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:admins',
+            'admin_name' => 'required|max:255',
+            'admin_email' => 'required|email|max:255|unique:sys_users',
             'password' => 'required|confirmed|min:6',
         ]);
 

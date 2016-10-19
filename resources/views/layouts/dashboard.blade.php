@@ -18,7 +18,7 @@
 	<meta name="description" content="后台管理系统" />
 	<meta name="author" content="Dotty" />
 
-	<title>优禾尚鲜 - Dashboard</title>
+	<title>夜色 - Dashboard</title>
 
  	{!! Html::style("assets/css/fonts/linecons/css/linecons.css") !!}
  	{!! Html::style("assets/css/fonts/fontawesome/css/font-awesome.min.css") !!}
@@ -513,7 +513,7 @@
 
             </nav>
 
-
+            @include('flash::message')
             @yield('main')
 
             <!-- Main Footer -->

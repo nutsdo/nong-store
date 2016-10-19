@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class PostArticleCategoryRequest extends Request
+class StoreMenuPostRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class PostArticleCategoryRequest extends Request
     public function rules()
     {
         return [
-            //
-            'category_name'=>'required|min:2',
-            //'category_type'=>'required',
-            //'article_category_id' => 'exists:feature_article_category,id',
+            'fun_name'  => 'required|unique:sys_function|min:2|max:255',
         ];
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\Node;
 
-class ArticleCategory extends Node
+class Category extends Node
 {
     //
     protected $guarded = ['id'];

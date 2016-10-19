@@ -35,17 +35,22 @@
     <li>
         <a href="layout-variants.html">
             <i class="linecons-desktop"></i>
-            <span class="title">管理员管理</span>
+            <span class="title">权限管理</span>
         </a>
         <ul>
             <li>
-                <a href="layout-variants.html">
-                    <span class="title">管理组</span>
+                <a href="{{ route('dashboard.admin.index') }}">
+                    <span class="title">管理员</span>
                 </a>
             </li>
             <li>
-                <a href="layout-collapsed-sidebar.html">
-                    <span class="title">权限设置</span>
+                <a href="{{ route('dashboard.role.index') }}">
+                    <span class="title">角色</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('dashboard.menu.index') }}">
+                    <span class="title">菜单管理</span>
                 </a>
             </li>
 

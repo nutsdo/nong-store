@@ -9,9 +9,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 
-use App\ArticleCategory;
 use App\Http\Requests\PostArticleCategoryRequest;
+use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Kalnoy\Nestedset\Collection;
 
 class ArticleCategoryController extends BaseController{
@@ -23,14 +24,20 @@ class ArticleCategoryController extends BaseController{
 
     public function index()
     {
+
+        //ArticleCategory::fixTree();
+        //$cate = ArticleCategory::countErrors();
+        //dd($cate);
         return view('dashboard.article_category.index');
     }
 
     public function create(Request $request)
     {
-        $data = $request->only('parent_id');
+        $data = $request->only('father_id');
 
         $categories = $this->getCategoryOptions();
+
+        ArticleCategory::fixTree();
 
         return view('dashboard.article_category.create',compact('data','categories'));
     }
@@ -38,7 +45,7 @@ class ArticleCategoryController extends BaseController{
     public function store(PostArticleCategoryRequest $request)
     {
         $input = $request->all();
-
+        $input['user_id'] = $this->login_user->id;
         ArticleCategory::create($input);
 
         return redirect()->route('dashboard.article_category.index');
@@ -59,7 +66,9 @@ class ArticleCategoryController extends BaseController{
 
         $articleCategory->update($request->all());
 
-        return recdirect()->route('dashboard.article_category.index');
+        ArticleCategory::fixTree();
+
+        return redirect()->route('dashboard.article_category.index');
 
     }
 
@@ -68,6 +77,8 @@ class ArticleCategoryController extends BaseController{
         $articleCategory=ArticleCategory::find($id);
 
         $articleCategory->delete();
+
+        ArticleCategory::fixTree();
 
         return redirect()->route('dashboard.article_category.index');
 
@@ -80,11 +91,12 @@ class ArticleCategoryController extends BaseController{
      */
     protected function makeOptions(Collection $items)
     {
+        //dd($items);
         $options = [ '' => '顶级分类' ];
 
         foreach ($items as $item)
         {
-            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->name;
+            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->category_name;
         }
 
         return $options;
@@ -98,7 +110,7 @@ class ArticleCategoryController extends BaseController{
     protected function getCategoryOptions($except = null)
     {
         /** @var \Kalnoy\Nestedset\QueryBuilder $query */
-        $query = ArticleCategory::select('id', 'name')->withDepth();
+        $query = ArticleCategory::select('id', 'category_name')->withDepth();
 
         if ($except)
         {

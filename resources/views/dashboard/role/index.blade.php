@@ -14,7 +14,7 @@
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">文章分类</h1>
+            <h1 class="title">角色管理</h1>
             <p class="description">Plain text boxes, select dropdowns and other basic form elements</p>
         </div>
 
@@ -25,10 +25,10 @@
                         <a href="{{ route('dashboard') }}"><i class="fa-home"></i>首页</a>
                     </li>
                     <li>
-                        <a href="forms-native.html">内容管理</a>
+                        <a href="#">角色管理</a>
                     </li>
                     <li class="active">
-                        <strong>文章列表</strong>
+                        <strong>角色列表</strong>
                     </li>
                 </ol>
 
@@ -43,9 +43,9 @@
 
             <div class="vertical-top">
 
-                <a href="{{ route('dashboard.articles.create') }}" class="btn btn-success btn-icon">
+                <a href="{{ route('dashboard.role.create') }}" class="btn btn-success btn-icon">
                     <i class="fa-plus-square"></i>
-                    <span>添加文章</span>
+                    <span>新增</span>
                 </a>
 
             </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">产品列表</h3>
+            <h3 class="panel-title">管理员列表</h3>
 
             <div class="panel-options">
                 <a href="#" data-toggle="panel">
@@ -75,9 +75,6 @@
                     dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
                     aoColumns: [
                         {bSortable: false},
-                        null,
-                        null,
-                        null,
                         null,
                         null,
                         null,
@@ -120,30 +117,24 @@
                             <input type="checkbox" class="cbr">
                         </th>
                         <th>ID</th>
-                        <th>文章标题</th>
-                        <th>封面</th>
-                        <th>分类</th>
-                        <th>浏览量</th>
-                        <th>发布时间</th>
-                        <th>状态</th>
+                        <th>角色名</th>
+                        <th>显示名称</th>
+                        <th>是否禁用</th>
                         <th>操作</th>
                     </tr>
                 </thead>
 
                 <tbody class="middle-align">
-                @unless($articles->isEmpty())
-                @foreach($articles as $article)
+                @unless($roles->isEmpty())
+                @foreach($roles as $role)
                     <tr>
                         <td>
                             <input type="checkbox" class="cbr">
                         </td>
-                        <td>{{ $article->id }}</td>
-                        <td>{{ $article->title }}</td>
-                        <td>{!! Html::image($article->thumb_url,null,['width'=>'80']) !!}</td>
-                        <td>{{ $article->category->category_name }}</td>
-                        <td>{{ $article->id }}</td>
-                        <td>{{ $article->created_time }}</td>
-                        <td>@if($article->is_published) 发布 @else 未发布 @endif</td>
+                        <td>{{ $role->id }}</td>
+                        <td>{{ $role->role_name }}</td>
+                        <td>{{ $role->display_name }}</td>
+                        <td>@if($role->is_banned) 禁用 @else 正常 @endif</td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -151,13 +142,17 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-primary" role="menu">
                                     <li>
-                                        <a href="{{ route('dashboard.articles.edit',$article->id) }}">修改</a>
+                                        <a href="{{ route('dashboard.role.edit',$role->id) }}">修改</a>
                                     </li>
                                     <li>
-                                        <a href="#">发布</a>
+                                        <a href="{{ route('dashboard.role.permission',$role->id) }}">权限设置</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;" data-action="{{ route('dashboard.articles.destroy',$article->id) }}" class="delete">删除</a>
+                                        @if($role->is_banned) <a href="#">正常</a> @else <a href="#">禁用</a> @endif
+
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" data-action="{{ route('dashboard.admin.destroy',$role->id) }}" class="delete">删除</a>
                                     </li>
 
                                 </ul>
@@ -175,37 +170,38 @@
 
  @stop
 
-  @section('others')
-  	<div class="modal fade" id="delete_modal">
-  		<div class="modal-dialog">
-  			<div class="modal-content">
+ @section('others')
+ 	<div class="modal fade" id="delete_modal">
+ 		<div class="modal-dialog">
+ 			<div class="modal-content">
 
-  				<div class="modal-header">
-  					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  					<h4 class="modal-title">确定要删除？</h4>
-  				</div>
-                 {!! Form::open(['url'=>'','method'=>'DELETE','id'=>'delete_form']) !!}
-  				<div class="modal-body">
+ 				<div class="modal-header">
+ 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+ 					<h4 class="modal-title">确定要删除？</h4>
+ 				</div>
+                {!! Form::open(['url'=>'','method'=>'DELETE','id'=>'delete_form']) !!}
+ 				<div class="modal-body">
 
-                     您确定要删除吗？
+                    您确定要删除吗？
 
-  				</div>
+ 				</div>
 
-  				<div class="modal-footer">
-  				    {!! Form::submit('删除',['class'=>'btn btn-danger']) !!}
-  				    {!! Form::button('取消',['class'=>'btn btn-info','data-dismiss'=>'modal']) !!}
-  				</div>
-  				{!! Form::close()!!}
-  			</div>
-  		</div>
-  	</div>
-  @stop
+ 				<div class="modal-footer">
+ 				    {!! Form::submit('删除',['class'=>'btn btn-danger']) !!}
+ 				    {!! Form::button('取消',['class'=>'btn btn-info','data-dismiss'=>'modal']) !!}
+ 				</div>
+ 				{!! Form::close()!!}
+ 			</div>
+ 		</div>
+ 	</div>
+ @stop
 
  @section('css')
     {!! Html::style("assets/js/datatables/dataTables.bootstrap.css") !!}
  @stop
 
  @section('scripts')
+
     {!! Html::script("assets/js/datatables/js/jquery.dataTables.min.js") !!}
     {!! Html::script("assets/js/datatables/dataTables.bootstrap.js") !!}
     {!! Html::script("assets/js/datatables/yadcf/jquery.dataTables.yadcf.js") !!}

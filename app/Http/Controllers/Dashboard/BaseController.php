@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller{
 
+    public $login_user;
+
     public function __construct()
     {
         $this->middleware('auth.dashboard:admin');
+        $this->login_user = Auth::guard('admin')->user();
     }
 } 
