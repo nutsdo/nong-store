@@ -26,6 +26,9 @@ class AdminAuthenticate
         }
 
         $admin = Auth::guard($guard)->user();
+        if($admin->id==1){
+            return $next($request);
+        }
         if($admin->role->isEmpty()){
             return abort(404);
         }

@@ -167,7 +167,7 @@
 					<!-- logo -->
 					<div class="logo">
 						<a href="../layouts/dashboard-1.html" class="logo-expanded">
-							<img src="assets/images/logo@2x.png" width="80" alt="" />
+							<img src="{{ $login_admin_user->avatar }}" width="80" alt="" />
 						</a>
 
 						<a href="../layouts/dashboard-1.html" class="logo-collapsed">
@@ -479,9 +479,9 @@
 
                     <li class="dropdown user-profile">
                         <a href="#" data-toggle="dropdown">
-                            {!! Html::image('assets/images/user-4.png','user-image',['class'=>'img-circle img-inline userpic-32','width'=>'28']) !!}
+                            {!! Html::image($login_admin_user->avatar,'user-image',['class'=>'img-circle img-inline userpic-32','width'=>'28']) !!}
                             <span>
-                                {{ $user->name }}
+                                {{ $login_admin_user->name }}
                                 <i class="fa-angle-down"></i>
                             </span>
                         </a>
