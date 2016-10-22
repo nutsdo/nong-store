@@ -25,6 +25,7 @@
                     <a href="{{ route('dashboard.menu.create', [ 'father_id' => $category->getKey() ]) }}" title="添加子类">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
+                    <input type="checkbox" name="sys_fun_id[]" value="{{ $category->getKey() }}" @if(isset($category->can) && $category->can) checked @endif>
                 </span>
             </div>
 

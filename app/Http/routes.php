@@ -62,6 +62,9 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
     Route::get('role/{role_id}/permission', [
         'as'=> 'dashboard.role.permission','uses'=>'RoleController@permission'
     ]);
+    Route::post('role/{role_id}/permission', [
+        'as'=> 'dashboard.role.permission.update','uses'=>'RoleController@permissionUpdate'
+    ]);
 
     Route::resource('role','RoleController');
 

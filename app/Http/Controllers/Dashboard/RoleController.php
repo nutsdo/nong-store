@@ -73,9 +73,35 @@ class RoleController extends BaseController
     public function permission($role_id)
     {
         $role = Role::find($role_id);
-        $menus = Menu::defaultOrder()->get()->toTree();
+        $menus = Menu::defaultOrder()->get();//->toTree()
+        //查看角色拥有的菜单权限
+        $has_menus = $role->menus;
+        foreach($menus as $k=>$menu){
+            foreach($has_menus as $m){
+                if($menu->id == $m->id){
+                    $menus[$k]->can = 1;
+                }
+            }
+        }
+        $menus = $menus->toTree();
+
         return view($this->view_path.__FUNCTION__,compact('role','menus'));
     }
 
+    public function permissionUpdate(Request $request,$role_id)
+    {
+        //删除所有的角色菜单
+        $role = Role::find($role_id);
+        $role->menus()->detach();
+        //添加权限
+        $menus = $request->input('sys_fun_id');
+        //dd($menus);
+        $role->menus()->attach($menus);
+
+        flash()->success('操作成功');
+
+        return redirect()->back();
+
+    }
 }
 

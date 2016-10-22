@@ -30,4 +30,10 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //用户角色
+    public function role()
+    {
+        return $this->belongsToMany('App\Models\Role', 'sys_user_role', 'sys_user_id', 'sys_role_id');
+    }
 }

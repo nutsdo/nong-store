@@ -12,16 +12,24 @@
     {!! $errors->first('father_id') !!}
 </div>
 
- <div class="form-group">
-     {!! Form::label('fun_name', '菜单名称',['class'=>'control-label']) !!}
-     {!! Form::text('fun_name',null,[
-         'class'=>'form-control',
-         'data-validate'=>'required',
-         'data-message-required'=>'请输入菜单名称.',
-         'placeholder'=>'菜单名称'
-     ]) !!}
-     {!! $errors->first('title') !!}
- </div>
+<div class="form-group">
+ {!! Form::label('fun_name', '菜单名称',['class'=>'control-label']) !!}
+ {!! Form::text('fun_name',null,[
+     'class'=>'form-control',
+     'data-validate'=>'required',
+     'data-message-required'=>'请输入菜单名称.',
+     'placeholder'=>'菜单名称'
+ ]) !!}
+ {!! $errors->first('title') !!}
+</div>
+<div class="form-group">
+    {!! Form::label('fun_route_name', '菜单路由名称',['class'=>'control-label']) !!}
+    {!! Form::text('fun_route_name',null,[
+        'class'=>'form-control',
+        'placeholder'=>'菜单路由名称，如dashboard.menu.create'
+    ]) !!}
+    {!! $errors->first('fun_route_name') !!}
+</div>
 <div class="form-group">
     {!! Form::label('fun_url', '菜单URL',['class'=>'control-label']) !!}
     {!! Form::text('fun_url',null,[

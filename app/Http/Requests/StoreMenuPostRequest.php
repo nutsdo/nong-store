@@ -24,7 +24,7 @@ class StoreMenuPostRequest extends Request
     public function rules()
     {
         return [
-            'fun_name'  => 'required|unique:sys_function|min:2|max:255',
+            'fun_name'  => 'required|min:2|max:255',
         ];
     }
 }

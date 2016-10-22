@@ -46,7 +46,7 @@
 
 <div class="form-group">
     {!! Form::label('role_id', '选择角色') !!}
-    {!! Form::select('role_id', $roles, null, [ 'class' => 'form-control' ,'placeholder' => '请选择']) !!}
+    {!! Form::select('role_id', $roles, $role_id, [ 'class' => 'form-control' ,'placeholder' => '请选择']) !!}
     {!! $errors->first('role_id') !!}
 </div>
 

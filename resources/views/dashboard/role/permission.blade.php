@@ -38,12 +38,19 @@
     <!--面包屑导航 end-->
 
     <div class="panel panel-default">
-        <div class="panel-heading">分类管理</div>
+        <div class="panel-heading">菜单列表</div>
         <div class="panel-body">
 
             <div class="row">
                 <div class="col-sm-8">
+                    {!! Form::model($role,['route'=>['dashboard.role.permission.update',$role->id],'class'=>'validate','method'=>'POST','id'=>'form']) !!}
                     @include('dashboard.role.partials.tree')
+                    <div class="form-group">
+                        {!! Form::submit('保存',['class'=>'btn btn-success']) !!}
+                        {!! Form::reset('重置',['class'=>'btn btn-white']) !!}
+                    </div>
+                    {!! Form::close() !!}
+
                 </div>
             </div>
 

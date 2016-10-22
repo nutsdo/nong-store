@@ -13,7 +13,7 @@
   <div class="panel-body">
 
   {!! Form::model($admin,['route'=>['dashboard.admin.update',$admin->id],'class'=>'validate','method'=>'PATCH','id'=>'form']) !!}
-     @include('dashboard.admin.partials.form',['submitButtonText'=>'保存','path'=>$admin->avatar])
+     @include('dashboard.admin.partials.form',['submitButtonText'=>'保存','path'=>$admin->avatar,'role_id'=>$role_id])
   {!! Form::close() !!}
   </div>
 </div>
