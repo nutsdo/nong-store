@@ -512,7 +512,7 @@
                 </ul>
 
             </nav>
-
+            @include('dashboard.breadcrumb')
             @include('flash::message')
             @yield('main')
 

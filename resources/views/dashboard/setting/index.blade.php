@@ -9,32 +9,6 @@
  @extends('layouts.dashboard')
 
  @section('main')
- <!--面包屑导航 start-->
-<div class="page-title" xmlns="http://www.w3.org/1999/html">
-
-        <div class="title-env">
-            <h1 class="title">基本设置</h1>
-            <p class="description">Plain text boxes, select dropdowns and other basic form elements</p>
-        </div>
-
-            <div class="breadcrumb-env">
-
-                <ol class="breadcrumb bc-1">
-                    <li>
-                        <a href="{{ route('dashboard') }}"><i class="fa-home"></i>首页</a>
-                    </li>
-                    <li>
-                        <a href="forms-native.html">系统设置</a>
-                    </li>
-                    <li class="active">
-                        <strong>基本设置</strong>
-                    </li>
-                </ol>
-
-        </div>
-
-    </div>
- <!--面包屑导航 end-->
 
  <!--主体部分 start-->
 

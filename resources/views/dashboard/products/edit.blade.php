@@ -13,7 +13,7 @@
   <div class="panel-body">
 
   {!! Form::model($product,['route'=>'dashboard.products.store','class'=>'validate','method'=>'post','data-ajax'=>'true','id'=>'form']) !!}
-     @include('dashboard.products.form',['submitButtonText'=>'保存','path'=>$product->pic_url])
+     @include('dashboard.products.partials.form',['submitButtonText'=>'保存','path'=>$product->pic_url])
   {!! Form::close() !!}
   </div>
 </div>

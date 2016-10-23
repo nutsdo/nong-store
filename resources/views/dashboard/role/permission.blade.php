@@ -10,33 +10,6 @@
 
  @section('main')
 
-    <!--面包屑导航 start-->
-    <div class="page-title">
-
-        <div class="title-env">
-            <h1 class="title">权限设置</h1>
-            <p class="description">Plain text boxes, select dropdowns and other basic form elements</p>
-        </div>
-
-            <div class="breadcrumb-env">
-
-                <ol class="breadcrumb bc-1">
-                    <li>
-                        <a href="{{ route('dashboard') }}"><i class="fa-home"></i>首页</a>
-                    </li>
-                    <li>
-                        <a href="#">权限管理</a>
-                    </li>
-                    <li class="active">
-                        <strong>权限设置</strong>
-                    </li>
-                </ol>
-
-        </div>
-
-    </div>
-    <!--面包屑导航 end-->
-
     <div class="panel panel-default">
         <div class="panel-heading">菜单列表</div>
         <div class="panel-body">

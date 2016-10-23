@@ -12,7 +12,7 @@
   <div class="panel-heading">修改管理员信息</div>
   <div class="panel-body">
 
-  {!! Form::model(null,['route'=>['dashboard.admin.store'],'class'=>'validate','method'=>'POST','id'=>'form']) !!}
+  {!! Form::model(null,['route'=>['dashboard.admin.store'],'class'=>'validate form-horizontal','method'=>'POST','id'=>'form']) !!}
      @include('dashboard.admin.partials.create_form',['submitButtonText'=>'保存','path'=>''])
   {!! Form::close() !!}
   </div>

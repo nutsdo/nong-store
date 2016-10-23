@@ -12,7 +12,7 @@
      <div class="panel-heading">新建菜单</div>
      <div class="panel-body">
 
-     {!! Form::model($data,['route'=>'dashboard.menu.store','class'=>'validate','method'=>'post']) !!}
+     {!! Form::model($data,['route'=>'dashboard.menu.store','class'=>'validate form-horizontal','method'=>'post']) !!}
         @include('dashboard.menu.partials.form',['submitButtonText'=>'创建','path'=>''])
      {!! Form::close() !!}
      </div>

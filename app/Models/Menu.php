@@ -25,4 +25,9 @@ class Menu extends Node
     {
         return $this->belongsToMany('App\Models\Role', 'sys_role_function', 'sys_fun_id', 'sys_role_id');
     }
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Menu', 'father_id','id');
+    }
 }

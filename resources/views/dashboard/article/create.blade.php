@@ -12,7 +12,7 @@
   <div class="panel-heading">添加商品</div>
   <div class="panel-body">
 
-  {!! Form::model($data,['route'=>'dashboard.articles.store','class'=>'validate','method'=>'post','id'=>'form']) !!}
+  {!! Form::model($data,['route'=>'dashboard.articles.store','class'=>'validate form-horizontal','method'=>'post','id'=>'form']) !!}
      @include('dashboard.article.partials.form',['submitButtonText'=>'添加','path'=>''])
   {!! Form::close() !!}
   </div>

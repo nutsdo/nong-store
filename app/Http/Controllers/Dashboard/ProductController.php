@@ -9,9 +9,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 
-use App\Category;
+use App\Models\Category;
 use App\Http\Requests\PostProductRequest;
-use App\Products;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Kalnoy\Nestedset\Collection;
 
@@ -91,7 +91,7 @@ class ProductController extends BaseController{
 
         foreach ($items as $item)
         {
-            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->title;
+            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->category_name;
         }
 
         return $options;
@@ -105,7 +105,7 @@ class ProductController extends BaseController{
     protected function getCategoryOptions($except = null)
     {
         /** @var \Kalnoy\Nestedset\QueryBuilder $query */
-        $query = Category::select('id', 'title')->withDepth();
+        $query = Category::select('id', 'category_name')->withDepth();
 
         if ($except)
         {

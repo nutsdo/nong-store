@@ -9,7 +9,6 @@
  @extends('layouts.dashboard')
 
  @section('main')
- @include('dashboard.breadcrumb')
     <!--主体 start-->
     <div class="panel panel-default">
         <div class="panel-body">

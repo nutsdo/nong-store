@@ -12,8 +12,8 @@
   <div class="panel-heading">添加商品</div>
   <div class="panel-body">
 
-  {!! Form::model($data,['route'=>'dashboard.products.store','class'=>'validate','method'=>'post','data-ajax'=>'true','id'=>'form']) !!}
-     @include('dashboard.products.form',['submitButtonText'=>'添加','path'=>''])
+  {!! Form::model($data,['route'=>'dashboard.products.store','class'=>'validate form-horizontal','method'=>'post','data-ajax'=>'true','id'=>'form']) !!}
+     @include('dashboard.products.partials.form',['submitButtonText'=>'添加','path'=>''])
   {!! Form::close() !!}
   </div>
 </div>

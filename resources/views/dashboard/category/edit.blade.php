@@ -12,7 +12,7 @@
      <div class="panel-heading">修改分类</div>
      <div class="panel-body">
 
-     {!! Form::model($data,['route'=>'dashboard.category.update','class'=>'validate','method'=>'PUT']) !!}
+     {!! Form::model($data,['route'=>'dashboard.category.update','class'=>'validate form-horizontal','method'=>'PUT']) !!}
         @include('dashboard.category.form',['submitButtonText'=>'修改'])
      {!! Form::close() !!}
      </div>

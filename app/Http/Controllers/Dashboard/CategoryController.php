@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 
-use App\Category;
+use App\Models\Category;
 use App\Http\Requests\PostCategoryRequest;
 use Illuminate\Http\Request;
 use Kalnoy\Nestedset\Collection;
@@ -29,7 +29,7 @@ class CategoryController extends BaseController{
 
     public function create(Request $request)
     {
-        $data = $request->only('parent_id');
+        $data = $request->only('father_id');
 
         $categories = $this->getCategoryOptions();
 
@@ -78,7 +78,7 @@ class CategoryController extends BaseController{
 
         foreach ($items as $item)
         {
-            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->title;
+            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->category_name;
         }
 
         return $options;
@@ -92,7 +92,7 @@ class CategoryController extends BaseController{
     protected function getCategoryOptions($except = null)
     {
         /** @var \Kalnoy\Nestedset\QueryBuilder $query */
-        $query = Category::select('id', 'title')->withDepth();
+        $query = Category::select('id', 'category_name')->withDepth();
 
         if ($except)
         {

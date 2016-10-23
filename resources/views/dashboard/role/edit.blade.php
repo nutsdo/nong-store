@@ -12,7 +12,7 @@
   <div class="panel-heading">修改角色信息</div>
   <div class="panel-body">
 
-  {!! Form::model($role,['route'=>['dashboard.role.update',$role->id],'class'=>'validate','method'=>'PATCH','id'=>'form']) !!}
+  {!! Form::model($role,['route'=>['dashboard.role.update',$role->id],'class'=>'validate form-horizontal','method'=>'PATCH','id'=>'form']) !!}
      @include('dashboard.role.partials.form',['submitButtonText'=>'保存','path'=>''])
   {!! Form::close() !!}
   </div>

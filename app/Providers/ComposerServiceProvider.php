@@ -26,6 +26,7 @@ class ComposerServiceProvider extends ServiceProvider {
             'App\Http\ViewComposers\CategoriesComposer' => 'dashboard.category.index',
             'App\Http\ViewComposers\ArticleCategoriesComposer' => 'dashboard.article_category.index',
             'App\Http\ViewComposers\CommonComposer' => 'dashboard.sidebar',
+            'App\Http\ViewComposers\BreadcrumbComposer' => 'dashboard.breadcrumb',
         ]);
 
     }

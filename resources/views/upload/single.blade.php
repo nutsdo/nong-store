@@ -99,6 +99,17 @@
 @section('scripts')
     {!! Html::script('assets/js/dropzone/dropzone.min.js') !!}
     <script>
+        //上传按钮
+        $('.file-upload').click(function (){
+            var $this = $(this);
+            $('#upload').modal({
+                backdrop: 'static'
+            });
+            //
+            var input = $this.data('input');
+            $('#uploadForm').data('path-input',input);
+        });
+
       // Get the template HTML and remove it from the doument
       var previewNode = document.querySelector("#template");
       previewNode.id = "";
@@ -136,8 +147,11 @@
       });
       myDropzone.on("success", function(file) {
         var data = eval('(' + file.xhr.responseText + ')');
-        $('#thumb_url').val(data.path);
-        $('#preview_pic').html('<img src="'+ "{{url('')}}/" + data.path +'" width="80">');
+        var input = $('#uploadForm').data('path-input');
+
+        $('form input[name='+input+']').val(data.path);
+        //关闭模态框
+        $('#upload').modal('hide');
 
       });
       myDropzone.on("error", function(file) {
@@ -160,5 +174,6 @@
       document.querySelector("#actions .cancel").onclick = function() {
         myDropzone.removeAllFiles(true);
       };
+
     </script>
 @stop

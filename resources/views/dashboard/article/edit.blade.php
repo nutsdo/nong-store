@@ -12,7 +12,7 @@
   <div class="panel-heading">修改文章</div>
   <div class="panel-body">
 
-  {!! Form::model($article,['route'=>['dashboard.articles.update',$article->id],'class'=>'validate','method'=>'PATCH','id'=>'form']) !!}
+  {!! Form::model($article,['route'=>['dashboard.articles.update',$article->id],'class'=>'validate form-horizontal','method'=>'PATCH','id'=>'form']) !!}
      @include('dashboard.article.partials.form',['submitButtonText'=>'保存','path'=>$article->pic_url])
   {!! Form::close() !!}
   </div>

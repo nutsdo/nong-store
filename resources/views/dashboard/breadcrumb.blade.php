@@ -7,12 +7,12 @@
  */
 ?>
 
-        <!--面包屑导航 start-->
+<!--面包屑导航 start-->
 <div class="page-title">
 
     <div class="title-env">
-        <h1 class="title">菜单管理</h1>
-        <p class="description">Plain text boxes, select dropdowns and other basic form elements</p>
+        <h1 class="title">{{ $breadcrumb->fun_name }}</h1>
+        <p class="description">{{ $breadcrumb->description }}</p>
     </div>
 
     <div class="breadcrumb-env">
@@ -22,10 +22,10 @@
                 <a href="{{ route('dashboard') }}"><i class="fa-home"></i>首页</a>
             </li>
             <li>
-                <a>权限管理</a>
+                <a>{{ $breadcrumb->parent->fun_name }}</a>
             </li>
             <li class="active">
-                <strong>菜单管理</strong>
+                <strong>{{ $breadcrumb->fun_name }}</strong>
             </li>
         </ol>
 

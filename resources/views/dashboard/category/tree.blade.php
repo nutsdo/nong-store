@@ -16,13 +16,13 @@
             <div class="uk-nestable-item">
                 <div class="uk-nestable-handle"></div>
                 <div data-nestable-action="toggle"></div>
-                <div class="list-label">{{ $category->title }}</div>
+                <div class="list-label">{{ $category->category_name }}</div>
                 <span class="actions">
                     <a href="{{ route('dashboard.category.edit', [ $category->getKey() ]) }}" title="修改分类">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
 
-                    <a href="{{ route('dashboard.category.create', [ 'parent_id' => $category->getKey() ]) }}" title="添加子类">
+                    <a href="{{ route('dashboard.category.create', [ 'father_id' => $category->getKey() ]) }}" title="添加子类">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
                 </span>
