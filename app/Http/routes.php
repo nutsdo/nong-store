@@ -76,7 +76,13 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('article_category','ArticleCategoryController');
 
+    Route::get('articles/{article_id}/comments', [
+        'as'=> 'dashboard.articles.comments','uses'=>'ArticleController@comments'
+    ]);
+
     Route::resource('articles','ArticleController');
+
+    Route::resource('comments', 'CommentController');
 
     Route::resource('pages','PageController');
 

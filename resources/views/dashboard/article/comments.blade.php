@@ -15,9 +15,9 @@
 
             <div class="vertical-top">
 
-                <a href="{{ route('dashboard.articles.create') }}" class="btn btn-success btn-icon">
+                <a href="{{ route('dashboard.articles.edit',$article->id) }}" class="btn btn-success btn-icon">
                     <i class="fa-plus-square"></i>
-                    <span>添加文章</span>
+                    <span>查看文章</span>
                 </a>
 
             </div>
@@ -26,7 +26,7 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">产品列表</h3>
+            <h3 class="panel-title">评论列表</h3>
 
             <div class="panel-options">
                 <a href="#" data-toggle="panel">
@@ -103,33 +103,28 @@
                 </thead>
 
                 <tbody class="middle-align">
-                @unless($articles->isEmpty())
-                @foreach($articles as $article)
+                @unless($article->comments->isEmpty())
+                @foreach($articles->comments as $comment)
                     <tr>
                         <td>
                             <input type="checkbox" class="cbr">
                         </td>
-                        <td>{{ $article->id }}</td>
-                        <td>{{ $article->title }}</td>
+                        <td>{{ $comment->id }}</td>
+                        <td>{{ $comment->title }}</td>
                         <td>{!! Html::image($article->thumb_url,null,['width'=>'80']) !!}</td>
-                        <td>{{ $article->category->category_name }}</td>
-                        <td>{{ $article->id }}</td>
-                        <td>{{ $article->created_time }}</td>
-                        <td>@if($article->is_published) 发布 @else 未发布 @endif</td>
+                        <td>{{ $comment->category->category_name }}</td>
+                        <td>{{ $comment->id }}</td>
+                        <td>{{ $comment->created_time }}</td>
+                        <td>@if($comment->is_published) 发布 @else 未发布 @endif</td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                                     操作 <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-primary" role="menu">
+
                                     <li>
-                                        <a href="{{ route('dashboard.articles.edit',$article->id) }}">修改</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('dashboard.articles.comments',$article->id) }}">查看评论</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" data-action="{{ route('dashboard.articles.destroy',$article->id) }}" class="delete">删除</a>
+                                        <a href="javascript:;" data-action="{{ route('dashboard.comments.destroy',$comment->id) }}" class="delete">删除</a>
                                     </li>
 
                                 </ul>

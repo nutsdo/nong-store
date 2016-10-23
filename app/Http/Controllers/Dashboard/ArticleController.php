@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\PostArticleRequest;
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Kalnoy\Nestedset\Collection;
 
@@ -72,6 +73,12 @@ class ArticleController extends BaseController{
         return redirect()->route('dashboard.articles.index');
     }
 
+
+    public function comments($article_id)
+    {
+        $article = Article::with('comments')->find($article_id);
+        return view('dashboard.article.comments',compact('article'));
+    }
 
     /**
      * @param Collection $items

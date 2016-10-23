@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Article extends Model
+class Comment extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'feature_article';
+    protected $table = 'feature_article_comment';
 
     protected $dates = ['delete_time'];
 
@@ -19,13 +19,8 @@ class Article extends Model
 
     protected $guarded = ['id'];
 
-    public function category()
+    public function article()
     {
-        return $this->belongsTo('App\Models\ArticleCategory','category_id');
-    }
-
-    public function comments()
-    {
-        return $this->hasMany('App\Models\Comment','id','article_id');
+        return $this->belongsTo('App\Models\Article','article_id');
     }
 }
