@@ -28,7 +28,6 @@ class AdminController extends BaseController
 
     public function create()
     {
-        $data['is_create'] = true;
         $roles = Role::select('id','role_name')->get();
         $roles = $this->toOptionArray($roles);
         //dd($roles);
@@ -67,7 +66,7 @@ class AdminController extends BaseController
         else $role_id = 0;
         $roles = Role::all();
         $roles = $this->toOptionArray($roles);
-        $data['is_create'] = false;
+
         return view($this->view_path.'edit',compact('admin','roles','role_id'));
     }
 
@@ -98,6 +97,15 @@ class AdminController extends BaseController
         }
 
         return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $admin = Admin::find($id);
+
+        $admin->delete();
+
+        return redirect()->route('dashboard.admin.index');
     }
 
     public function toOptionArray(Collection $collection)

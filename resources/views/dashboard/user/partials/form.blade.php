@@ -8,48 +8,62 @@
  ?>
 
  <div class="form-group">
-     {!! Form::label('admin_name', '管理员帐号',['class'=>'control-label col-sm-2']) !!}
+     {!! Form::label('name', '用户名',['class'=>'control-label col-sm-2']) !!}
      <div class="col-sm-10">
-     {!! Form::text('admin_name',null,[
+     {!! Form::text('name',null,[
          'class'=>'form-control',
          'data-validate'=>'required',
-         'data-message-required'=>'请输入管理员帐号.',
-         'placeholder'=>'管理员帐号'
+         'data-message-required'=>'请输入用户名.',
+         'placeholder'=>'用户名'
      ]) !!}
      </div>
-     {!! $errors->first('title') !!}
+     {!! $errors->first('name') !!}
  </div>
+
 <div class="form-group">
-    {!! Form::label('admin_email', '邮箱',['class'=>'control-label col-sm-2']) !!}
+    {!! Form::label('email', '邮箱',['class'=>'control-label col-sm-2']) !!}
     <div class="col-sm-10">
-    {!! Form::text('admin_email',null,[
+    {!! Form::text('email',null,[
         'class'=>'form-control',
         'placeholder'=>'邮箱'
     ]) !!}
     </div>
-    {!! $errors->first('admin_email') !!}
+    {!! $errors->first('email') !!}
 </div>
 
 <div class="form-group">
- {!! Form::label('password', '密码',['class'=>'control-label col-sm-2']) !!}
+    {!! Form::label('phone', '手机号',['class'=>'control-label col-sm-2']) !!}
     <div class="col-sm-10">
-     {!! Form::password('password',[
-         'class'=>'form-control',
-         'placeholder'=>'密码'
-     ]) !!}
+        {!! Form::text('phone',null,[
+            'class'=>'form-control',
+            'placeholder'=>'手机号'
+        ]) !!}
     </div>
- {!! $errors->first('password') !!}
+    {!! $errors->first('phone') !!}
 </div>
+@if($is_create)
+<div class="form-group">
+    {!! Form::label('password', '密码',['class'=>'control-label col-sm-2']) !!}
+    <div class="col-sm-10">
+        {!! Form::password('password',[
+            'class'=>'form-control',
+            'placeholder'=>'密码'
+        ]) !!}
+    </div>
+    {!! $errors->first('password') !!}
+</div>
+
 <div class="form-group">
     {!! Form::label('password_confirmation', '确认密码',['class'=>'control-label col-sm-2']) !!}
     <div class="col-sm-10">
-    {!! Form::password('password_confirmation',[
-        'class'=>'form-control',
-        'placeholder'=>'确认密码'
-    ]) !!}
+        {!! Form::password('password_confirmation',[
+            'class'=>'form-control',
+            'placeholder'=>'确认密码'
+        ]) !!}
     </div>
     {!! $errors->first('password_confirmation') !!}
 </div>
+@endif
 <div class="form-group">
  {!! Form::label('avatar', '头像',['class'=>'control-label col-sm-2']) !!}
     <div class="col-sm-9">
@@ -61,20 +75,14 @@
     <a href="javascript:;" data-input="avatar" class="btn btn-primary btn-single btn-sm file-upload">上传</a>
     {!! $errors->first('avatar') !!}
 </div>
-
-<div class="form-group" id="preview_pic">
 @if($path)
-{!! Form::image($path,null,['id'=>'pic_path','width'=>'80']) !!}
-@endif
-</div>
-
-<div class="form-group">
-    {!! Form::label('role_id', '选择角色',['class'=>'control-label col-sm-2']) !!}
-    <div class="col-sm-10">
-    {!! Form::select('role_id', $roles, null, [ 'class' => 'form-control' ,'placeholder' => '请选择']) !!}
+<div class="form-group" id="preview_pic">
+    {!! Form::label('', '',['class'=>'control-label col-sm-2']) !!}
+    <div class="col-sm-9">
+    {!! Form::image($path,null,['id'=>'pic_path','width'=>'80']) !!}
     </div>
-    {!! $errors->first('role_id') !!}
 </div>
+@endif
 
 <div class="form-group">
     {!! Form::label('is_banned', '状态',['class'=>'control-label col-sm-2']) !!}
@@ -88,6 +96,7 @@
     </div>
     {!! $errors->first('is_banned') !!}
 </div>
+<br>
 <div class="form-group">
     {!! Form::label('', '',['class'=>'control-label col-sm-2']) !!}
     {!! Form::submit($submitButtonText,['class'=>'btn btn-success']) !!}

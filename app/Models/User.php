@@ -19,7 +19,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'app_users';
+
+    const CREATED_AT = 'created_time';
+    const UPDATED_AT = 'updated_time';
+    const DELETED_AT = 'deleted_time';
 
     /**
      * The attributes that are mass assignable.

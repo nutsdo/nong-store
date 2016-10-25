@@ -6,8 +6,8 @@
  * Time: 上午12:48
  */
 ?>
-
 <!--面包屑导航 start-->
+@if($breadcrumb)
 <div class="page-title">
 
     <div class="title-env">
@@ -32,5 +32,6 @@
     </div>
 
 </div>
+@endif
 <!--面包屑导航 end-->
 

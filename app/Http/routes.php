@@ -59,6 +59,8 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('admin','AdminController');
 
+    Route::resource('user','UserController');
+
     Route::get('role/{role_id}/permission', [
         'as'=> 'dashboard.role.permission','uses'=>'RoleController@permission'
     ]);
@@ -74,6 +76,10 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('products','ProductController');
 
+    Route::resource('brand','BrandController');
+
+    Route::resource('orders','OrderController');
+
     Route::resource('article_category','ArticleCategoryController');
 
     Route::get('articles/{article_id}/comments', [
@@ -83,6 +89,10 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
     Route::resource('articles','ArticleController');
 
     Route::resource('comments', 'CommentController');
+
+    Route::resource('community', 'CommunityController');
+
+    Route::resource('community-articles', 'CommunityArticlesController');
 
     Route::resource('pages','PageController');
 

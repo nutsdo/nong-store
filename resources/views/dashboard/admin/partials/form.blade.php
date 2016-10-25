@@ -30,6 +30,30 @@
     {!! $errors->first('admin_email') !!}
 </div>
 
+@if($is_create)
+    <div class="form-group">
+        {!! Form::label('password', '密码',['class'=>'control-label col-sm-2']) !!}
+        <div class="col-sm-10">
+            {!! Form::password('password',[
+                'class'=>'form-control',
+                'placeholder'=>'密码'
+            ]) !!}
+        </div>
+        {!! $errors->first('password') !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('password_confirmation', '确认密码',['class'=>'control-label col-sm-2']) !!}
+        <div class="col-sm-10">
+            {!! Form::password('password_confirmation',[
+                'class'=>'form-control',
+                'placeholder'=>'确认密码'
+            ]) !!}
+        </div>
+        {!! $errors->first('password_confirmation') !!}
+    </div>
+@endif
+
 <div class="form-group">
  {!! Form::label('avatar', '头像',['class'=>'control-label col-sm-2']) !!}
     <div class="col-sm-9">
