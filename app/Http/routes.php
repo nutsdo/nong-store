@@ -90,7 +90,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('comments', 'CommentController');
 
-    Route::resource('community', 'CommunityController');
+    Route::resource('community-category', 'CommunityCategoryController');
 
     Route::resource('community-articles', 'CommunityArticlesController');
 

@@ -23,7 +23,6 @@ class CategoryController extends BaseController{
 
     public function index()
     {
-
         return view('dashboard.category.index');
     }
 
