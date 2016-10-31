@@ -28,6 +28,7 @@
  	{!! Html::style("assets/css/xenon-components.css") !!}
  	{!! Html::style("assets/css/xenon-skins.css") !!}
  	{!! Html::style("assets/css/custom.css") !!}
+    @yield('style')
 
     {!! Html::script("assets/js/jquery-1.11.1.min.js") !!}
 

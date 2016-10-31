@@ -7,6 +7,9 @@
  */
  ?>
 @extends('layouts.dashboard')
+@section('style')
+    {!! Html::style("assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css") !!}
+@stop
 @section('main')
 <div class="panel panel-default">
   <div class="panel-heading">添加商品</div>
@@ -19,9 +22,12 @@
 </div>
 
 @stop
+@section('others')
+    @include('upload.single',['type'=>'articles'])
+@stop
 
-@include('upload.single',['type'=>'articles'])
 @section('editor')
+    @include('dashboard.date-time')
     {!! Html::script('assets/ckeditor/ckeditor.js') !!}
     {!! Html::script('assets/ckfinder/ckfinder.js') !!}
     <script>
