@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
         'as'=>'dashboard','uses'=>'DashboardController@index'
     ]);
 
-    Route::resource('setting','SettingController',['only'=>['index','store']]);
+    Route::resource('setting','SettingController');
 
     Route::resource('admin','AdminController');
 

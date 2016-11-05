@@ -8,8 +8,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-
-use App\Settings;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class SettingController extends BaseController{
@@ -21,14 +20,66 @@ class SettingController extends BaseController{
 
     public function index()
     {
-        $setting = Settings::first();
-        return view('dashboard.setting.index',compact('setting'));
+        $settings = Settings::paginate(15);
+        return view('dashboard.setting.index',compact('settings'));
+    }
+
+    public function create()
+    {
+        return view('dashboard.setting.create');
     }
 
     public function store(Request $input)
     {
-        $data = $input->except('_token');
-        $query = Settings::find(1)->update($data);
+        $this->validate($input,[
+            'name'           => 'required|alpha|unique:settings,name',
+        ]);
+        $data = $input->except('_token','_method');
+        $query = Settings::create($data);
+        if($query){
+            flash()->success('操作成功');
+            return redirect()->route('dashboard.setting.index');
+        }else{
+            flash()->error('操作失败');
+        }
+
         return redirect()->back();
+    }
+
+    public function edit($id)
+    {
+        $setting = Settings::find($id);
+        return view('dashboard.setting.edit',compact('setting'));
+    }
+
+    public function update(Request $input,$id)
+    {
+        $this->validate($input,[
+            'name'           => 'required|alpha|unique:settings,name,'.$id,
+        ]);
+        $data = $input->except('_token','_method');
+        $query = Settings::find($id)->update($data);
+        if($query){
+            flash()->success('操作成功');
+            return redirect()->route('dashboard.setting.edit',$id);
+        }else{
+            flash()->error('操作失败');
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function destroy($id)
+    {
+        $admin = Settings::find($id);
+
+        $query = $admin->delete();
+        if($query){
+            flash()->success('操作成功');
+        }else{
+            flash()->error('操作失败');
+        }
+        return redirect()->route('dashboard.setting.index');
     }
 } 
