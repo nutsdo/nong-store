@@ -124,8 +124,12 @@
                                         <a href="{{ route('dashboard.user.edit',$user->id) }}">修改</a>
                                     </li>
                                     <li>
-                                        @if($user->is_banned) <a href="#">正常</a> @else <a href="#">禁用</a> @endif
+                                        @if($user->is_banned)
+                                            <a href="javascript:;" data-action="{{ route('dashboard.user.disabled',$user->id) }}" data-banned="0" class="disabled">正常</a>
 
+                                        @else
+                                            <a href="javascript:;" data-action="{{ route('dashboard.user.disabled',$user->id) }}" data-banned="1" class="disabled">禁用</a>
+                                        @endif
                                     </li>
                                     <li>
                                         <a href="javascript:;" data-action="{{ route('dashboard.user.destroy',$user->id) }}" class="delete">删除</a>
@@ -170,6 +174,30 @@
  			</div>
  		</div>
  	</div>
+    <div class="modal fade" id="disabled_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">确定要禁用该用户吗？</h4>
+                </div>
+                {!! Form::open(['url'=>'','method'=>'PATCH','id'=>'disabled_form']) !!}
+
+                <div class="modal-body">
+
+                    确定要禁用该用户吗？
+
+                </div>
+                {!! Form::hidden('is_banned','') !!}
+                <div class="modal-footer">
+                    {!! Form::submit('确定',['class'=>'btn btn-danger']) !!}
+                    {!! Form::button('取消',['class'=>'btn btn-info','data-dismiss'=>'modal']) !!}
+                </div>
+                {!! Form::close()!!}
+            </div>
+        </div>
+    </div>
  @stop
 
  @section('css')
@@ -187,6 +215,17 @@
         $('.delete').click(function(){
             $('#delete_form').attr('action',$(this).data('action'));
             $('#delete_modal').modal('show');
+        });
+        $('.disabled').click(function(){
+            var is_banned = $(this).data('banned');
+            if (is_banned==1){
+                $('#disabled_modal .modal-title,#disabled_modal .modal-body').text('确定要禁用该用户吗？');
+            }else {
+                $('#disabled_modal .modal-title,#disabled_modal .modal-body').text('确定要启用该用户吗？');
+            }
+            $('#disabled_form').attr('action',$(this).data('action'));
+            $('#disabled_form input[name=is_banned]').val(is_banned);
+            $('#disabled_modal').modal('show');
         });
     </script>
  @stop

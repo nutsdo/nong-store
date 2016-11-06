@@ -14,7 +14,7 @@
         @foreach($trees as $category)
             <li class="@if($currentRoute==$category->fun_route_name) active @endif">
 
-                <a href="@if($category->fun_route_name) {{ route($category->fun_route_name) }} @else # @endif">
+                <a href="@if($category->fun_route_name) {{ route($category->fun_route_name) }} @else javascript:; @endif">
                     <i class="{{ $category->fun_icon }}"></i>
                     <span class="title">{{ $category->fun_name }}</span>
                 </a>
@@ -25,3 +25,8 @@
 
     </ul>
 @endunless
+<script>
+    var menu_ul = $('#main-menu li .active').parent();
+    menu_ul.show();
+    menu_ul.parent().addClass('expanded');
+</script>

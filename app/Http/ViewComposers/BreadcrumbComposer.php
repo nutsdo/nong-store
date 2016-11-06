@@ -38,7 +38,7 @@ class BreadcrumbComposer
                 $route .= '.'.$list[$i];
             }
         }
-        //dd($currentRoute);
+
         $route = $route.'.index';
         $breadcrumb = Menu::with('parent')->where('fun_route_name',$route)->first();
         $view->with('breadcrumb', $breadcrumb);

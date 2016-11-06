@@ -87,4 +87,22 @@ class UserController extends BaseController
 
         return redirect()->route('dashboard.user.index');
     }
+
+    /*
+     * 禁用
+     * */
+
+    public function disabled(Request $request,$id)
+    {
+        $input = $request->only('is_banned');
+        $res =  User::where('id',$id)->update($input);
+        if($res){
+            flash()->success('操作成功');
+            return redirect()->route('dashboard.user.index');
+        }else{
+            flash()->error('操作失败');
+        }
+
+        return redirect()->back();
+    }
 }

@@ -40,8 +40,19 @@ class CommonComposer
 
         }
         $currentRoute = Route::currentRouteName();
+        $list = explode('.',$currentRoute);
+        $route = '';
+        for($i=0;$i<count($list)-1;$i++){
+            if($i==0){
+                $route .= $list[$i];
+            }else{
+                $route .= '.'.$list[$i];
+            }
+        }
 
-        $view->with('currentRoute', $currentRoute)
+        $route = $route.'.index';
+
+        $view->with('currentRoute', $route)
              ->with('trees', $menus);
     }
 }

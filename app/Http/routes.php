@@ -59,6 +59,9 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('admin','AdminController');
 
+    Route::patch('user/{user_id}/disabled', [
+        'as'=> 'dashboard.user.disabled','uses'=>'UserController@disabled'
+    ]);
     Route::resource('user','UserController');
 
     Route::get('role/{role_id}/permission', [
