@@ -10,13 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+//
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*
  * 前台功能路由
@@ -26,11 +23,29 @@ Route::group(['middleware' => 'web'], function()
 
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/', [
+        'as'=>'home','uses'=>'HomeController@index'
+    ]);
+
+    Route::get('/home', 'Front\HomeController@index');
+
+    Route::get('/category/{id?}', [
+        'as'=>'article-category','uses'=>'Front\ArticleCategoryController@index'
+    ]);
+
+    Route::get('/article/{id}', [
+        'as'=>'article.show','uses'=>'Front\ArticleController@show'
+    ]);
+
+    Route::get('/community/{id?}', [
+        'as'=>'community-category','uses'=>'Front\CommunityCategoryController@index'
+    ]);
 
     Route::controllers([
+        //'category' => 'Front\ArticleCategoryController',
         'products' => 'Front\ProductController'
     ]);
+
 
 
 });
@@ -56,6 +71,8 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
     ]);
 
     Route::resource('setting','SettingController');
+
+    Route::resource('banner','BannerController');
 
     Route::resource('admin','AdminController');
 

@@ -36,4 +36,9 @@ class Admin extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Role', 'sys_user_role', 'sys_user_id', 'sys_role_id');
     }
+
+    public function articles()
+    {
+        return $this->morphMany('App\Models\Article', 'author');
+    }
 }

@@ -25,12 +25,12 @@ class PostProductRequest extends Request
     {
         return [
             //
-            "category_id" => "required",
-            "title" => "required|between:2,50",
-            "number" => "required|digits_between:1,10",
-            "price" => "required|numeric",
-            "pic_url" => "required",
-            "is_show" => "boolean",
+            "category_id"   => "required",
+            "title"         => "required|between:2,50",
+            "number"        => "required|digits_between:1,10",
+            "market_price"  => "required|numeric",
+            "thumb_url"     => "required",
+            "is_show"       => "boolean",
         ];
     }
 }

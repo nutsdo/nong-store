@@ -85,7 +85,7 @@
 @if($path)
  <div class="form-group" id="rec_pic_url">
 
-    {!! Form::image($path,null,['id'=>'pic_path','width'=>'80']) !!}
+    {!! Form::image($path,null,['id'=>'rec_pic_url','width'=>'80']) !!}
 
  </div>
 @endif

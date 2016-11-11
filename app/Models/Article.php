@@ -28,4 +28,10 @@ class Article extends Model
     {
         return $this->hasMany('App\Models\Comment','id','article_id');
     }
+
+    public function author()
+    {
+        return $this->morphTo();
+        //return $this->belongsTo('App\Models\User','author_id');
+    }
 }

@@ -45,7 +45,9 @@ class ProductController extends BaseController{
      * */
     public function store(PostProductRequest $request)
     {
-        $product = Products::create($request->except('_token'));
+        $data = $request->except('_token');
+        $data['publisher_id'] = $this->login_user->id;
+        $product = Products::create($data);
         return redirect()->route('dashboard.products.index');
     }
 
