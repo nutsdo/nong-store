@@ -37,19 +37,22 @@
                             </div>
                         </article>
                         <div class="support-author">
-                            <div class="support-title">您的赞赏，是对我创作的最大鼓励。</div><button class="button--pay" data-post-id="440033" data-author="80001"
-                                                                                     data-avatar=""><i class="iconfont icon-money1"></i><span>|</span>赞赏</button></div>
+                            <div class="support-title">您的赞赏，是对我创作的最大鼓励。</div>
+                            <button class="button--pay" data-post-id="440033" data-author="80001" data-avatar=""><i class="iconfont icon-money1"></i><span>|</span>赞赏</button></div>
                         <div class="post-actions">
                             <button title="收藏" class="button button--primary button--toggle button--recommend button-post-440033 " data-id="440033" data-action="popLogin"><span class="iconfont icon-heart"></span><span class="button-label is-default">收藏</span><span class="button-label is-active">已收藏</span> | <span class="count">0</span></button>
                             <button class="button button--primary button--postlike" data-action="post-like" data-id="440033"><span class="button-defaultState"></span><span class="button-activeState"></span><span class="iconfont icon-zan"></span>赞
                                 | <span class="count">1</span></button>
-                            <div class="u-floatRight post-tags"><a href="../../tag/_25e6_258a_25a5_25e8_25a1_25a8_25e8_25ae_25be_25e8_25ae_25a1_25e8_25a6_2581_25e7_25b4_25a0.htm"
-                                                                   rel="tag">报表设计要素</a><a href="../../tag/_25e6_2595_25b0_25e6_258d_25ae_25e5_2588_2586_25e6_259e_2590_25e6_258a_25a5_25e8_25a1_25a8.htm"
-                                                                                          rel="tag">数据分析报表</a><a href="../../tag/_25e6_2596_25b9_25e6_25b3_2595_25e8_25ae_25ba.htm"
-                                                                                                                 rel="tag">方法论</a></div>
+                            <div class="u-floatRight post-tags">
+                                <a href="" rel="tag">报表设计要素</a>
+                                <a href="" rel="tag">数据分析报表</a>
+                                <a href="" rel="tag">方法论</a>
+                            </div>
                         </div>
                         <div class="post-ads">
-                            <a href="../../../www.qidianla.com/course/pm.html@channel=wm" target="_blank"><img src="../../../image.woshipm.com/wp-files/2015/05/detail-qidian.png"></a>
+                            <a href="" target="_blank">
+                                <img src="../../../image.woshipm.com/wp-files/2015/05/detail-qidian.png">
+                            </a>
                         </div>
                     </div>
                     <div class="fixed-article-nav u-clearfix">
@@ -96,31 +99,30 @@
                         <div class="widget">
                             <div class="author-board">
                                 <div class="author-board-left">
-                                    <a href="../../u/80001/default.htm" target="_blank" id="article-avatar-440033"><img src="../../../image.woshipm.com/wp-files/2016/04/36data.png!avatar.png" alt=""
-                                                                                                                        height="56" width="56" class="avatar"></a>
-                                    <button class="button button--toggleAuthor author-board-btn" data-action="showLoginForm" data-id="80001"><span class="text">订阅专栏</span></button>                                        </div>
+                                    <a href="javascript:;" target="_blank">
+                                        {!! Html::image($article->author->avatar,null,['width'=>56]) !!}
+                                    </a>
+                                    <button class="button button--toggleAuthor author-board-btn" data-action="showLoginForm" data-id="80001">
+                                        <span class="text">关注</span>
+                                    </button>
+                                </div>
                                 <div class="author-board-right">
-                                    <h3 class="auhtor-title"><a target="_blank" href="../../u/80001/default.htm">36大数据<span class="is-staff">合作媒体</span></a></h3>
-                                    <p class="author-descripiton">大数据第一平台</p>
-                                    <div class="author-meta"><span>18篇<i>作品</i></span><span>71.3k<i>阅读总量</i></span></div>
+                                    <h3 class="auhtor-title">
+                                        <a target="_blank" href="javascript:;">
+                                            @if($article->author_type=='user')
+                                                {{ $article->author->nick_name }}
+                                            @else
+                                                官方发布
+                                            @endif
+                                            <span class="is-staff">签约作者</span>
+                                        </a>
+                                    </h3>
+                                    <p class="author-descripiton">{{ $article->author->signature }}</p>
+                                    <div class="author-meta"><span>{{ count($article->author->articles) }}篇<i>作品</i></span><span>{{ $views }}<i>阅读总量</i></span></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="widget-ad">
-                            <a href="../../../www.qidianla.com/course/yunying.html@channel=b2" target="_blank">
-                                <img src="../../../image.woshipm.com/wp-files/2016/09/yykecheng0907.png" alt="">
-                            </a>
-                        </div>
-                        <div class="widget-ad">
-                            <a href="../../../www.qidianla.com/course/pm.html@channel=b1" target="_blank">
-                                <img src="../../../image.woshipm.com/wp-files/2016/08/06012021323377779.png" alt="">
-                            </a>
-                        </div>
-                        <div class="widget-ad">
-                            <a href="../../../https@www.jiguang.cn/devservice/@from=woshipm01" target="_blank">
-                                <img src="../../../image.woshipm.com/wp-files/2016/10/wk3ed1psdttwhji0uwxr.jpg" alt="">
-                            </a>
-                        </div>
+
                         <aside id="hot_questions-2" class="widget widget_hot_questions">
                             <h3 class="widget-title">热门问题</h3>
                             <ul class="hot-question-list">

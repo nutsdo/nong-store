@@ -1,82 +1,70 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+@section('style')
+    {!! Html::style("assets/auth/css/registration-forms.css") !!}
+@endsection
+@section('body')
+    <div class="r-form-1-container section-container section-container-image-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 r-form-1 section-description wow fadeIn animated">
+                    <h2> <strong>注册</strong></h2>
+                    <div class="divider-1 wow fadeInUp animated"><span></span></div>
+                    <p>A transparent registration form on a fullscreen background. Scroll down to see some other forms and find the right one for you.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 r-form-1-box wow fadeInUp animated">
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                    <div class="r-form-1-top">
+                        <div class="r-form-1-top-left">
+                            <h3>马上注册</h3>
+                            <p>填写以下表单进行注册访问:</p>
                         </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
+                        <div class="r-form-1-top-right">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="r-form-1-bottom">
+                        <form role="form" action="{{ url('/register') }}" method="post">
+                            {{ csrf_field() }}
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label class="sr-only" for="email">E-mail</label>
+                                <input type="text" name="email" placeholder="请输入您的邮箱..." class="r-form-1-first-name form-control" id="email">
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label class="sr-only" for="password">密码</label>
+                                <input type="password" name="password" placeholder="密码..." class="r-form-1-last-name form-control" id="password">
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
+                            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                                <label class="sr-only" for="password_confirmation">确认密码</label>
+                                <input type="password" name="password_confirmation" placeholder="确认密码..." class="r-form-1-email form-control" id="password_confirmation">
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                            <button type="submit" class="btn">注册!</button>
+                            <a href="{{ url('login') }}" class="btn">已有帐号?</a>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endsection
+@section('script')
+    {!! Html::script("assets/auth/js/registration-forms.js") !!}
 @endsection

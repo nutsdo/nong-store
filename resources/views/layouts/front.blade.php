@@ -55,13 +55,21 @@
                 <span class="user-avatar">
                     @if($loginUser)
                         {!! Html::image($loginUser->avatar,null,['class'=>'avatar','width'=>30,'height'=>30]) !!}
+                        <div class="user-top-nav">
+                            <h4 class="user-name">{{ $loginUser->name }}</h4>
+                            <ul>
+                                <li><a href="{{ route('collections') }}">我的收藏</a></li>
+                                <li><a href="{{ route('profile') }}">资料修改</a></li>
+                            </ul>
+                            <div class="user-logout"><a href="{{ url('logout') }}">退出登录</a></div>
+                        </div>
                     @else
                         {!! Html::image('front/build/img/default.jpg',null,['class'=>'avatar','width'=>30,'height'=>30]) !!}
                         <div class="user-top-nav">
                             <h4 class="user-name">未登录</h4>
                             <ul>
-                                <li><a href="{{ url('login') }}">注册</a></li>
-                                <li><a href="{{ url('register') }}">登录</a></li>
+                                <li><a href="{{ url('login') }}">登录</a></li>
+                                <li><a href="{{ url('register') }}">注册</a></li>
                             </ul>
                         </div>
                     @endif
@@ -118,6 +126,7 @@
 <div class="loadingBar"></div>
 {!! Html::script("front/build/js/jquery-1.12.4.min.js") !!}
 {!! Html::script("front/build/js/app.min.js") !!}
+{!! Html::script("front/build/js/app.js") !!}
 </body>
 
 </html>

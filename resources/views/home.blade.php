@@ -9,17 +9,17 @@
                         <ul>
                             @foreach($banners as $key=>$banner)
                                 @if($key<4)
-                            <li>
-                                <div class="imgs">
-                                    <a href="{{ url($banner->route_url) }}" target="_blank" title="{{$banner->title}}">
-                                        {!! Html::image($banner->image_url,$banner->title,['width'=> 670,'height'=>320]) !!}
-                                    </a>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="{{ url($banner->route_url) }}" target="_blank" title="{{$banner->title}}">{{$banner->title}}</a>
-                                    </h3>
-                                </div>
-                            </li>
+                                    <li>
+                                        <div class="imgs">
+                                            <a href="{{ url($banner->route_url) }}" target="_blank" title="{{$banner->title}}">
+                                                {!! Html::image($banner->image_url,$banner->title,['width'=> 670,'height'=>320]) !!}
+                                            </a>
+                                        </div>
+                                        <div class="text">
+                                            <h3><a href="{{ url($banner->route_url) }}" target="_blank" title="{{$banner->title}}">{{$banner->title}}</a>
+                                            </h3>
+                                        </div>
+                                    </li>
                                 @endif
                             @endforeach
                         </ul>
@@ -30,7 +30,7 @@
                         <ul>
                             @foreach($banners as $key=>$banner)
                                 @if($key<4)
-                            <li></li>
+                                    <li></li>
                                 @endif
                             @endforeach
                         </ul>
@@ -39,12 +39,12 @@
                         <ul class="">
                             @foreach($banners as $key=>$banner)
                                 @if($key>3)
-                            <li>
-                                <a href="{{ url($banner->route_url) }}" target="_blank" title="{{$banner->title}}">
-                                    {!! Html::image($banner->image_url) !!}}
-                                </a>
-                                <h3><a href="{{ url($banner->route_url) }}" target="_blank" title="{{$banner->title}}">{{$banner->title}}</a></h3>
-                            </li>
+                                    <li>
+                                        <a href="{{ url($banner->route_url) }}" target="_blank" title="{{$banner->title}}">
+                                            {!! Html::image($banner->image_url) !!}}
+                                        </a>
+                                        <h3><a href="{{ url($banner->route_url) }}" target="_blank" title="{{$banner->title}}">{{$banner->title}}</a></h3>
+                                    </li>
                                 @endif
                             @endforeach
                         </ul>
@@ -60,16 +60,16 @@
             <section class="bigfa-ajax-wrapper">
                 <div class="blockGroup homeGroup">
                     @foreach($last_articles as $article)
-                    <article class="u-clearfix stream-list-item">
-                        <div class="stream-list-image">
-                            <a href="{{ route('article.show',$article->id) }}"><img src="{{ $article->thumb_url }}" width=202 height=145></a>
-                            <div class="stream-list-category">
-                                <a href="{{ route('article.show',$article->id) }}" rel="category tag">数据分析</a>
+                        <article class="u-clearfix stream-list-item">
+                            <div class="stream-list-image">
+                                <a href="{{ route('article.show',$article->id) }}"><img src="{{ $article->thumb_url }}" width=202 height=145></a>
+                                <div class="stream-list-category">
+                                    <a href="{{ route('article.show',$article->id) }}" rel="category tag">数据分析</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="stream-list-content">
-                            <h2 class="stream-list-title"><a target="_blank" href="{{ route('article.show',$article->id) }}" title="{{ $article->title }}">{{ $article->title }}</a></h2>
-                            <div class="stream-list-meta">
+                            <div class="stream-list-content">
+                                <h2 class="stream-list-title"><a target="_blank" href="{{ route('article.show',$article->id) }}" title="{{ $article->title }}">{{ $article->title }}</a></h2>
+                                <div class="stream-list-meta">
                                 <span class="avatar-inline">
                                     <a target="_blank" href="">
                                         <img src="{{ $article->author->avatar }}" alt="" height="32" width="32" class="avatar">
@@ -82,11 +82,11 @@
                                             {{ $article->author->admin_name }}
                                         @endif
                                     </a></span>
-                                <span class="dot"></span>
-                                <time>{{ $article->created_time }}</time>
-                            </div>
-                            <div class="stream-list-snipper">{!! $article->body !!}...</div>
-                            <footer class="stream-list-footer">
+                                    <span class="dot"></span>
+                                    <time>{{ $article->created_time }}</time>
+                                </div>
+                                <div class="stream-list-snipper">{!! $article->body !!}...</div>
+                                <footer class="stream-list-footer">
                                 <span class="post-views">
                                     <span class="iconfont icon-view"></span>阅读 {{ $article->views }}
                                 </span>
@@ -96,9 +96,9 @@
                                 <span class="post-likes">
                                     <span class="iconfont icon-zan"></span>被赞 {{ $article->likes }}
                                 </span>
-                            </footer>
-                        </div>
-                    </article>
+                                </footer>
+                            </div>
+                        </article>
                     @endforeach
                 </div>
                 <!--<div class="loadmore u-textAlignCenter" data-paged="2">加载更多</div>-->
@@ -117,10 +117,10 @@
                     </h3>
                     <ul class="hot-question-list widget-posts-list">
                         @foreach($hot_articles as $key=>$article)
-                        <li class="hot-question-item">
-                            <span class="num">{{ $key+1 }}</span>
-                            <a href="javascript:;" target="_blank" class="link">{{ $article->title }}</a>
-                        </li>
+                            <li class="hot-question-item">
+                                <span class="num">{{ $key+1 }}</span>
+                                <a href="javascript:;" target="_blank" class="link">{{ $article->title }}</a>
+                            </li>
                         @endforeach
                     </ul>
                 </aside>

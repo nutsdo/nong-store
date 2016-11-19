@@ -27,6 +27,14 @@ Route::group(['middleware' => 'web'], function()
         'as'=>'home','uses'=>'HomeController@index'
     ]);
 
+    Route::get('profile', [
+        'as'=>'profile','uses'=>'Front\UserController@profile'
+    ]);
+
+    Route::get('collections', [
+        'as'=>'collections','uses'=>'Front\UserController@collections'
+    ]);
+
     Route::get('/home', 'Front\HomeController@index');
 
     Route::get('/category/{id?}', [
@@ -127,4 +135,3 @@ Route::group(['middleware' => ['web']], function()
     ]);
 
 });
-

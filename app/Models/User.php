@@ -43,4 +43,5 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->morphMany('App\Models\Article', 'author');
     }
+
 }

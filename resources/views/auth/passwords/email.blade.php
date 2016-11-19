@@ -1,28 +1,33 @@
-@extends('layouts.app')
-
+@extends('layouts.auth')
+@section('style')
+{!! Html::style("assets/auth/css/media-queries.css") !!}
+{!! Html::style("assets/auth/css/style.css") !!}
+@endsection
 <!-- Main Content -->
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
+@section('body')
+    <div class="top-content" style="position: relative; z-index: 0; background: none;">
+        <div class="inner-bg">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1 class="wow fadeInLeftBig animated" style="visibility: visible; animation-name: fadeInLeftBig;">重置密码</h1>
+                        <div class="description wow fadeInLeftBig animated" style="visibility: visible; animation-name: fadeInLeftBig;">
+                            <p>
+                                输入您的邮箱，找回您的密码!
+                            </p>
                         </div>
-                    @endif
+                        <div class="subscribe wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                            <form class="form-inline" role="form" action="{{ url('/password/email') }}" method="post">
+                                {{ csrf_field() }}
+                                <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <label class="sr-only" for="email">Email</label>
+                                    <input type="text" name="email" value="{{ old('email') }}" placeholder="输入您的Email..." class="subscribe-email form-control" id="email">
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
+                                </div>
+                                <button type="submit" class="btn">发送重置密码链接</button>
+                            </form>
+                            <div class="success-message">
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -30,18 +35,30 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 top-video-link medium-paragraph wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                        <a href="#" class="launch-modal" data-modal-id="modal-how-it-works">
+                            <span class="top-video-link-icon"><i class="fa fa-play"></i></span>
+                            <span class="top-video-link-text">See how it works</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 top-social wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
-</div>
+
+@endsection
+@section('script')
+    {!! Html::script("assets/auth/js/scripts.js") !!}
 @endsection
