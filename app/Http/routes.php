@@ -45,6 +45,10 @@ Route::group(['middleware' => 'web'], function()
         'as'=>'article.show','uses'=>'Front\ArticleController@show'
     ]);
 
+    Route::post('/article/{id}/reply', [
+        'as'=>'article.reply','uses'=>'Front\ArticleController@reply'
+    ]);
+
     Route::get('/community/{id?}', [
         'as'=>'community-category','uses'=>'Front\CommunityCategoryController@index'
     ]);

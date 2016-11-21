@@ -125,7 +125,7 @@
 <div class="back2top"><span class="iconfont icon-top"></span></div>
 <div class="loadingBar"></div>
 {!! Html::script("front/build/js/jquery-1.12.4.min.js") !!}
-{!! Html::script("front/build/js/app.min.js") !!}
+{{--{!! Html::script("front/build/js/app.min.js") !!}--}}
 {!! Html::script("front/build/js/app.js") !!}
 </body>
 
