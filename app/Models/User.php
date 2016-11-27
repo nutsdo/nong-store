@@ -44,4 +44,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->morphMany('App\Models\Article', 'author');
     }
 
+    //用户关注
+    public function follows()
+    {
+        return $this->belongsToMany('App\Models\User','user_follow','user_id','follow_id');
+    }
 }

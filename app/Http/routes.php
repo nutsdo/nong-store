@@ -139,3 +139,19 @@ Route::group(['middleware' => ['web']], function()
     ]);
 
 });
+
+Route::group(['middleware'=>['api']], function(){
+
+    Route::post('/article/{id}/like', [
+        'as'=>'article.like','uses'=>'Front\ArticleController@like'
+    ]);
+
+    Route::post('/article/{id}/collection', [
+        'as'=>'article.collection','uses'=>'Front\ArticleController@collection'
+    ]);
+
+    Route::post('/user/follow', [
+        'as'=>'user.follow','uses'=>'Front\UserController@follow'
+    ]);
+
+});

@@ -6,3 +6,4 @@ Homestead.json
 .idea
 public/alipay
 public/uploads/*
+yarn.lock

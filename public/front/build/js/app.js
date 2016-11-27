@@ -10,6 +10,8 @@
     var Yese = function(element, options){
         this.$element = $(element);
         this.options  = $.extend({}, Yese.DEFAULTS, options);
+        this.id       = this.$element.data('id');
+        this.url      = this.$element.data('url');
     };
 
     //默认选项
@@ -18,13 +20,72 @@
     };
 
     Yese.prototype.like = function(){
-        console.log('do like');
+
+        var $el = this.$element;
+        var url = this.url;
+        $.ajax({
+            url:url,
+            type:'post',
+            data:{},
+            success:function(res){
+                if (res.status==200) $el.hasClass('is-active') ? $el.removeClass('is-active') : $el.addClass('is-active');
+                if (res.type=='success'){
+                    $el.find('.count').text(parseInt($el.find('.count').text())+1);
+                }else {
+                    $el.find('.count').text(parseInt($el.find('.count').text())-1);
+                }
+
+            },
+            dataType:'json'
+        });
     };
+
+    Yese.prototype.collection = function(){
+
+        var $el = this.$element;
+        var url = this.url;
+        $.ajax({
+            url:url,
+            type:'post',
+            data:{},
+            success:function(res){
+                if (res.status==200) $el.hasClass('is-active') ? $el.removeClass('is-active') : $el.addClass('is-active');
+                if (res.type=='success'){
+                    $el.find('.count').text(parseInt($el.find('.count').text())+1);
+                }else {
+                    $el.find('.count').text(parseInt($el.find('.count').text())-1);
+                }
+
+            },
+            dataType:'json'
+        });
+
+    }
+
+    Yese.prototype.follow = function(){
+
+        var $el = this.$element;
+        var url = this.url;
+        var author_id = $el.data('author');
+        $.ajax({
+            url:url,
+            type:'post',
+            data:{author_id:author_id},
+            success:function(res){
+                if (res.status==200){
+                    $el.find('.text').text(res.text);
+                }else {
+                    $el.find('.text').text(res.text);
+                }
+            },
+            dataType:'json'
+        });
+
+    }
 
     Yese.prototype.init = function(){
 
         console.log('call init method');
-
     };
 
     //yese plugin definition
