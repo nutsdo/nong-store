@@ -58,7 +58,13 @@ Route::group(['middleware' => 'web'], function()
         'products' => 'Front\ProductController'
     ]);
 
+    Route::get('/about','Front\PagesController@about')->name('about');
 
+    Route::get('/contribute','Front\PagesController@contribute')->name('contribute');
+
+    Route::get('/suggestions','Front\PagesController@suggestions')->name('suggestions');
+
+    Route::get('/statement','Front\PagesController@statement')->name('statement');
 
 });
 
