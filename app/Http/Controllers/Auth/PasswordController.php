@@ -7,6 +7,18 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
 {
+    /**
+     * 应该使用的认证 Guard
+     *
+     * @var string
+     */
+    protected $guard = 'web';
+    /**
+     * 应该使用的密码 broker
+     *
+     * @var string
+     */
+    protected $broker = 'users';
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
