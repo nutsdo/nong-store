@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Kalnoy\Nestedset\Node;
+use Kalnoy\Nestedset\NodeTrait;
 
-class Menu extends Node
+class Menu extends Model
 {
+    use NodeTrait;
     protected $table = 'sys_function';
     //protected $dates = ['delete_time'];
 

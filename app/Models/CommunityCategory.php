@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Kalnoy\Nestedset\Node;
+use Kalnoy\Nestedset\NodeTrait;
 
-class CommunityCategory extends Node
+class CommunityCategory extends Model
 {
+    use NodeTrait;
     protected $table = 'bbs_category';
 
     const CREATED_AT = 'created_time';

@@ -161,3 +161,45 @@ Route::group(['middleware'=>['api']], function(){
     ]);
 
 });
+Route::group(['middleware'=>['api']], function(){
+
+});
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version(['local'],['middleware' => ['api'], 'namespace' => 'App\Http\Api\Local\Controllers'], function ($api) {
+    //登录接口
+    $api->any('login',[
+        'as'    => 'api.login',
+        'uses'  => 'AuthController@login'
+    ]);
+    //注册接口
+    $api->post('register',[
+        'as'    => 'api.register',
+        'uses'  => 'AuthController@register'
+    ]);
+    //文章接口
+
+    /*
+     * 登录后操作
+     * */
+    $api->group(['middleware' => 'oauth:web'] ,function($api){
+        //用户信息接口
+//        $api->get('user',[
+//            'as'    =>  'api.user.show',
+//            'uses'  =>  'UserController@show'
+//        ]);
+        //更新用户信息接口
+
+        //重置密码接口
+
+        //评论接口
+
+        //删除评论接口
+
+        //点赞和取消点赞接口
+
+        //关注和取消关注接口
+
+    });
+
+});

@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Kalnoy\Nestedset\Node;
+use Kalnoy\Nestedset\NodeTrait;
 
-class Category extends Node
+class Category extends Model
 {
+    use NodeTrait;
     protected $table = 'product_category';
 
     const CREATED_AT = 'created_time';

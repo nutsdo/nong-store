@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Kalnoy\Nestedset\Node;
+use Kalnoy\Nestedset\NodeTrait;
 
-class ArticleCategory extends Node
+class ArticleCategory extends Model
 {
+    use NodeTrait;
     //
     protected $table = 'feature_article_category';
 
