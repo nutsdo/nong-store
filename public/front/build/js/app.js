@@ -1,7 +1,9 @@
 /**
  * Created by lvdingtao on 2016/11/12.
  */
-
+$.ajaxSetup({
+    headers: { "X-CSRF-TOKEN" : $('meta[name=csrf-token]').attr('content') }
+});
 ;(function( $ ) {
 
     "use strict";
@@ -20,18 +22,18 @@
     };
 
     Yese.prototype.like = function(){
-
         var $el = this.$element;
         var url = this.url;
+        var id  = this.id;
         $.ajax({
             url:url,
             type:'post',
-            data:{},
+            data:{article_id:id},
             success:function(res){
                 if (res.status==200) $el.hasClass('is-active') ? $el.removeClass('is-active') : $el.addClass('is-active');
                 if (res.type=='success'){
                     $el.find('.count').text(parseInt($el.find('.count').text())+1);
-                }else {
+                }else if (res.type=='cancel'){
                     $el.find('.count').text(parseInt($el.find('.count').text())-1);
                 }
 
@@ -55,7 +57,6 @@
                 }else {
                     $el.find('.count').text(parseInt($el.find('.count').text())-1);
                 }
-
             },
             dataType:'json'
         });

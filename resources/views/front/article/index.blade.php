@@ -51,7 +51,7 @@
                                 <span class="button-label is-active">已收藏</span>
                                 | <span class="count">{{ $article->collections }}</span>
                             </button>
-                            <button class="button button--primary button--postlike @if($is_like) is-active @endif" data-yese="ys-like" data-id="{{ $article->id }}" data-url="{{ route('article.like',$article->id) }}">
+                            <button class="button button--primary button--postlike @if($is_like) is-active @endif" data-yese="ys-like" data-id="{{ $article->id }}" data-url="{{ dingo_route('local','api.article.like') }}">
                                 <span class="button-defaultState"></span>
                                 <span class="button-activeState"></span>
                                 <span class="iconfont icon-zan"></span>赞

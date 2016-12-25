@@ -18,6 +18,7 @@
     <![endif]-->
     <meta name="keywords" content="{{ $keywords }}">
     <meta name="description" content="{{ $description }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {!! Html::style("front/img/favicon.ico",['type'=> 'image/vnd.microsoft.icon','rel'=>'shortcut icon']) !!}
     {!! Html::style("front/build/css/app.css") !!}
 </head>

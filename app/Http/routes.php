@@ -166,7 +166,7 @@ Route::group(['middleware'=>['api']], function(){
 });
 $api = app('Dingo\Api\Routing\Router');
 
-$api->version(['local'],['middleware' => ['api'], 'namespace' => 'App\Http\Api\Local\Controllers'], function ($api) {
+$api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Local\Controllers'], function ($api) {
     //登录接口
     $api->any('login',[
         'as'    => 'api.login',
@@ -182,12 +182,12 @@ $api->version(['local'],['middleware' => ['api'], 'namespace' => 'App\Http\Api\L
     /*
      * 登录后操作
      * */
-    $api->group(['middleware' => 'oauth:web'] ,function($api){
+    $api->group(['middleware' => ['oauth:web']] ,function($api){
         //用户信息接口
-//        $api->get('user',[
-//            'as'    =>  'api.user.show',
-//            'uses'  =>  'UserController@show'
-//        ]);
+        $api->get('user',[
+            'as'    =>  'api.user.show',
+            'uses'  =>  'UserController@show'
+        ]);
         //更新用户信息接口
 
         //重置密码接口
@@ -197,7 +197,10 @@ $api->version(['local'],['middleware' => ['api'], 'namespace' => 'App\Http\Api\L
         //删除评论接口
 
         //点赞和取消点赞接口
-
+        $api->post('article/like', [
+            'as'    =>  'api.article.like',
+            'uses'  =>  'ArticleController@doLike'
+        ]);
         //关注和取消关注接口
 
     });

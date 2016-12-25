@@ -69,7 +69,7 @@ class AuthController extends BaseController
         }
 
         $email = $request->input('email');
-        $password = bcrypt($request->input('email'));
+        $password = bcrypt($request->input('password'));
 
         $data = [
             'email' => $email,
