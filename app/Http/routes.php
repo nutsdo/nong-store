@@ -188,6 +188,11 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
             'as'    =>  'api.user.show',
             'uses'  =>  'UserController@show'
         ]);
+        //关注和取消关注接口
+        $api->post('user/follow', [
+            'as'    =>  'api.user.follow',
+            'uses'  =>  'UserController@follow'
+        ]);
         //更新用户信息接口
 
         //重置密码接口
@@ -201,8 +206,11 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
             'as'    =>  'api.article.like',
             'uses'  =>  'ArticleController@doLike'
         ]);
-        //关注和取消关注接口
-
+        //收藏和取消收藏接口
+        $api->post('article/collect', [
+            'as'    =>  'api.article.collect',
+            'uses'  =>  'ArticleController@doCollect'
+        ]);
     });
 
 });

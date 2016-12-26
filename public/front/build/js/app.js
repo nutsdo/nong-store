@@ -71,12 +71,14 @@ $.ajaxSetup({
         $.ajax({
             url:url,
             type:'post',
-            data:{author_id:author_id},
+            data:{follow_id:author_id},
             success:function(res){
-                if (res.status==200){
-                    $el.find('.text').text(res.text);
-                }else {
-                    $el.find('.text').text(res.text);
+                if (res.status_code==200){
+                    if (res.type=='unfollow'){
+                        $el.find('.text').text('关注');
+                    }else if (res.type=='followed'){
+                        $el.find('.text').text('取消关注');
+                    }
                 }
             },
             dataType:'json'

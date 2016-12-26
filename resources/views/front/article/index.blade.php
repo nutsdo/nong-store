@@ -164,7 +164,7 @@
                                     <a href="javascript:;" target="_blank">
                                         {!! Html::image($article->author->avatar,null,['width'=>56]) !!}
                                     </a>
-                                    <button class="button button--toggleAuthor author-board-btn" data-yese="ys-follow" data-url="{{ route('user.follow') }}" data-author="{{ $article->author_id }}">
+                                    <button class="button button--toggleAuthor author-board-btn" data-yese="ys-follow" data-url="{{ dingo_route('local','api.user.follow') }}" data-author="{{ $article->author_id }}">
                                         <span class="text">
                                         @if($is_follow)
                                             取消关注
