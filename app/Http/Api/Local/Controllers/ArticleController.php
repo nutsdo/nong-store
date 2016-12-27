@@ -48,4 +48,9 @@ class ArticleController extends BaseController
         }
         return $result;
     }
+
+    public function doCollect(Request $request)
+    {
+
+    }
 }
