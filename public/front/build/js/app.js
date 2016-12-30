@@ -54,7 +54,7 @@ $.ajaxSetup({
                 if (res.status==200) $el.hasClass('is-active') ? $el.removeClass('is-active') : $el.addClass('is-active');
                 if (res.type=='success'){
                     $el.find('.count').text(parseInt($el.find('.count').text())+1);
-                }else {
+                }else if (res.type=='cancel'){
                     $el.find('.count').text(parseInt($el.find('.count').text())-1);
                 }
             },

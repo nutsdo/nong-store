@@ -45,7 +45,7 @@
                             </button>
                         </div>
                         <div class="post-actions">
-                            <button title="收藏" class="button button--primary button--toggle button--recommend  @if($is_collection) is-active @endif" data-yese="ys-collection" data-id="{{ $article->id }}" data-url="{{ route('article.collection',$article->id) }}">
+                            <button title="收藏" class="button button--primary button--toggle button--recommend  @if($is_collection) is-active @endif" data-yese="ys-collection" data-id="{{ $article->id }}" data-url="{{ dingo_route('local','api.article.collect') }}">
                                 <span class="iconfont icon-heart"></span>
                                 <span class="button-label is-default">收藏</span>
                                 <span class="button-label is-active">已收藏</span>

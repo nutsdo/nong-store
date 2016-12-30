@@ -178,6 +178,19 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
         'uses'  => 'AuthController@register'
     ]);
     //文章接口
+    $api->get('article/{id}/show', [
+        'as'    => 'api.article.show',
+        'uses'  => 'ArticleController@show'
+    ]);
+    //文章列表
+    $api->get('articles', [
+        'as'    => 'api.article.index',
+        'uses'  => 'ArticleController@index'
+    ]);
+    //文章分类接口
+
+    //获取分类文章接口
+
 
     /*
      * 登录后操作
@@ -198,7 +211,10 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
         //重置密码接口
 
         //评论接口
-
+        $api->post('article/comment', [
+            'as'    =>  'api.user.comment',
+            'uses'  =>  'ArticleController@comment'
+        ]);
         //删除评论接口
 
         //点赞和取消点赞接口
