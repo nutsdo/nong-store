@@ -66,9 +66,18 @@ class CommunityCategoryController extends BaseController
 
     public function destroy($id)
     {
-        $articleCategory=CommunityCategory::find($id);
+        $category=CommunityCategory::find($id);
 
-        $articleCategory->delete();
+        if(count($category->children) > 0) {
+
+            flash()->error('请先删除子类');
+
+        } else {
+
+            $category->delete();
+
+            flash()->success('删除成功');
+        }
 
         CommunityCategory::fixTree();
 

@@ -76,7 +76,17 @@ class ArticleCategoryController extends BaseController{
     {
         $articleCategory=ArticleCategory::find($id);
 
-        $articleCategory->delete();
+        if(count($articleCategory->children) > 0) {
+
+            flash()->error('请先删除子类');
+
+        } else {
+
+            $articleCategory->delete();
+
+            flash()->success('删除成功');
+        }
+
 
         ArticleCategory::fixTree();
 

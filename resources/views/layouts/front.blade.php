@@ -33,7 +33,7 @@
                     <ul class="subnav-ul layoutSingleColumn layoutSingleColumn--wide">
                         <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-home"><a href="{{ route('home') }}">首页</a></li>
                         <li class="fenlei menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
-                            <a href="#">分类浏览</a>
+                            <a href="#">发现</a>
                             <ul class="sub-menu">
                                 @foreach($articleCategory as $key=>$category)
                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="{{ route('article-category',$category->id) }}">{{ $category->category_name }}</a></li>
@@ -41,12 +41,18 @@
                             </ul>
                         </li>
                         <li class="niubi menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
-                            <a href="#">社区</a>
+                            <a href="#">浪漫夜色</a>
                             <ul class="sub-menu">
                                 @foreach($communityCategory as $key=>$category)
                                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="{{ route('community-category',$category->id) }}">{{ $category->category_name }}</a></li>
                                 @endforeach
                             </ul>
+                        </li>
+                        <li class="niubi menu-item menu-item-type-custom menu-item-object-custom">
+                            <a href="#">情趣体验师</a>
+                        </li>
+                        <li class="niubi menu-item menu-item-type-custom menu-item-object-custom">
+                            <a href="#">夜色商城</a>
                         </li>
                     </ul>
                 </nav>

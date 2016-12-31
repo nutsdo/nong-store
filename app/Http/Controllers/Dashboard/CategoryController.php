@@ -66,6 +66,28 @@ class CategoryController extends BaseController{
         return ;
     }
 
+    public function destroy($id)
+    {
+        $category=Category::find($id);
+
+        if(count($category->children) > 0) {
+
+            flash()->error('请先删除子类');
+
+        } else {
+
+            $category->delete();
+
+            flash()->success('删除成功');
+        }
+
+
+        Category::fixTree();
+
+        return redirect()->route('dashboard.category.index');
+
+    }
+
     /**
      * @param Collection $items
      *

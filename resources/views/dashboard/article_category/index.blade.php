@@ -39,6 +39,31 @@
     <!--主体 end-->
 
  @stop
+@section('others')
+    <div class="modal fade" id="delete_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">确定要删除？</h4>
+                </div>
+                {!! Form::open(['url'=>'','method'=>'DELETE','id'=>'delete_form']) !!}
+                <div class="modal-body">
+
+                    您确定要删除吗？
+
+                </div>
+
+                <div class="modal-footer">
+                    {!! Form::submit('删除',['class'=>'btn btn-danger']) !!}
+                    {!! Form::button('取消',['class'=>'btn btn-info','data-dismiss'=>'modal']) !!}
+                </div>
+                {!! Form::close()!!}
+            </div>
+        </div>
+    </div>
+@stop
  @section('css')
     {!! Html::style("assets/js/uikit/uikit.css") !!}
  @stop
@@ -46,4 +71,10 @@
  @section('scripts')
     {!! Html::script("assets/js/uikit/js/uikit.min.js") !!}
     {!! Html::script("assets/js/uikit/js/addons/nestable.min.js") !!}
+    <script>
+        $('.delete').click(function(){
+            $('#delete_form').attr('action',$(this).data('action'));
+            $('#delete_modal').modal('show');
+        });
+    </script>
  @stop
