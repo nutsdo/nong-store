@@ -188,9 +188,15 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
         'uses'  => 'ArticleController@index'
     ]);
     //文章分类接口
-
+    $api->get('categories', [
+        'as'    => 'api.categories.index',
+        'uses'  => 'CategoryController@index'
+    ]);
     //获取分类文章接口
-
+    $api->get('category/{id}/articles', [
+        'as'    => 'api.categories.articles',
+        'uses'  => 'ArticleController@getArticlesByCategoryId'
+    ]);
 
     /*
      * 登录后操作

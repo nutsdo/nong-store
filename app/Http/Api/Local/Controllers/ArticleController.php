@@ -22,7 +22,13 @@ class ArticleController extends BaseController
 
     public function index(Request $request)
     {
-        $articles = Article::paginate(1);
+        $articles = Article::paginate(10);
+        return $this->response->paginator($articles, new ArticleTransformer);
+    }
+
+    public function getArticlesByCategoryId(Request $request, $id)
+    {
+        $articles = Article::where('category_id', $id)->paginate(10);
         return $this->response->paginator($articles, new ArticleTransformer);
     }
 
