@@ -116,6 +116,8 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('brand','BrandController');
 
+    Route::resource('supplier','SupplierController');
+
     Route::resource('orders','OrderController');
 
     Route::resource('article_category','ArticleCategoryController');
