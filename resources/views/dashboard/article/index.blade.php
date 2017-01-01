@@ -54,6 +54,7 @@
                         null,
                         null,
                         null,
+                        null,
                         null
                     ]
                 });
@@ -95,6 +96,7 @@
                         <th>文章标题</th>
                         <th>封面</th>
                         <th>分类</th>
+                        <th>评论</th>
                         <th>浏览量</th>
                         <th>发布时间</th>
                         <th>状态</th>
@@ -113,6 +115,7 @@
                         <td>{{ $article->title }}</td>
                         <td>{!! Html::image($article->thumb_url,null,['width'=>'80']) !!}</td>
                         <td>{{ $article->category->category_name }}</td>
+                        <td>{{ $article->comments->count() }}</td>
                         <td>{{ $article->id }}</td>
                         <td>{{ $article->created_time }}</td>
                         <td>@if($article->is_published) 发布 @else 未发布 @endif</td>

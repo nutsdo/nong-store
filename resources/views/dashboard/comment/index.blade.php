@@ -78,12 +78,12 @@
                             <input type="checkbox" class="cbr">
                         </th>
                         <th>ID</th>
+                        <th>文章ID</th>
                         <th>文章标题</th>
-                        <th>封面</th>
-                        <th>分类</th>
-                        <th>浏览量</th>
-                        <th>发布时间</th>
+                        <th>评论用户</th>
+                        <th>评论内容</th>
                         <th>状态</th>
+                        <th>发布时间</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -96,12 +96,12 @@
                             <input type="checkbox" class="cbr">
                         </td>
                         <td>{{ $comment->id }}</td>
-                        <td>{{ $comment->title }}</td>
-                        <td>{!! Html::image('',null,['width'=>'80']) !!}</td>
-                        <td>{{ $comment->category_name }}</td>
-                        <td>{{ $comment->id }}</td>
+                        <td>{{ $comment->article->id }}</td>
+                        <td>{{ $comment->article->title }}</td>
+                        <td>{{ $comment->app_user_id }}</td>
+                        <td>{{ $comment->comment_body }}</td>
+                        <td>@if($comment->is_checked) 已审核 @else 未审核 @endif</td>
                         <td>{{ $comment->created_time }}</td>
-                        <td>@if($comment->is_published) 发布 @else 未发布 @endif</td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -110,7 +110,17 @@
                                 <ul class="dropdown-menu dropdown-primary" role="menu">
 
                                     <li>
-                                        <a href="javascript:;" data-action="{{ route('dashboard.comments.destroy',$comment->id) }}" class="delete">删除</a>
+                                        <a href="{{ route('dashboard.comment.check',$comment->id) }}" class="show">
+                                            @if($comment->is_checked) 未审核 @else 通过审核 @endif
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:;" data-action="{{ route('dashboard.comment.show',$comment->id) }}" class="show">查看</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:;" data-action="{{ route('dashboard.comment.destroy',$comment->id) }}" class="delete">删除</a>
                                     </li>
 
                                 </ul>

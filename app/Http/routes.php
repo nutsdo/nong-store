@@ -128,7 +128,11 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('articles','ArticleController');
 
-    Route::resource('comments', 'CommentController');
+    Route::get('comment/{comment_id}/check', [
+        'as'=> 'dashboard.comment.check','uses'=>'CommentController@check'
+    ]);
+
+    Route::resource('comment', 'CommentController');
 
     Route::resource('community-category', 'CommunityCategoryController');
 
