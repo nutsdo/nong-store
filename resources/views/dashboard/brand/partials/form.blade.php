@@ -6,17 +6,24 @@
  * Time: 11:47 AM
  */
  ?>
+<div class="form-group">
+    {!! Form::label('supplier_id', '供应商',['class'=>'control-label col-sm-2']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('supplier_id', $suppliers, null, [ 'class' => 'form-control' ,'placeholder' => '选择供应商']) !!}
+        {!! $errors->first('supplier_id') !!}
+    </div>
+</div>
  <div class="form-group">
-     {!! Form::label('supplier_name', '供应商',['class'=>'control-label col-sm-2']) !!}
+     {!! Form::label('brand_name', '品牌名称',['class'=>'control-label col-sm-2']) !!}
      <div class="col-sm-10">
-     {!! Form::text('supplier_name',null,[
+     {!! Form::text('brand_name',null,[
          'class'=>'form-control',
          'data-validate'=>'required',
-         'data-message-required'=>'请输入供应商.',
-         'placeholder'=>'请输入供应商'
+         'data-message-required'=>'请输入品牌名称.',
+         'placeholder'=>'请输入品牌名称'
      ]) !!}
      </div>
-     {!! $errors->first('supplier_name') !!}
+     {!! $errors->first('brand_name') !!}
  </div>
 <div class="form-group">
     {!! Form::label('is_banned', '是否禁用',['class'=>'control-label col-sm-2']) !!}

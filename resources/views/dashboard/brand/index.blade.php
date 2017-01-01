@@ -16,7 +16,7 @@
 
         <div class="vertical-top">
 
-            <a href="{{ route('dashboard.articles.create') }}" class="btn btn-success btn-icon">
+            <a href="{{ route('dashboard.brand.create') }}" class="btn btn-success btn-icon">
                 <i class="fa-plus-square"></i>
                 <span>添加品牌</span>
             </a>
@@ -48,8 +48,6 @@
                     dom: "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
                     aoColumns: [
                         {bSortable: false},
-                        null,
-                        null,
                         null,
                         null,
                         null,
@@ -93,10 +91,8 @@
                     <input type="checkbox" class="cbr">
                 </th>
                 <th>ID</th>
-                <th>文章标题</th>
-                <th>封面</th>
-                <th>分类</th>
-                <th>浏览量</th>
+                <th>品牌名称</th>
+                <th>供应商</th>
                 <th>发布时间</th>
                 <th>状态</th>
                 <th>操作</th>
@@ -105,18 +101,16 @@
 
             <tbody class="middle-align">
             @unless($brands->isEmpty())
-            @foreach($brands as $article)
+            @foreach($brands as $brand)
             <tr>
                 <td>
                     <input type="checkbox" class="cbr">
                 </td>
-                <td>{{ $article->id }}</td>
-                <td>{{ $article->title }}</td>
-                <td>{!! Html::image($article->thumb_url,null,['width'=>'80']) !!}</td>
-                <td>{{ $article->category->category_name }}</td>
-                <td>{{ $article->id }}</td>
-                <td>{{ $article->created_time }}</td>
-                <td>@if($article->is_published) 发布 @else 未发布 @endif</td>
+                <td>{{ $brand->id }}</td>
+                <td>{{ $brand->brand_name }}</td>
+                <td>@if($brand->supplier) {{ $brand->supplier->supplier_name }} @else 无 @endif</td>
+                <td>{{ $brand->created_time }}</td>
+                <td>@if($brand->is_banned) 禁用 @else 正常 @endif</td>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -124,13 +118,10 @@
                         </button>
                         <ul class="dropdown-menu dropdown-primary" role="menu">
                             <li>
-                                <a href="{{ route('dashboard.articles.edit',$article->id) }}">修改</a>
+                                <a href="{{ route('dashboard.brand.edit',$brand->id) }}">修改</a>
                             </li>
                             <li>
-                                <a href="{{ route('dashboard.articles.comments',$article->id) }}">查看评论</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-action="{{ route('dashboard.articles.destroy',$article->id) }}" class="delete">删除</a>
+                                <a href="javascript:;" data-action="{{ route('dashboard.brand.destroy',$brand->id) }}" class="delete">删除</a>
                             </li>
 
                         </ul>

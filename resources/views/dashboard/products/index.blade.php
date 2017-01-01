@@ -109,9 +109,9 @@
                             <input type="checkbox" class="cbr">
                         </td>
                         <td>{{ $product->id }}</td>
-                        <td>{!! Html::image($product->pic_url,null,['width'=>'80']) !!}</td>
+                        <td>{!! Html::image($product->thumb_url,null,['width'=>'80']) !!}</td>
                         <td>{{ $product->title }}</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->sale_price }}</td>
                         <td>{{ $product->number }}</td>
                         <td>@if($product->is_show) 上架 @else 下架 @endif</td>
                         <td>
