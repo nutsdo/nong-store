@@ -23,49 +23,50 @@ Route::group(['middleware' => 'web'], function()
 
     Route::auth();
 
-    Route::get('/', [
-        'as'=>'home','uses'=>'HomeController@index'
-    ]);
+    Route::group(['namespace' => 'Front'], function()
+    {
+        Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('profile', [
-        'as'=>'profile','uses'=>'Front\UserController@profile'
-    ]);
+        Route::get('/category/{id?}', [
+            'as'=>'article-category','uses'=>'ArticleCategoryController@index'
+        ]);
 
-    Route::get('collections', [
-        'as'=>'collections','uses'=>'Front\UserController@collections'
-    ]);
+        Route::get('/article/{id}', [
+            'as'=>'article.show','uses'=>'ArticleController@show'
+        ]);
 
-    Route::get('/home', 'Front\HomeController@index');
+        Route::post('/article/{id}/reply', [
+            'as'=>'article.reply','uses'=>'ArticleController@reply'
+        ]);
 
-    Route::get('/category/{id?}', [
-        'as'=>'article-category','uses'=>'Front\ArticleCategoryController@index'
-    ]);
+        Route::get('/community/{id?}', [
+            'as'=>'community-category','uses'=>'CommunityCategoryController@index'
+        ]);
 
-    Route::get('/article/{id}', [
-        'as'=>'article.show','uses'=>'Front\ArticleController@show'
-    ]);
+        Route::controllers([
+            //'category' => 'Front\ArticleCategoryController',
+            'products' => 'ProductController'
+        ]);
 
-    Route::post('/article/{id}/reply', [
-        'as'=>'article.reply','uses'=>'Front\ArticleController@reply'
-    ]);
+        Route::get('/about','PagesController@about')->name('about');
 
-    Route::get('/community/{id?}', [
-        'as'=>'community-category','uses'=>'Front\CommunityCategoryController@index'
-    ]);
+        Route::get('/contribute','PagesController@contribute')->name('contribute');
 
-    Route::controllers([
-        //'category' => 'Front\ArticleCategoryController',
-        'products' => 'Front\ProductController'
-    ]);
+        Route::get('/suggestions','PagesController@suggestions')->name('suggestions');
 
-    Route::get('/about','Front\PagesController@about')->name('about');
+        Route::get('/statement','PagesController@statement')->name('statement');
+    });
 
-    Route::get('/contribute','Front\PagesController@contribute')->name('contribute');
+    Route::group(['prefix' => 'user','namespace' => 'Front'],function(){
 
-    Route::get('/suggestions','Front\PagesController@suggestions')->name('suggestions');
+        Route::get('profile/{type?}', [
+            'as'=>'user.profile','uses'=>'UserController@profile'
+        ]);
 
-    Route::get('/statement','Front\PagesController@statement')->name('statement');
-
+        Route::get('collections', [
+            'as'=>'user.collections','uses'=>'UserController@collections'
+        ]);
+    });
 });
 
 
@@ -219,7 +220,10 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
             'uses'  =>  'UserController@follow'
         ]);
         //更新用户信息接口
-
+        $api->put('user/profile/{type?}', [
+            'as'    =>  'api.user.profile',
+            'uses'  =>  'UserController@profileUpdate'
+        ]);
         //重置密码接口
 
         //评论接口
