@@ -35,6 +35,13 @@ class UserController extends BaseController
         $follow_type = 'user';
         $follow_id = $request->input('follow_id');
 
+        if($user->id==$follow_id){
+            $result = [
+                'status_code'    => 201,
+                'message'        => '不能订阅自己'
+            ];
+            return $result;
+        }
         $follower = $user->follows()->where('follow_id', $follow_id)->first();
 
         if($follower){

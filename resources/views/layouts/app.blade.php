@@ -253,7 +253,7 @@
 
 
         <!-- notifications and other links -->
-        <ul class="nav nav-userinfo navbar-right">
+        <ul class="nav navbar-nav nav-userinfo navbar-right">
 
             <li class="search-form"><!-- You can add "always-visible" to show make the search input visible -->
 
@@ -625,6 +625,7 @@
 
 <!-- JavaScripts initializations and stuff -->
 {!! Html::script("assets/js/xenon-custom.js") !!}
+{!! Html::script("front/build/js/app.js") !!}
 
 @yield('scripts')
 </body>

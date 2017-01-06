@@ -214,7 +214,7 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
             'as'    =>  'api.user.show',
             'uses'  =>  'UserController@show'
         ]);
-        //关注和取消关注接口
+        //订阅和取消订阅接口
         $api->post('user/follow', [
             'as'    =>  'api.user.follow',
             'uses'  =>  'UserController@follow'

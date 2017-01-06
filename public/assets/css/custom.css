@@ -132,3 +132,11 @@ a {
     color: #979898;
     background: #fff;
 }
+.btn-fillet-purple{
+    border:1px solid #6f32a8;
+    background: #ffffff;
+}
+.btn-fillet-green{
+    border:1px solid #5ca323;
+    background: #ffffff;
+}

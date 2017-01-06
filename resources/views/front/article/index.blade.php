@@ -57,14 +57,16 @@
                         <div class="col-sm-6">
                             <div class="vertical-top">
 
-                                <button class="btn btn-secondary btn-icon">
+                                <button class="btn btn-icon @if($is_collection) btn-secondary @else btn-fillet-green @endif"
+                                        data-yese="ys-collection" data-id="{{ $article->id }}" data-url="{{ dingo_route('local','api.article.collect') }}">
                                     <i class="linecons-star"></i>
-                                    <span>收藏({{ $article->collections }})</span>
+                                    <span>收藏(<count>{{ $article->collections }}</count>)</span>
                                 </button>
 
-                                <button class="btn btn-purple btn-icon">
+                                <button class="btn btn-icon @if($is_like) btn-purple @else btn-fillet-purple @endif"
+                                        data-yese="ys-like" data-id="{{ $article->id }}" data-url="{{ dingo_route('local','api.article.like') }}">
                                     <i class="linecons-thumbs-up"></i>
-                                    <span>赞({{ $article->likes }})</span>
+                                    <span>赞(<count>{{ $article->likes }}</count>)</span>
                                 </button>
 
                             </div>
@@ -281,9 +283,15 @@
                     </li>
                 </ul>
 
-                <button type="button" class="btn btn-success btn-block text-left">
-                    订阅
-                    <i class="fa-check pull-right"></i>
+                <button type="button" class="btn btn-success btn-block text-left"
+                        data-yese="ys-follow" data-url="{{ dingo_route('local','api.user.follow') }}" data-author="{{ $article->author_id }}">
+                    @if($is_follow)
+                        <span>取消订阅</span>
+                        <i class="fa-check pull-right"></i>
+                    @else
+                        <span>订阅</span>
+                    @endif
+
                 </button>
             </div>
             <div class="row">

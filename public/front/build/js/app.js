@@ -30,11 +30,16 @@ $.ajaxSetup({
             type:'post',
             data:{article_id:id},
             success:function(res){
-                if (res.status==200) $el.hasClass('is-active') ? $el.removeClass('is-active') : $el.addClass('is-active');
-                if (res.type=='success'){
-                    $el.find('.count').text(parseInt($el.find('.count').text())+1);
-                }else if (res.type=='cancel'){
-                    $el.find('.count').text(parseInt($el.find('.count').text())-1);
+                if (res.status==200) {
+                    if (res.type=='success'){
+                        $el.removeClass('btn-fillet-purple');
+                        $el.addClass('btn-purple');
+                        $el.find('count').text(parseInt($el.find('count').text())+1);
+                    }else if (res.type=='cancel'){
+                        $el.removeClass('btn-purple');
+                        $el.addClass('btn-fillet-purple');
+                        $el.find('count').text(parseInt($el.find('count').text())-1);
+                    }
                 }
 
             },
@@ -46,16 +51,23 @@ $.ajaxSetup({
 
         var $el = this.$element;
         var url = this.url;
+        var id  = this.id;
         $.ajax({
             url:url,
             type:'post',
-            data:{},
+            data:{article_id:id},
             success:function(res){
-                if (res.status==200) $el.hasClass('is-active') ? $el.removeClass('is-active') : $el.addClass('is-active');
-                if (res.type=='success'){
-                    $el.find('.count').text(parseInt($el.find('.count').text())+1);
-                }else if (res.type=='cancel'){
-                    $el.find('.count').text(parseInt($el.find('.count').text())-1);
+                if (res.status==200) {
+
+                    if (res.type=='success'){
+                        $el.removeClass('btn-fillet-green');
+                        $el.addClass('btn-secondary');
+                        $el.find('count').text(parseInt($el.find('count').text())+1);
+                    }else if (res.type=='cancel'){
+                        $el.removeClass('btn-secondary');
+                        $el.addClass('btn-fillet-green');
+                        $el.find('count').text(parseInt($el.find('count').text())-1);
+                    }
                 }
             },
             dataType:'json'
@@ -75,9 +87,9 @@ $.ajaxSetup({
             success:function(res){
                 if (res.status_code==200){
                     if (res.type=='unfollow'){
-                        $el.find('.text').text('关注');
+                        $el.find('span').text('订阅');
                     }else if (res.type=='followed'){
-                        $el.find('.text').text('取消关注');
+                        $el.find('span').text('取消订阅');
                     }
                 }
             },

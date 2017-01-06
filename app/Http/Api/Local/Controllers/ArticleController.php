@@ -75,6 +75,7 @@ class ArticleController extends BaseController
         $article_id = $request->input('article_id');
         $query = Collection::where('user_id',$user->id)
             ->where('collection_type','article')->where('collection_id',$article_id);
+
         if($query->first()){
             $query->delete();
             Article::find($article_id)->decrement('collections',1);
@@ -85,7 +86,7 @@ class ArticleController extends BaseController
             ];
         }else{
             Collection::create([
-                'user_id'         => $this->login_user->id,
+                'user_id'         => $user->id,
                 'collection_type' => 'article',
                 'collection_id'   => $article_id
             ]);
