@@ -31,7 +31,7 @@ class ArticleController extends BaseController
                           ->where('author_type',$article->author_type)
                           ->sum('views');
 
-        $comments_count = Comment::where('article_id',$id)->count();
+        //$comments_count = Comment::where('article_id',$id)->count();
 
         $hots = Article::orderBy('views','desc')->take(10)->get();
 
@@ -49,7 +49,7 @@ class ArticleController extends BaseController
             $is_follow = DB::table('user_follow')->where('user_id',$this->login_user->id)->where('follow_id',$article->author_id)->first();
         }
 
-        return view('front.article.index',compact('article','views','comments_count','hots','is_like','is_collection','is_follow'));
+        return view('front.article.index',compact('article','views','hots','is_like','is_collection','is_follow'));
     }
 
     public function reply(Request $request,$id)

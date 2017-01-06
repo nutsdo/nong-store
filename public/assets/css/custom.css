@@ -3,9 +3,132 @@
  * Apply your custom CSS here
  *
 */
-
-body {	
+html {
+}
+body {
+    font-size: 14px;
 }
 
 a {
+}
+/*
+ * Banner
+ *
+*/
+.banner{
+    margin: -30px;
+}
+.mt-40{
+    margin-top: 40px;
+}
+.yese-panel{
+    padding: 20px 0 0 0;
+}
+.panel.yese-panel .panel-heading{
+    margin-left: 0;
+    margin-right: 0;
+}
+.yese-group .list-group-item{
+    margin-top: 1px;
+    border-left: none;
+    border-right: none;
+    border-top:none;
+    border-bottom: 1px solid #7c38bc;
+}
+.yese-group .list-group-item:hover{
+    background-color: #f5f5f5;
+}
+.yese-group .list-group-item .options-links{
+    margin-top: 2px;
+}
+.yese-group .thumbnail{
+    padding:0;
+    margin-bottom: 0;
+    border: none;
+}
+
+.yese-author{
+    margin-top: 10px;
+}
+.yese-author .author-img{
+    display: block;
+    float: left;
+}
+.yese-author .author-img img{
+    width: 32px;
+}
+.yese-author .author-content{
+    margin-left: 50px;
+    padding-bottom: 5px;
+    padding-left: 2px;
+    border-bottom: 1px solid #eeeeee;
+}
+.yese-author .author-content .user-name{
+    display: block;
+    font-size: 14px;
+    color: #575858;
+    margin-bottom: 5px;
+}
+.yese-author .author-content .user-name time{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 11px;
+    color: #ddd;
+}
+/*
+* 文章页
+*/
+.yese-options{
+    width: 100%;
+    margin-top: 10px;
+}
+.article-panel .panel-body{
+    padding-top: 0;
+}
+.article-panel .list-group-item{
+    padding: 10px 10px;
+    /*border-top: none;*/
+    /*border-left: none;*/
+    /*border-right: none;*/
+    /*border-bottom: 1px solid #dddddd;*/
+    border:none;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+}
+.yese-ads{
+    padding: 0;
+}
+.blockquote.no-border{
+    border:none;
+    padding: 0px 10px;
+}
+
+.text-center{
+    text-align: center;
+}
+.user-list img,.yese-comment header .user-img img{
+    margin:4px;
+    width: 60px;
+    padding: 3px;
+}
+.profile-env .user-timeline-stories .timeline-story.yese-comment{
+    margin-bottom: 0;
+    border-bottom: 1px solid #eeeeee;
+}
+.yese-comment-form{
+    border: none!important;
+}
+.yese-comment-form:after{
+    display: none!important;
+}
+.yese-no-login{
+    border: 1px solid #e4e4e4;
+    padding: 15px 20px;
+    min-height: 70px;
+    color: #979898;
+    background: #fff;
 }
