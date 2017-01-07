@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
             'user' => \App\Models\User::class,
             'admin' => \App\Models\Admin::class,
         ]);
+        \Carbon\Carbon::setLocale('zh');
     }
 
     /**

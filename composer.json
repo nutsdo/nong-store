@@ -12,7 +12,9 @@
         "laracasts/flash": "^2.0",
         "dingo/api": "1.0.x@dev",
         "tymon/jwt-auth": "0.5.*",
-        "intervention/image": "^2.3"
+        "intervention/image": "^2.3",
+        "nesbot/carbon": "^1.21",
+        "overtrue/laravel-lang": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

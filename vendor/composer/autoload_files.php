@@ -20,5 +20,6 @@ return array(
     'f18cc91337d49233e5754e93f3ed9ec3' => $vendorDir . '/laravelcollective/html/src/helpers.php',
     'e23faeee409e941dc9b4c80386209c39' => $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
     'f4e9c7747917193061b46ee142399603' => $vendorDir . '/dingo/api/src/helpers.php',
+    'f960e77410032f236cef8c56617b313e' => $vendorDir . '/overtrue/laravel-lang/src/helpers.php',
     'be2dabd89e6571c763d3c521b1c3701e' => $baseDir . '/app/Helpers.php',
 );

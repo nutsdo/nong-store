@@ -71,12 +71,12 @@
                                                         @else
                                                             {{ $article->author->admin_name }}
                                                         @endif
-                                                        <time>{{ $article->created_time }}</time>
+                                                        <time>{{ $article->created_time->diffForHumans() }}</time>
                                                     </a>
                                                 </div>
                                             </div>
                                             <p class="list-group-item-text">{!! $article->body !!}</p>
-                                            <div class="options-links">
+                                            <div class="options-links pull-right">
                                                 <a href="#">
                                                     <i class="linecons-eye"></i>
                                                     浏览
@@ -109,64 +109,19 @@
                         </div>
 
                     </div>
-
+                    <div class="panel">
+                        <button class="btn btn-purple btn-block">
+                            <i class="fa-bars"></i>
+                            加载更多...
+                        </button>
+                    </div>
                 </div>
 
         </div>
 
         <div class="col-sm-3">
 
-            <!-- User Info Sidebar -->
-            <div class="user-info-sidebar panel">
-
-                <a href="#" class="user-img">
-                    <img src="assets/images/user-4.png" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
-                </a>
-
-                <a href="#" class="user-name">
-                    Art Ramadani
-                    <span class="user-status is-online"></span>
-                </a>
-
-                <span class="user-title">
-                    CEO at <strong>Google</strong>
-                </span>
-
-                <hr />
-
-                <ul class="list-unstyled user-info-list">
-                    <li>
-                        <i class="fa-home"></i>
-                        Prishtina, Kosovo
-                    </li>
-                    <li>
-                        <i class="fa-briefcase"></i>
-                        <a href="#">Laborator</a>
-                    </li>
-                    <li>
-                        <i class="fa-graduation-cap"></i>
-                        University of Bologna
-                    </li>
-                </ul>
-
-                <hr />
-
-                <ul class="list-unstyled user-friends-count">
-                    <li>
-                        <span>643</span>
-                        followers
-                    </li>
-                    <li>
-                        <span>108</span>
-                        following
-                    </li>
-                </ul>
-
-                <button type="button" class="btn btn-success btn-block text-left">
-                    Following
-                    <i class="fa-check pull-right"></i>
-                </button>
-            </div>
+            @include('front.common.user-info-sidebar',['user'=>$loginUser])
 
         </div>
     </div>

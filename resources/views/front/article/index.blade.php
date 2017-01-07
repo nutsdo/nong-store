@@ -16,7 +16,7 @@
                 <div class="panel-heading">
                     <p class="panel-title">{{ $article->title }}</p>
                     <div class="panel-options yese-options">
-                        <time>{{ $article->created_time }}</time>
+                        <time>{{ $article->created_time->diffForHumans() }}</time>
                         <a href="#">
                             <i class="linecons-eye"></i>
                             阅读
@@ -162,7 +162,7 @@
 
                         <div class="user-details">
                             <a href="#">{{ $comment->user->name }}</a>
-                            <time><span>#{{ $key+1 }}</span>  ⋅ {{ $comment->created_time }}</time>
+                            <time><span>#{{ $key+1 }}</span>  ⋅ {{ $comment->created_time->diffForHumans() }}</time>
                         </div>
 
                     </header>
@@ -279,7 +279,7 @@
                     </li>
                     <li>
                         <span>108</span>
-                        他关注
+                        他订阅
                     </li>
                 </ul>
 

@@ -140,3 +140,18 @@ a {
     border:1px solid #5ca323;
     background: #ffffff;
 }
+
+/*
+* 帖子相关
+*/
+.community-time{
+    font-size: 12px;
+    color: #979898;
+}
+.community-options{
+    font-size: 12px;
+    color: #979898;
+}
+.community-options a{
+    color: #979898;
+}

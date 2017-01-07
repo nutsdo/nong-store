@@ -21,6 +21,7 @@ class ComposerStaticInit22ef7eeed18cf6cab86a3150d925ae40
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'e23faeee409e941dc9b4c80386209c39' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/functions.php',
         'f4e9c7747917193061b46ee142399603' => __DIR__ . '/..' . '/dingo/api/src/helpers.php',
+        'f960e77410032f236cef8c56617b313e' => __DIR__ . '/..' . '/overtrue/laravel-lang/src/helpers.php',
         'be2dabd89e6571c763d3c521b1c3701e' => __DIR__ . '/../..' . '/app/Helpers.php',
     );
 
@@ -67,6 +68,10 @@ class ComposerStaticInit22ef7eeed18cf6cab86a3150d925ae40
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PhpParser\\' => 10,
+        ),
+        'O' => 
+        array (
+            'Overtrue\\LaravelLang\\' => 21,
         ),
         'M' => 
         array (
@@ -215,6 +220,10 @@ class ComposerStaticInit22ef7eeed18cf6cab86a3150d925ae40
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'Overtrue\\LaravelLang\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/laravel-lang/src',
         ),
         'Monolog\\' => 
         array (
@@ -412,10 +421,12 @@ class ComposerStaticInit22ef7eeed18cf6cab86a3150d925ae40
         'App\\Http\\Controllers\\Dashboard\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/ProductController.php',
         'App\\Http\\Controllers\\Dashboard\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/RoleController.php',
         'App\\Http\\Controllers\\Dashboard\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/SettingController.php',
+        'App\\Http\\Controllers\\Dashboard\\SupplierController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/SupplierController.php',
         'App\\Http\\Controllers\\Dashboard\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/UserController.php',
         'App\\Http\\Controllers\\Front\\ArticleCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ArticleCategoryController.php',
         'App\\Http\\Controllers\\Front\\ArticleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ArticleController.php',
         'App\\Http\\Controllers\\Front\\BaseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/BaseController.php',
+        'App\\Http\\Controllers\\Front\\CommunityCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/CommunityCategoryController.php',
         'App\\Http\\Controllers\\Front\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/HomeController.php',
         'App\\Http\\Controllers\\Front\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/PagesController.php',
         'App\\Http\\Controllers\\Front\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ProductController.php',
@@ -453,6 +464,7 @@ class ComposerStaticInit22ef7eeed18cf6cab86a3150d925ae40
         'App\\Models\\Article' => __DIR__ . '/../..' . '/app/Models/Article.php',
         'App\\Models\\ArticleCategory' => __DIR__ . '/../..' . '/app/Models/ArticleCategory.php',
         'App\\Models\\Banner' => __DIR__ . '/../..' . '/app/Models/Banner.php',
+        'App\\Models\\Brand' => __DIR__ . '/../..' . '/app/Models/Brand.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Collection' => __DIR__ . '/../..' . '/app/Models/Collection.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
@@ -463,6 +475,7 @@ class ComposerStaticInit22ef7eeed18cf6cab86a3150d925ae40
         'App\\Models\\Products' => __DIR__ . '/../..' . '/app/Models/Products.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\Settings' => __DIR__ . '/../..' . '/app/Models/Settings.php',
+        'App\\Models\\Supplier' => __DIR__ . '/../..' . '/app/Models/Supplier.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Page' => __DIR__ . '/../..' . '/app/Models/Page.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -2102,6 +2115,9 @@ class ComposerStaticInit22ef7eeed18cf6cab86a3150d925ae40
         'Net_SFTP_Stream' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SFTP/Stream.php',
         'Net_SSH1' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SSH1.php',
         'Net_SSH2' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SSH2.php',
+        'Overtrue\\LaravelLang\\Commands\\Publish' => __DIR__ . '/..' . '/overtrue/laravel-lang/src/Commands/Publish.php',
+        'Overtrue\\LaravelLang\\FileLoader' => __DIR__ . '/..' . '/overtrue/laravel-lang/src/FileLoader.php',
+        'Overtrue\\LaravelLang\\TranslationServiceProvider' => __DIR__ . '/..' . '/overtrue/laravel-lang/src/TranslationServiceProvider.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
