@@ -29,44 +29,18 @@
             </div>
             <div class="xe-body">
 
-                <ul class="list-unstyled">
-                    @foreach($category->articles as $article)
-                    <li>
-                        <div class="xe-comment-entry">
-                            <a href="" class="xe-user-img">
-                                <img src="/assets/images/user-2.png" class="img-circle" width="40" />
-                            </a>
-
-                            <div class="xe-comment">
-                                <a href="#" class="xe-user-name">
-                                    <strong>{{ $article->user->nick_name }}</strong> ⋅ <time class="community-time">{{ $article->created_time->diffForHumans() }}</time>
-                                </a>
-
-                                <a href="{{ route('community-category',$article->category->id) }}"><div class="label label-purple">{{ $article->category->category_name }}</div></a>
-                                <small class="text-muted"><a href="{{ route('posts.show',$article->id) }}">{{ $article->title }}</a></small>
-                                <div class="community-options pull-right">
-                                    <a href="#">
-                                        <i class="linecons-thumbs-up"></i>
-                                        赞
-                                        <span>({{ $article->likes->count() }})</span>
-                                    </a>
-
-                                    <a href="#">
-                                        <i class="linecons-comment"></i>
-                                        评论
-                                        <span>({{ $article->comments->count() }})</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </li>
-                    @endforeach
+                <ul class="list-unstyled article-list">
+                    @include('front.posts.partials.list',['list'=>$category->articles])
                 </ul>
 
             </div>
             <div class="xe-footer">
-                <a href="#">加载更多...</a>
+                @if($articles->nextPageUrl())
+                    <button class="btn btn-purple btn-block" data-next="{{ $articles->nextPageUrl() }}" data-yese="ys-load_more">
+                        <i class="fa-bars"></i>
+                        加载更多...
+                    </button>
+                @endif
             </div>
         </div>
 

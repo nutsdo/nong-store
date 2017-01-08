@@ -50,6 +50,10 @@ Route::group(['middleware' => 'web'], function()
             'as'=>'posts.reply','uses'=>'CommunityArticleController@reply'
         ]);
 
+        Route::get('/experience', [
+            'as'=>'experience','uses'=>'ArticleController@experience'
+        ]);
+
         Route::controllers([
             //'category' => 'Front\ArticleCategoryController',
             'products' => 'ProductController'
@@ -74,6 +78,14 @@ Route::group(['middleware' => 'web'], function()
             'as'=>'user.collections','uses'=>'UserController@collections'
         ]);
     });
+    Route::group(['prefix' => 'store','namespace' => 'Store'],function(){
+
+        Route::get('/', function(){
+            return '夜色商城';
+        })->name('store');
+
+    });
+
 });
 
 

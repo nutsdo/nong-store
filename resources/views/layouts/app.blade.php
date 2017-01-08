@@ -238,13 +238,13 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;">
+                <a href="{{ route('experience') }}">
                     <i class="fa-female"></i>
                     <span class="title">情趣体验师</span>
                 </a>
             </li>
             <li>
-                <a href="javascript:;">
+                <a href="{{ route('store') }}">
                     <i class="fa-shopping-cart"></i>
                     <span class="title">夜色商城</span>
                 </a>

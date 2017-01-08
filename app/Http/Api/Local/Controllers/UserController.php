@@ -134,8 +134,11 @@ class UserController extends BaseController
         if(isset($data['password'])){
             $data['password'] = bcrypt($data['password']);
         }
+        //dd($data);
         $user = User::find($user->id);
-        if($user->update($data)){
+
+        if(User::where('id',$user->id)->update($data)){
+            Auth::guard('web')->login($user);
             $result = [
                 'status_code'    => 200,
                 'message'        => '更新成功'

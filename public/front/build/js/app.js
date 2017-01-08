@@ -98,6 +98,26 @@ $.ajaxSetup({
 
     }
 
+    Yese.prototype.load_more = function(){
+
+        var $el = this.$element;
+        var url = this.$element.data('next');
+        $.ajax({
+            url:url,
+            data:{},
+            success:function(res){
+                $('.article-list').append(res.data);
+                $('button[data-yese=ys-load_more]').data('next',res.next);
+                if (res.next==null){
+                    $('[data-yese=ys-load_more]').attr('disabled',true).text('没有更多内容了');
+                }
+
+            },
+            dataType:'json'
+        });
+
+    }
+
     Yese.prototype.init = function(){
 
         console.log('call init method');
