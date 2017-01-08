@@ -38,7 +38,7 @@
         <label class="col-sm-2 control-label" for="signature">个人说明</label>
 
         <div class="col-sm-10">
-            <textarea class="form-control" cols="5" id="signature" name="signature" placeholder="这个家伙很懒，什么都没留下..."></textarea>
+            <textarea class="form-control" cols="5" id="signature" name="signature" placeholder="这个家伙很懒，什么都没留下...">{{ $my->signature }}</textarea>
         </div>
     </div>
 

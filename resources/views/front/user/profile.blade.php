@@ -34,7 +34,7 @@
                 </a>
 
                 <span class="user-title">
-                    CEO at <strong>Google</strong>
+                    {{ $my->signature }}
                 </span>
 
                 <hr />
@@ -42,15 +42,15 @@
                 <ul class="list-unstyled user-info-list">
                     <li>
                         <i class="fa-home"></i>
-                        中国, 北京
+                        {{$my->country}}, {{$my->city}}
                     </li>
                     <li>
                         <i class="fa-briefcase"></i>
-                        <a href="#">Google</a>
+                        {{ $my->company }}
                     </li>
                     <li>
                         <i class="fa-graduation-cap"></i>
-                        北京大学
+                        {{ $my->university }}
                     </li>
                 </ul>
 
@@ -58,11 +58,11 @@
 
                 <ul class="list-unstyled user-friends-count">
                     <li>
-                        <span>643</span>
+                        <span>{{ $my->followers->count() }}</span>
                         被关注
                     </li>
                     <li>
-                        <span>108</span>
+                        <span>{{ $my->following->count() }}</span>
                         关注
                     </li>
                 </ul>
@@ -112,9 +112,9 @@
                         <li @if($type=='avatar')class="active"@endif>
                             <a href="{{ route('user.profile','avatar') }}">头像设置</a>
                         </li>
-                        <li @if($type=='phone')class="active"@endif>
-                            <a href="{{ route('user.profile','phone') }}">手机绑定</a>
-                        </li>
+                        {{--<li @if($type=='phone')class="active"@endif>--}}
+                            {{--<a href="{{ route('user.profile','phone') }}">手机绑定</a>--}}
+                        {{--</li>--}}
                     </ul>
 
                 </div>

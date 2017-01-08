@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UploadRequest;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 class UploadController extends Controller{
 
@@ -32,9 +33,13 @@ class UploadController extends Controller{
 
                     $saveFileName = uniqid().'_'.$type.'.'.$extension;//函数基于以微秒计的当前时间，生成一个唯一的 ID。
 
-                    $file->move($savePath,$saveFileName);
-
                     $fullFileName = $savePath.'/'.$saveFileName;
+                    //使用Intervention/image 扩展
+                    if($type=='avatar'){
+                        Image::make($file)->resize(80,80)->save($fullFileName);
+                    }else{
+                        $file->move($savePath,$saveFileName);
+                    }
 
                     $result = ['status'=>'success','msg'=>'上传成功！','path'=>$fullFileName];
                 }

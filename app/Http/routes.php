@@ -166,7 +166,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 Route::group(['middleware' => ['web']], function()
 {
     //上传
-    Route::post('upload', [
+    Route::any('upload', [
         'as' => 'upload', 'uses' => 'UploadController@upload'
     ]);
 
