@@ -82,6 +82,15 @@ class UserController extends BaseController
     }
 
     /*
+     * 我的文章
+     * */
+    public function articles(Request $request, $type='publish')
+    {
+        $article = '';
+        return view('front.user.article',compact('type','article'));
+    }
+
+    /*
      * 我的收藏
      * */
 

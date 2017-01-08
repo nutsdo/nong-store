@@ -74,9 +74,15 @@ Route::group(['middleware' => 'web'], function()
             'as'=>'user.profile','uses'=>'UserController@profile'
         ]);
 
+        Route::get('article/{type?}', [
+            'as'=>'user.article','uses'=>'UserController@articles'
+        ]);
+
         Route::get('collections', [
             'as'=>'user.collections','uses'=>'UserController@collections'
         ]);
+
+
     });
     Route::group(['prefix' => 'store','namespace' => 'Store'],function(){
 
