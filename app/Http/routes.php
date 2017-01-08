@@ -42,6 +42,13 @@ Route::group(['middleware' => 'web'], function()
         Route::get('/community/{id?}', [
             'as'=>'community-category','uses'=>'CommunityCategoryController@index'
         ]);
+        //帖子
+        Route::get('/posts/{id?}', [
+            'as'=>'posts.show','uses'=>'CommunityArticleController@show'
+        ]);
+        Route::post('/posts/{id?}', [
+            'as'=>'posts.reply','uses'=>'CommunityArticleController@reply'
+        ]);
 
         Route::controllers([
             //'category' => 'Front\ArticleCategoryController',

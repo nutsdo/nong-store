@@ -155,3 +155,11 @@ a {
 .community-options a{
     color: #979898;
 }
+
+/*
+   按钮
+*/
+
+.btn.btn-no-bottom{
+    margin-bottom: 0;
+}

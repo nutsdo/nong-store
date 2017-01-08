@@ -17,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'user' => \App\Models\User::class,
             'admin' => \App\Models\Admin::class,
+            'community' => \App\Models\CommunityArticle::class,
+            'article' => \App\Models\Article::class,
         ]);
         \Carbon\Carbon::setLocale('zh');
     }
