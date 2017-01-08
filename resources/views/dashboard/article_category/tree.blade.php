@@ -25,6 +25,10 @@
                     <a href="{{ route('dashboard.article_category.create', [ 'father_id' => $category->getKey() ]) }}" title="添加子类">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
+
+                    <a href="javascript:;" data-action="{{ route('dashboard.article_category.destroy', $category->id) }}" class="delete" title="删除">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
                 </span>
             </div>
 

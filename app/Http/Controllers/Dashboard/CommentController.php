@@ -18,23 +18,50 @@ class CommentController extends BaseController
     public function index()
     {
         $comments = Comment::paginate(20);
-        //dd($comments);
-        return view('dashboard.comments.index',compact('comments'));
+
+        return view('dashboard.comment.index',compact('comments'));
     }
 
     public function show($id)
     {
         $comment = Comment::find($id);
-        return view('dashboard.comments.show',compact('comment'));
+        return view('dashboard.comment.show',compact('comment'));
+    }
+
+    public function check($id)
+    {
+        $comment = Comment::find($id);
+        if($comment->is_checked){
+            $comment->update([
+                'is_checked'    => 0
+            ]);
+        }else{
+            $comment->update([
+                'is_checked'    => 1
+            ]);
+        }
+
+        flash()->success('操作成功');
+
+        return redirect()->back();
     }
 
     public function destroy($id)
     {
-        $article = Comment::find($id);
+        $article = Comment::destroy($id);
 
-        $article->delete();
+        if($article) {
 
-        return redirect()->route(['dashboard.articles.comments',$id]);
+            flash()->success('删除成功');
+
+        } else {
+
+            flash()->error('删除失败');
+
+        }
+
+        return redirect()->back();
+
     }
 
 }

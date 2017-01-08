@@ -83,7 +83,9 @@
      </div>
  </div>
 
- <div class="form-group">
-     {!! Form::submit($submitButtonText,['class'=>'btn btn-success']) !!}
-     {!! Form::reset('重置',['class'=>'btn btn-white']) !!}
- </div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        {!! Form::submit($submitButtonText,['class'=>'btn btn-success']) !!}
+        {!! Form::reset('重置',['class'=>'btn btn-white']) !!}
+    </div>
+</div>

@@ -23,48 +23,74 @@ Route::group(['middleware' => 'web'], function()
 
     Route::auth();
 
-    Route::get('/', [
-        'as'=>'home','uses'=>'HomeController@index'
-    ]);
+    Route::group(['namespace' => 'Front'], function()
+    {
+        Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('profile', [
-        'as'=>'profile','uses'=>'Front\UserController@profile'
-    ]);
+        Route::get('/category/{id?}', [
+            'as'=>'article-category','uses'=>'ArticleCategoryController@index'
+        ]);
 
-    Route::get('collections', [
-        'as'=>'collections','uses'=>'Front\UserController@collections'
-    ]);
+        Route::get('/article/{id}', [
+            'as'=>'article.show','uses'=>'ArticleController@show'
+        ]);
 
-    Route::get('/home', 'Front\HomeController@index');
+        Route::post('/article/{id}/reply', [
+            'as'=>'article.reply','uses'=>'ArticleController@reply'
+        ]);
 
-    Route::get('/category/{id?}', [
-        'as'=>'article-category','uses'=>'Front\ArticleCategoryController@index'
-    ]);
+        Route::get('/community/{id?}', [
+            'as'=>'community-category','uses'=>'CommunityCategoryController@index'
+        ]);
+        //帖子
+        Route::get('/posts/{id?}', [
+            'as'=>'posts.show','uses'=>'CommunityArticleController@show'
+        ]);
+        Route::post('/posts/{id?}', [
+            'as'=>'posts.reply','uses'=>'CommunityArticleController@reply'
+        ]);
 
-    Route::get('/article/{id}', [
-        'as'=>'article.show','uses'=>'Front\ArticleController@show'
-    ]);
+        Route::get('/experience', [
+            'as'=>'experience','uses'=>'ArticleController@experience'
+        ]);
 
-    Route::post('/article/{id}/reply', [
-        'as'=>'article.reply','uses'=>'Front\ArticleController@reply'
-    ]);
+        Route::controllers([
+            //'category' => 'Front\ArticleCategoryController',
+            'products' => 'ProductController'
+        ]);
 
-    Route::get('/community/{id?}', [
-        'as'=>'community-category','uses'=>'Front\CommunityCategoryController@index'
-    ]);
+        Route::get('/about','PagesController@about')->name('about');
 
-    Route::controllers([
-        //'category' => 'Front\ArticleCategoryController',
-        'products' => 'Front\ProductController'
-    ]);
+        Route::get('/contribute','PagesController@contribute')->name('contribute');
 
-    Route::get('/about','Front\PagesController@about')->name('about');
+        Route::get('/suggestions','PagesController@suggestions')->name('suggestions');
 
-    Route::get('/contribute','Front\PagesController@contribute')->name('contribute');
+        Route::get('/statement','PagesController@statement')->name('statement');
+    });
 
-    Route::get('/suggestions','Front\PagesController@suggestions')->name('suggestions');
+    Route::group(['prefix' => 'user','namespace' => 'Front'],function(){
 
-    Route::get('/statement','Front\PagesController@statement')->name('statement');
+        Route::get('profile/{type?}', [
+            'as'=>'user.profile','uses'=>'UserController@profile'
+        ]);
+
+        Route::get('article/{type?}', [
+            'as'=>'user.article','uses'=>'UserController@articles'
+        ]);
+
+        Route::get('collections', [
+            'as'=>'user.collections','uses'=>'UserController@collections'
+        ]);
+
+
+    });
+    Route::group(['prefix' => 'store','namespace' => 'Store'],function(){
+
+        Route::get('/', function(){
+            return '夜色商城';
+        })->name('store');
+
+    });
 
 });
 
@@ -116,6 +142,8 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('brand','BrandController');
 
+    Route::resource('supplier','SupplierController');
+
     Route::resource('orders','OrderController');
 
     Route::resource('article_category','ArticleCategoryController');
@@ -126,7 +154,11 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 
     Route::resource('articles','ArticleController');
 
-    Route::resource('comments', 'CommentController');
+    Route::get('comment/{comment_id}/check', [
+        'as'=> 'dashboard.comment.check','uses'=>'CommentController@check'
+    ]);
+
+    Route::resource('comment', 'CommentController');
 
     Route::resource('community-category', 'CommunityCategoryController');
 
@@ -140,7 +172,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
 Route::group(['middleware' => ['web']], function()
 {
     //上传
-    Route::post('upload', [
+    Route::any('upload', [
         'as' => 'upload', 'uses' => 'UploadController@upload'
     ]);
 
@@ -159,5 +191,83 @@ Route::group(['middleware'=>['api']], function(){
     Route::post('/user/follow', [
         'as'=>'user.follow','uses'=>'Front\UserController@follow'
     ]);
+
+});
+Route::group(['middleware'=>['api']], function(){
+
+});
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Local\Controllers'], function ($api) {
+    //登录接口
+    $api->any('login',[
+        'as'    => 'api.login',
+        'uses'  => 'AuthController@login'
+    ]);
+    //注册接口
+    $api->post('register',[
+        'as'    => 'api.register',
+        'uses'  => 'AuthController@register'
+    ]);
+    //文章接口
+    $api->get('article/{id}/show', [
+        'as'    => 'api.article.show',
+        'uses'  => 'ArticleController@show'
+    ]);
+    //文章列表
+    $api->get('articles', [
+        'as'    => 'api.article.index',
+        'uses'  => 'ArticleController@index'
+    ]);
+    //文章分类接口
+    $api->get('categories', [
+        'as'    => 'api.categories.index',
+        'uses'  => 'CategoryController@index'
+    ]);
+    //获取分类文章接口
+    $api->get('category/{id}/articles', [
+        'as'    => 'api.categories.articles',
+        'uses'  => 'ArticleController@getArticlesByCategoryId'
+    ]);
+
+    /*
+     * 登录后操作
+     * */
+    $api->group(['middleware' => ['oauth:web']] ,function($api){
+        //用户信息接口
+        $api->get('user',[
+            'as'    =>  'api.user.show',
+            'uses'  =>  'UserController@show'
+        ]);
+        //订阅和取消订阅接口
+        $api->post('user/follow', [
+            'as'    =>  'api.user.follow',
+            'uses'  =>  'UserController@follow'
+        ]);
+        //更新用户信息接口
+        $api->put('user/profile/{type?}', [
+            'as'    =>  'api.user.profile',
+            'uses'  =>  'UserController@profileUpdate'
+        ]);
+        //重置密码接口
+
+        //评论接口
+        $api->post('article/comment', [
+            'as'    =>  'api.user.comment',
+            'uses'  =>  'ArticleController@comment'
+        ]);
+        //删除评论接口
+
+        //点赞和取消点赞接口
+        $api->post('article/like', [
+            'as'    =>  'api.article.like',
+            'uses'  =>  'ArticleController@doLike'
+        ]);
+        //收藏和取消收藏接口
+        $api->post('article/collect', [
+            'as'    =>  'api.article.collect',
+            'uses'  =>  'ArticleController@doCollect'
+        ]);
+    });
 
 });

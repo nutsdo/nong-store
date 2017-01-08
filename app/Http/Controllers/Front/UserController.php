@@ -18,10 +18,11 @@ class UserController extends BaseController
         $this->middleware('auth:web');
     }
 
-    public function profile()
+    public function profile(Request $request, $type='profile')
     {
         $my = $this->login_user;
-        return view('front.user.profile',compact('my'));
+
+        return view('front.user.profile',compact('my', 'type'));
     }
 
     public function update(Requests\UserPostRequest $request)
@@ -45,8 +46,8 @@ class UserController extends BaseController
     }
 
     /*
- * 关注用户
- * */
+     * 关注用户
+     * */
     public function follow(Request $request)
     {
 
@@ -78,6 +79,15 @@ class UserController extends BaseController
         }
 
         return response()->json($result);
+    }
+
+    /*
+     * 我的文章
+     * */
+    public function articles(Request $request, $type='publish')
+    {
+        $article = '';
+        return view('front.user.article',compact('type','article'));
     }
 
     /*

@@ -1,7 +1,9 @@
 /**
  * Created by lvdingtao on 2016/11/12.
  */
-
+$.ajaxSetup({
+    headers: { "X-CSRF-TOKEN" : $('meta[name=csrf-token]').attr('content') }
+});
 ;(function( $ ) {
 
     "use strict";
@@ -20,19 +22,24 @@
     };
 
     Yese.prototype.like = function(){
-
         var $el = this.$element;
         var url = this.url;
+        var id  = this.id;
         $.ajax({
             url:url,
             type:'post',
-            data:{},
+            data:{article_id:id},
             success:function(res){
-                if (res.status==200) $el.hasClass('is-active') ? $el.removeClass('is-active') : $el.addClass('is-active');
-                if (res.type=='success'){
-                    $el.find('.count').text(parseInt($el.find('.count').text())+1);
-                }else {
-                    $el.find('.count').text(parseInt($el.find('.count').text())-1);
+                if (res.status==200) {
+                    if (res.type=='success'){
+                        $el.removeClass('btn-fillet-purple');
+                        $el.addClass('btn-purple');
+                        $el.find('count').text(parseInt($el.find('count').text())+1);
+                    }else if (res.type=='cancel'){
+                        $el.removeClass('btn-purple');
+                        $el.addClass('btn-fillet-purple');
+                        $el.find('count').text(parseInt($el.find('count').text())-1);
+                    }
                 }
 
             },
@@ -44,18 +51,24 @@
 
         var $el = this.$element;
         var url = this.url;
+        var id  = this.id;
         $.ajax({
             url:url,
             type:'post',
-            data:{},
+            data:{article_id:id},
             success:function(res){
-                if (res.status==200) $el.hasClass('is-active') ? $el.removeClass('is-active') : $el.addClass('is-active');
-                if (res.type=='success'){
-                    $el.find('.count').text(parseInt($el.find('.count').text())+1);
-                }else {
-                    $el.find('.count').text(parseInt($el.find('.count').text())-1);
-                }
+                if (res.status==200) {
 
+                    if (res.type=='success'){
+                        $el.removeClass('btn-fillet-green');
+                        $el.addClass('btn-secondary');
+                        $el.find('count').text(parseInt($el.find('count').text())+1);
+                    }else if (res.type=='cancel'){
+                        $el.removeClass('btn-secondary');
+                        $el.addClass('btn-fillet-green');
+                        $el.find('count').text(parseInt($el.find('count').text())-1);
+                    }
+                }
             },
             dataType:'json'
         });
@@ -70,13 +83,35 @@
         $.ajax({
             url:url,
             type:'post',
-            data:{author_id:author_id},
+            data:{follow_id:author_id},
             success:function(res){
-                if (res.status==200){
-                    $el.find('.text').text(res.text);
-                }else {
-                    $el.find('.text').text(res.text);
+                if (res.status_code==200){
+                    if (res.type=='unfollow'){
+                        $el.find('span').text('订阅');
+                    }else if (res.type=='followed'){
+                        $el.find('span').text('取消订阅');
+                    }
                 }
+            },
+            dataType:'json'
+        });
+
+    }
+
+    Yese.prototype.load_more = function(){
+
+        var $el = this.$element;
+        var url = this.$element.data('next');
+        $.ajax({
+            url:url,
+            data:{},
+            success:function(res){
+                $('.article-list').append(res.data);
+                $('button[data-yese=ys-load_more]').data('next',res.next);
+                if (res.next==null){
+                    $('[data-yese=ys-load_more]').attr('disabled',true).text('没有更多内容了');
+                }
+
             },
             dataType:'json'
         });
