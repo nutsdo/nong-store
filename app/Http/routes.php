@@ -249,6 +249,11 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
             'as'    =>  'api.user.profile',
             'uses'  =>  'UserController@profileUpdate'
         ]);
+        //申请成为作者／体验师接口
+        $api->post('user/apply', [
+            'as'    =>  'api.user.apply',
+            'uses'  =>  'UserController@apply'
+        ]);
         //重置密码接口
 
         //评论接口

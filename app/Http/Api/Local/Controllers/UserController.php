@@ -151,4 +151,28 @@ class UserController extends BaseController
         }
         return $result;
     }
+
+    public function apply(Request $request)
+    {
+        $type = $request->input('type');
+        $user = Auth::guard('web')->user();
+        $res = false;
+        if($type=='author'){
+            $res = User::where('id',$user->id)->update(['is_author'=>2]);
+        }elseif($type=='experiencer'){
+            $res = User::where('id',$user->id)->update(['is_experiencer'=>1]);
+        }
+        if($res){
+            $result = [
+                'status_code'    => 200,
+                'message'        => '申请成功'
+            ];
+        }else{
+            $result = [
+                'status_code'    => 201,
+                'message'        => '申请失败'
+            ];
+        }
+        return $result;
+    }
 }

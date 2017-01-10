@@ -13,18 +13,22 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li @if($type=='all')class="active"@endif>
+                    <a href="{{ route('user.article','all') }}">全部文章</a>
+                </li>
+                <li @if($type=='draft')class="active"@endif>
+                    <a href="{{ route('user.article','draft') }}">草稿</a>
+                </li>
+                <li @if($type=='published')class="active"@endif>
+                    <a href="{{ route('user.article','published') }}">已发布</a>
+                </li>
+                <li @if($type=='review')class="active"@endif>
+                    <a href="{{ route('user.article','review') }}">审核中</a>
+                </li>
                 <li @if($type=='publish')class="active"@endif>
                     <a href="{{ route('user.article','publish') }}">发布文章</a>
                 </li>
-                <li @if($type=='published')class="active"@endif>
-                    <a href="{{ route('user.profile','published') }}">已发布</a>
-                </li>
-                <li @if($type=='review')class="active"@endif>
-                    <a href="{{ route('user.profile','review') }}">审核中</a>
-                </li>
-                {{--<li @if($type=='phone')class="active"@endif>--}}
-                {{--<a href="{{ route('user.profile','phone') }}">手机绑定</a>--}}
-                {{--</li>--}}
+
             </ul>
 
         </div>

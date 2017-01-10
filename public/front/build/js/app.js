@@ -118,6 +118,27 @@ $.ajaxSetup({
 
     }
 
+    //申请成为作者
+    Yese.prototype.apply = function(){
+
+        var $el = this.$element;
+        var user_id = $el.data('id');
+        var url = $el.data('url');
+        $.ajax({
+            url:url,
+            type:'post',
+            data:{user_id:user_id,type:'author'},
+            success:function(res){
+                if (res.status==200){
+                    $el.find('a').text('申请中').attr('disabled',true);
+                }
+                $el.find('a').text('申请中').attr('disabled',true);
+            },
+            dataType:'json'
+        });
+
+    }
+
     Yese.prototype.init = function(){
 
         console.log('call init method');

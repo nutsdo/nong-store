@@ -107,17 +107,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dingo/api.git",
-                "reference": "dc312a566ff8fe16098f95360d3778789727f63f"
+                "reference": "9427f5cfa78744234ab35f852563d78e861f7e11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/dingo/api/dc312a566ff8fe16098f95360d3778789727f63f.zip",
-                "reference": "dc312a566ff8fe16098f95360d3778789727f63f",
+                "url": "https://packagist.phpcomposer.com/files/dingo/api/9427f5cfa78744234ab35f852563d78e861f7e11.zip",
+                "reference": "9427f5cfa78744234ab35f852563d78e861f7e11",
                 "shasum": ""
             },
             "require": {
                 "dingo/blueprint": "0.2.*",
-                "doctrine/annotations": "1.2.*",
                 "illuminate/routing": "5.1.* || 5.2.* || 5.3.*",
                 "illuminate/support": "5.1.* || 5.2.* || 5.3.*",
                 "league/fractal": ">=0.12.0",
@@ -174,7 +173,7 @@
                 "laravel",
                 "restful"
             ],
-            "time": "2016-10-18 16:20:39"
+            "time": "2017-01-06 02:27:10"
         },
         {
             "name": "dingo/blueprint",
