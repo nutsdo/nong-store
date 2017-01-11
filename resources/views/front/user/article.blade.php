@@ -13,8 +13,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li @if($type=='all')class="active"@endif>
-                    <a href="{{ route('user.article','all') }}">全部文章</a>
+                <li @if(!$type)class="active"@endif>
+                    <a href="{{ route('user.article') }}">全部文章</a>
                 </li>
                 <li @if($type=='draft')class="active"@endif>
                     <a href="{{ route('user.article','draft') }}">草稿</a>
@@ -24,6 +24,9 @@
                 </li>
                 <li @if($type=='review')class="active"@endif>
                     <a href="{{ route('user.article','review') }}">审核中</a>
+                </li>
+                <li @if($type=='fail')class="active"@endif>
+                    <a href="{{ route('user.article','fail') }}">审核失败</a>
                 </li>
                 <li @if($type=='publish')class="active"@endif>
                     <a href="{{ route('user.article','publish') }}">发布文章</a>
@@ -38,9 +41,13 @@
     <!-- main start-->
     <div class="panel panel-default">
         <div class="panel-body">
-
-            @include('front.user.article.'.$type)
-
+        @if($type=='publish')
+            @include('front.user.article.publish')
+        @elseif($type=='edit')
+            @include('front.user.article.edit')
+        @else
+            @include('front.user.article.list')
+        @endif
         </div>
     </div>
     <!-- main end-->

@@ -6,35 +6,41 @@
  * Time: 下午5:40
  */
 ?>
-@if($loginUser->is_author==1)
-{!! Form::model('',['url'=>dingo_route('local','api.user.profile','profile'),'class'=>'validate form-horizontal','method'=>'put','id'=>'form']) !!}
+
+{!! Form::model($article,['url'=>dingo_route('local','api.user.profile','profile'),'class'=>'validate form-horizontal','method'=>'put','id'=>'form']) !!}
 
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="title">标题</label>
+    {!! Form::label('title', '标题',['class'=>'control-label col-sm-2']) !!}
 
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="title"
-               name="title" value=""
-               placeholder="请输入文章标题...">
+        {!! Form::text('title',null,[
+             'class'=>'form-control',
+             'data-validate'=>'required',
+             'data-message-required'=>'请输入文章标题.',
+             'placeholder'=>'请输入文章标题'
+         ]) !!}
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="thumb_url">封面</label>
-
+    {!! Form::label('thumb_url', '文章封面',['class'=>'control-label col-sm-2']) !!}
     <div class="col-sm-8">
-        <input type="text" class="form-control" id="thumb_url"
-               name="thumb_url" value=""
-               placeholder="请输入封面连接...">
+        {!! Form::text('thumb_url',null,[
+         'class'=>'form-control',
+         'placeholder'=>'请输入封面连接'
+     ]) !!}
     </div>
     <div class="col-sm-2">
         <button type="button" class="btn btn-success">上传</button>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="body">内容</label>
-
+    {!! Form::label('body', '内容',['class'=>'control-label col-sm-2']) !!}
     <div class="col-sm-10">
-        <textarea class="form-control" cols="5" id="body" name="body" placeholder="文章内容..."></textarea>
+        {!! Form::textarea('body',null,[
+             'class'=>'form-control',
+             'id'=>'body',
+             'placeholder'=>'文章内容'
+         ]) !!}
     </div>
 </div>
 
@@ -64,16 +70,3 @@
 //        });
     </script>
 @endsection
-@elseif($loginUser->is_author==2)
-    <div class="alert alert-info">
-        <strong>作者身份申请中...</strong> 请您耐心等待哦!
-    </div>
-@else
-    <div class="alert alert-danger">
-        <strong>Oh~ 不好意思～</strong> 您还不是作者哟～ 点击下面的按钮申请成为作者～
-    </div>
-    <div class="btn-group btn-group-justified" data-yese="ys-apply" data-url="{{ dingo_route('local','api.user.apply') }}" data-id="{{ $loginUser->id }}">
-        <a type="button" class="btn btn-purple bg-lg apply-author">申请成为作者</a>
-    </div>
-
-@endif

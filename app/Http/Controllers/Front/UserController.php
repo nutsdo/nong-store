@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -84,9 +85,45 @@ class UserController extends BaseController
     /*
      * 我的文章
      * */
-    public function articles(Request $request, $type='all')
+    public function articles(Request $request, $type='')
     {
-        $article = '';
+
+        switch($type){
+            case 'draft':
+                $status = 0;
+                break;
+            case 'published':
+                $status = 1;
+                break;
+            case 'fail' :
+                $status = 2;
+                break;
+            case 'review' :
+                $status = 3;
+                break;
+            case 'publish':
+                return view('front.user.article',compact('type'));
+                break;
+            default :
+                break;
+        }
+        if(isset($status)){
+            $articles = Article::where('status', $status)->paginate(20);
+        }else{
+            $articles = Article::paginate(20);
+        }
+
+        return view('front.user.article',compact('type','articles'));
+    }
+
+
+    /*
+     * 文章编辑
+     * */
+    public function edit(Request $request, $id)
+    {
+        $type = 'edit';
+        $article = Article::where('author_id',$this->login_user->id)->where('author_type','user')->find($id);
         return view('front.user.article',compact('type','article'));
     }
 
