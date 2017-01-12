@@ -17,7 +17,7 @@ class ArticleCategoryController extends Controller
         if($id)
         {
             $category = ArticleCategory::where('is_banned',0)->find($id);
-            $articles = Article::where('category_id',$id)->orderBy('created_time','DESC')->paginate(15);
+            $articles = Article::status()->where('category_id',$id)->orderBy('created_time','DESC')->paginate(15);
             if($request->ajax()){
                 $list = view('front.article.partials.list')->with('list',$articles)->render();
                 return response()->json([

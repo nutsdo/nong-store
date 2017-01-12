@@ -111,7 +111,7 @@ class UserController extends BaseController
                 break;
         }
         if(isset($status)){
-            $articles = Article::where('author_id',$this->login_user->id)->where('author_type','user')->where('status', $status)->paginate(20);
+            $articles = Article::status($status)->where('author_id',$this->login_user->id)->where('author_type','user')->paginate(20);
         }else{
             $articles = Article::where('author_id',$this->login_user->id)->where('author_type','user')->paginate(20);
         }

@@ -23,17 +23,17 @@ class ArticleController extends BaseController
     {
         Article::where('id',$id)->increment('views'); //阅读量加1
 
-        $article = Article::with(['comments'=>function($query){
+        $article = Article::status()->with(['comments'=>function($query){
                                     $query->take(10);
                                 }])->find($id);
 
-        $views   = Article::where('author_id',$article->author_id)
+        $views   = Article::status()->where('author_id',$article->author_id)
                           ->where('author_type',$article->author_type)
                           ->sum('views');
 
         //$comments_count = Comment::where('article_id',$id)->count();
 
-        $hots = Article::orderBy('views','desc')->take(10)->get();
+        $hots = Article::status()->orderBy('views','desc')->take(10)->get();
 
         $is_like = false;
         $is_collection = false;

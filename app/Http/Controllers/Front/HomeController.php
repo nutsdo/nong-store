@@ -21,9 +21,9 @@ class HomeController extends Controller
         //banner
         $banners = Banner::orderBy('created_at','DESC')->take(7)->get();
         //最新
-        $last_articles = Article::with('author')->orderBy('created_time','DESC')->take(12)->get();
+        $last_articles = Article::status()->with('author')->orderBy('created_time','DESC')->take(12)->get();
 
-        $hot_articles = Article::orderBy('views','DESC')->take(10)->get();
+        $hot_articles = Article::status()->orderBy('views','DESC')->take(10)->get();
 
         return view('front.home.index',compact('banners','last_articles','hot_articles'));
 

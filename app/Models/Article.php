@@ -34,4 +34,14 @@ class Article extends Model
         return $this->morphTo();
         //return $this->belongsTo('App\Models\User','author_id');
     }
+
+    /**
+     * 限制查找已审核的文章。
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeStatus($query,$status=1)
+    {
+        return $query->where('status', $status);
+    }
 }
