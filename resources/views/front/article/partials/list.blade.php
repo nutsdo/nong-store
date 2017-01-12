@@ -33,7 +33,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="list-group-item-text">{!! $article->body !!}</p>
+                    <p class="list-group-item-text">{{ str_limit(strip_tags($article->body),196) }}</p>
                     <div class="options-links pull-right">
                         <a href="#">
                             <i class="linecons-eye"></i>

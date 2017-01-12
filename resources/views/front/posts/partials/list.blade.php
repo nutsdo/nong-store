@@ -11,7 +11,9 @@
         <li>
             <div class="xe-comment-entry">
                 <a href="" class="xe-user-img">
-                    <img src="/assets/images/user-2.png" class="img-circle" width="40" />
+                    {!! Html::image($article->user->avatar, $article->user->nick_name, [
+                        'data-src'=>$article->user->avatar,'class'=>'img-circle','width'=>40
+                    ]) !!}
                 </a>
 
                 <div class="xe-comment">

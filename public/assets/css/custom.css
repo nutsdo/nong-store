@@ -18,6 +18,9 @@ a {
 .banner{
     margin: -30px;
 }
+.banner .carousel-inner{
+    max-height: 320px;
+}
 .mt-40{
     margin-top: 40px;
 }
