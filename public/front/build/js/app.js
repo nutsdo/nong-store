@@ -138,6 +138,7 @@ $.ajaxSetup({
         });
 
     }
+    //
 
     Yese.prototype.init = function(){
 
@@ -193,3 +194,40 @@ $.ajaxSetup({
 }( jQuery ));
 
 //$('.ys-like').yese('like');
+$('.draft').on('click', function(e){
+    var $ele = $(e.target);
+    console.log($ele);
+    var form = $ele.parents().closest('form');
+    for ( instance in CKEDITOR.instances ) {
+        CKEDITOR.instances[instance].updateElement();
+    }
+    $.ajax({
+        url:form.attr('action'),
+        type:'post',
+        data:form.serialize()+'&status=0',
+        dataType:'json',
+    }).done(function(data){
+            if (data.status_code==200){
+                location.href = '/user/article/'+data.data.id+'/edit';
+            }
+        });
+});
+$('.review').on('click', function(e){
+    var $ele = $(e.target);
+
+    var form = $ele.parents().closest('form');
+    for ( instance in CKEDITOR.instances ) {
+        CKEDITOR.instances[instance].updateElement();
+    }
+    $.ajax({
+        url:form.attr('action'),
+        type:'post',
+        data:form.serialize()+'&status=3',
+        dataType:'json',
+    }).done(function(data){
+        if (data.status_code==200){
+            location.href = '/user/article/review';
+        }
+
+    });
+});

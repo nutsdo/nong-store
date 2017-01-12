@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Front;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\ArticleCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Kalnoy\Nestedset\Collection;
 
 class UserController extends BaseController
 {
@@ -102,15 +104,16 @@ class UserController extends BaseController
                 $status = 3;
                 break;
             case 'publish':
-                return view('front.user.article',compact('type'));
+                $categories = $this->getCategoryOptions();
+                return view('front.user.article',compact('type','categories'));
                 break;
             default :
                 break;
         }
         if(isset($status)){
-            $articles = Article::where('status', $status)->paginate(20);
+            $articles = Article::where('author_id',$this->login_user->id)->where('author_type','user')->where('status', $status)->paginate(20);
         }else{
-            $articles = Article::paginate(20);
+            $articles = Article::where('author_id',$this->login_user->id)->where('author_type','user')->paginate(20);
         }
 
         return view('front.user.article',compact('type','articles'));
@@ -120,11 +123,12 @@ class UserController extends BaseController
     /*
      * 文章编辑
      * */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $type = 'edit';
+        $categories = $this->getCategoryOptions();
         $article = Article::where('author_id',$this->login_user->id)->where('author_type','user')->find($id);
-        return view('front.user.article',compact('type','article'));
+        return view('front.user.article',compact('type','article','categories'));
     }
 
     /*
@@ -134,5 +138,41 @@ class UserController extends BaseController
     public function collections()
     {
         $collections = '';
+    }
+
+
+    /**
+     * @param Collection $items
+     *
+     * @return static
+     */
+    protected function makeOptions(Collection $items)
+    {
+        $options = [ '' => '选择分类' ];
+
+        foreach ($items as $item)
+        {
+            $options[$item->getKey()] = str_repeat('‒', $item->depth + 1).' '.$item->category_name;
+        }
+
+        return $options;
+    }
+
+    /**
+     * @param Category $except
+     *
+     * @return CategoriesController
+     */
+    protected function getCategoryOptions($except = null)
+    {
+        /** @var \Kalnoy\Nestedset\QueryBuilder $query */
+        $query = ArticleCategory::select('id', 'category_name')->withDepth();
+
+        if ($except)
+        {
+            $query->whereNotDescendantOf($except)->where('id', '<>', $except->id);
+        }
+
+        return $this->makeOptions($query->get());
     }
 }

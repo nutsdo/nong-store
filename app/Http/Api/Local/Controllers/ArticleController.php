@@ -9,6 +9,7 @@
 namespace App\Http\Api\Local\Controllers;
 
 
+use App\Http\Requests\PostArticleRequest;
 use App\Models\Article;
 use App\Models\Collection;
 use App\Models\Comment;
@@ -16,6 +17,7 @@ use App\Models\Like;
 use App\Transformers\ArticleTransformer;
 use Dingo\Api\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends BaseController
 {
@@ -36,6 +38,88 @@ class ArticleController extends BaseController
     {
         return '';
     }
+
+    /*
+     * 保存文章接口
+     * */
+    public function store(Request $request)
+    {
+        $user = Auth::guard('web')->user();
+        //Article::where()->
+        $rule   = [
+            'category_id'=>'required|numeric|exists:feature_article_category,id',
+            'title'      =>'required',
+            'thumb_url'  =>'required',
+            'body'       =>'required',
+        ];
+        $validator = Validator::make($request->all(), $rule);
+
+        if ($validator->fails()) {
+            return [
+                'status_code'   => 202,
+                'message'       => $validator->messages()
+            ];
+        }
+        $data = $request->only('category_id','title','thumb_url','body','status');
+        $data['author_id']   = $user->id;
+        $data['author_type'] = 'user';
+        $create = Article::create();
+
+        if($create){
+            $result = [
+                'status_code'   => 200,
+                'data'          => $create,
+                'message'       => '保存成功'
+            ];
+        }else{
+            $result = [
+                'status_code'    => 201,
+                'message'       => '保存失败'
+            ];
+        }
+
+        return response()->json($result);
+    }
+
+    /*
+     * 更新文章接口
+     * */
+    public function update(Request $request, $id)
+    {
+
+        $rule   = [
+            'category_id'=>'required|numeric|exists:feature_article_category,id',
+            'title'      =>'required',
+            'thumb_url'  =>'required',
+            'body'       =>'required',
+        ];
+        $validator = Validator::make($request->all(), $rule);
+
+        if ($validator->fails()) {
+            return [
+                'status_code'   => 202,
+                'message'       => $validator->messages()
+            ];
+        }
+        $article = Article::find($id);
+
+        $update = $article->update($request->only('category_id','title','thumb_url','body','status'));
+
+        if($update){
+            $result = [
+                'status_code'    => 200,
+                'message'       => '更新成功'
+            ];
+        }else{
+            $result = [
+                'status_code'    => 201,
+                'message'       => '更新失败'
+            ];
+        }
+
+        return response()->json($result);
+    }
+
     /*
      * 点赞
      * */

@@ -7,7 +7,13 @@
  */
 ?>
 
-{!! Form::model($article,['url'=>dingo_route('local','api.user.profile','profile'),'class'=>'validate form-horizontal','method'=>'put','id'=>'form']) !!}
+{!! Form::model($article,['url'=>dingo_route('local','api.article.update',$article->id),'class'=>'validate form-horizontal','method'=>'put','id'=>'form']) !!}
+<div class="form-group">
+    {!! Form::label('category_id', '分类',['class'=>'control-label col-sm-2']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('category_id', $categories, null, [ 'class' => 'form-control' ]) !!}
+    </div>
+</div>
 
 <div class="form-group">
     {!! Form::label('title', '标题',['class'=>'control-label col-sm-2']) !!}
@@ -46,8 +52,8 @@
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-4">
-        <button type="button" class="btn btn-success">保存草稿</button>
-        <button type="button" class="btn btn-success submit">提交审核</button>
+        <button type="button" class="btn btn-success draft">保存草稿</button>
+        <button type="button" class="btn btn-success review">提交审核</button>
     </div>
 </div>
 {!! Form::close() !!}

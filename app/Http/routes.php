@@ -77,6 +77,7 @@ Route::group(['middleware' => 'web'], function()
         Route::get('article/{type?}', [
             'as'=>'user.article','uses'=>'UserController@articles'
         ]);
+
         Route::get('article/{id}/edit', [
             'as'=>'user.article.edit','uses'=>'UserController@edit'
         ]);
@@ -259,9 +260,20 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
         ]);
         //重置密码接口
 
+        //保存文章接口
+        $api->post('article/store', [
+            'as'    =>  'api.article.store',
+            'uses'  =>  'ArticleController@store'
+        ]);
+        //更新文章接口
+        $api->put('article/{id}', [
+            'as'    =>  'api.article.update',
+            'uses'  =>  'ArticleController@update'
+        ]);
+
         //评论接口
         $api->post('article/comment', [
-            'as'    =>  'api.user.comment',
+            'as'    =>  'api.article.comment',
             'uses'  =>  'ArticleController@comment'
         ]);
         //删除评论接口
