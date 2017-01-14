@@ -44,9 +44,9 @@
         </div>
 
         <div class="col-sm-3">
-
+        @if($loginUser)
         @include('front.common.user-info-sidebar',['user'=> $loginUser])
-
+        @endif  
         </div>
     </div>
 @endsection
