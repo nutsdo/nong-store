@@ -23,8 +23,23 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Models\Article','article_id');
     }
+
+    public function posts()
+    {
+        return $this->belongsTo('App\Models\CommunityArticle','bbs_article_id');
+    }
+
     public function user(){
         return $this->belongsTo('App\Models\User','app_user_id');
     }
 
+    /**
+     * 限制查找用户的评论。
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfUser($query,$user_id)
+    {
+        return $query->where('app_user_id', $user_id);
+    }
 }

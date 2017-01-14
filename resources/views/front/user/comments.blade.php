@@ -14,10 +14,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li @if($type=='article')class="active"@endif>
-                    <a href="{{ route('user.collections') }}">文章</a>
+                    <a href="{{ route('user.collections') }}">文章评论</a>
                 </li>
                 <li @if($type=='posts')class="active"@endif>
-                    <a href="{{ route('user.collections','posts') }}">帖子</a>
+                    <a href="{{ route('user.collections','posts') }}">帖子评论</a>
                 </li>
             </ul>
 
@@ -28,7 +28,7 @@
     <!-- main start-->
     <div class="panel panel-default">
         <div class="panel-body">
-            @include('front.user.article.collections_list',['articles'=> $collections,'type'=>$type])
+            @include('front.user.article.comments_list',['articles'=> $comments,'type'=>$type])
         </div>
     </div>
     <!-- main end-->

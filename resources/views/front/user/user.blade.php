@@ -87,7 +87,7 @@
                         <i class="fa-star-o"></i>
                         我的收藏
                     </a>
-                    <a href="#" class="list-group-item">
+                    <a href="{{ route('user.comments') }}" class="list-group-item @if($currentRoute=='user.comments') active @endif">
                         <i class="fa-comments"></i>
                         我的评论
                     </a>

@@ -86,6 +86,9 @@ Route::group(['middleware' => 'web'], function()
             'as'=>'user.collections','uses'=>'UserController@collections'
         ]);
 
+        Route::get('comments/{type?}', [
+            'as'=>'user.comments','uses'=>'UserController@comments'
+        ]);
 
     });
     Route::group(['prefix' => 'store','namespace' => 'Store'],function(){

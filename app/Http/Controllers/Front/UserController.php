@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -137,7 +138,6 @@ class UserController extends BaseController
 
     public function collections(Request $request, $type='article')
     {
-        $user = User::find($this->login_user->id);
         if($type == 'article'){
             $table = 'feature_article';
             $ctable = 'feature_article_category';
@@ -159,6 +159,15 @@ class UserController extends BaseController
         return view('front.user.collection', compact('type', 'collections'));
     }
 
+    /*
+     * 我的评论
+     * @param $type
+     * */
+    public function comments(Request $request, $type='article')
+    {
+        $comments = Comment::ofUser($this->login_user->id)->paginate();
+        return view('front.user.comments', compact('type', 'comments'));
+    }
 
     /**
      * @param Collection $items
