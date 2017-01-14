@@ -25,7 +25,7 @@
                         <!-- User info -->
                         <header>
 
-                            <a href="#" class="user-img">
+                            <a href="{{ route('ucenter',$post->user->id) }}" class="user-img">
                                 {!! Html::image($post->user->avatar, $post->user->nick_name, ['class'=>'img-circle img-responsive']) !!}
                             </a>
 
@@ -66,12 +66,12 @@
                                 <li>
 
                                     <div class="story-comment">
-                                        <a href="#" class="comment-user-img">
+                                        <a href="{{ route('ucenter',$comment->user->id) }}" class="comment-user-img">
                                             {!! Html::image($comment->user->avatar, $comment->user->nick_name, ['class'=>'img-circle img-responsive']) !!}
                                         </a>
 
                                         <div class="story-comment-content">
-                                            <a href="#" class="story-comment-user-name">
+                                            <a href="{{ route('ucenter',$comment->user->id) }}" class="story-comment-user-name">
                                                 {{ $comment->user->nick_name }}
                                                 <time>{{ $comment->created_time->diffForHumans() }}</time>
                                             </a>

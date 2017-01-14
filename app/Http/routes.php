@@ -66,6 +66,9 @@ Route::group(['middleware' => 'web'], function()
         Route::get('/u/{id}/article','UcenterController@article')->name('ucenter.article');
         Route::get('/u/{id}/posts','UcenterController@posts')->name('ucenter.posts');
 
+        /*
+         *  单页
+         * */
         Route::get('/about','PagesController@about')->name('about');
 
         Route::get('/contribute','PagesController@contribute')->name('contribute');

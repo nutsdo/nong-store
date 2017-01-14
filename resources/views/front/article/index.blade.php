@@ -50,7 +50,15 @@
 
                     <blockquote class="blockquote blockquote-purple no-border">
                         <p>
-                            <small>本文由 <strong>@夜色轻奢</strong> 原创发布于夜色轻奢。未经允许，请勿转载。</small>
+                            <small>本文由 <strong>
+                                    @if($article->author_type=='user')
+                                        <a href="{{ route('ucenter',$article->author->id) }}">&#64;{{ $article->author->nick_name }}</a>
+                                    @else
+                                        &#64;{{ $title }}
+                                    @endif
+
+                                </strong> 原创发布于夜色轻奢。未经允许，请勿转载。
+                            </small>
                         </p>
                     </blockquote>
                     <div class="row">
@@ -156,12 +164,12 @@
                     <!-- User info -->
                     <header>
 
-                        <a href="#" class="user-img">
+                        <a href="{{ route('ucenter',$article->user->id) }}" class="user-img">
                             {!! Html::image($comment->user->avatar,null,['class'=>'img-cirlce img-responsive img-thumbnail','width'=>40]) !!}
                         </a>
 
                         <div class="user-details">
-                            <a href="#">{{ $comment->user->name }}</a>
+                            <a href="{{ route('ucenter',$article->user->id) }}">{{ $comment->user->name }}</a>
                             <time><span>#{{ $key+1 }}</span>  ⋅ {{ $comment->created_time->diffForHumans() }}</time>
                         </div>
 
@@ -232,68 +240,10 @@
         </div>
 
         <div class="col-sm-3">
+            @if($article->author_type=='user')
+            @include('front.common.user-info-sidebar',['user'=>$article->author])
+            @endif
 
-            <!-- User Info Sidebar -->
-            <div class="user-info-sidebar panel">
-
-                <a href="#" class="user-img">
-                    {!! Html::image($article->author->avatar,'user-img',['class'=>'img-cirlce img-responsive img-thumbnail','width'=>80]) !!}
-                </a>
-
-                <a href="#" class="user-name">
-                    @if($article->author_type=='user')
-                        {{ $article->author->nick_name }}
-                    @else
-                        {{ $article->author->admin_name }}
-                    @endif
-                    <span class="user-status is-online"></span>
-                </a>
-
-                <span class="user-title">
-                    CEO at <strong>Google</strong>
-                </span>
-
-                <hr />
-
-                <ul class="list-unstyled user-info-list">
-                    <li>
-                        <i class="fa-home"></i>
-                        Prishtina, Kosovo
-                    </li>
-                    <li>
-                        <i class="fa-briefcase"></i>
-                        <a href="#">Laborator</a>
-                    </li>
-                    <li>
-                        <i class="fa-graduation-cap"></i>
-                        University of Bologna
-                    </li>
-                </ul>
-
-                <hr />
-
-                <ul class="list-unstyled user-friends-count">
-                    <li>
-                        <span>643</span>
-                        粉丝
-                    </li>
-                    <li>
-                        <span>108</span>
-                        他订阅
-                    </li>
-                </ul>
-
-                <button type="button" class="btn btn-success btn-block text-left"
-                        data-yese="ys-follow" data-url="{{ dingo_route('local','api.user.follow') }}" data-author="{{ $article->author_id }}">
-                    @if($is_follow)
-                        <span>取消订阅</span>
-                        <i class="fa-check pull-right"></i>
-                    @else
-                        <span>订阅</span>
-                    @endif
-
-                </button>
-            </div>
             <div class="row">
                 <div class="col-xs-12 col-md-12">
                     <a href="#" class="thumbnail yese-ads">

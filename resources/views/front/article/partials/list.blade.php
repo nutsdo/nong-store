@@ -18,7 +18,11 @@
                 <div class="col-sm-9">
                     <h3 class="list-group-item-heading"><a href="{{ route('article.show',$article->id) }}">{{ $article->title }}</a></h3>
                     <div class="yese-author">
-                        <a href="#" class="author-img">
+                        @if($article->author_type=='user')
+                        <a href="{{ route('ucenter',$article->author->id) }}" class="author-img">
+                        @else
+                        <a href="javascript:;" class="author-img">
+                        @endif
                             {!! Html::image($article->author->avatar, $article->author->nick_name, ['class'=>'img-circle img-responsive']) !!}
                         </a>
 

@@ -10,14 +10,14 @@
     @foreach($list as $article)
         <li>
             <div class="xe-comment-entry">
-                <a href="" class="xe-user-img">
+                <a href="{{ route('ucenter',$article->user->id) }}" class="xe-user-img">
                     {!! Html::image($article->user->avatar, $article->user->nick_name, [
                         'data-src'=>$article->user->avatar,'class'=>'img-circle','width'=>40
                     ]) !!}
                 </a>
 
                 <div class="xe-comment">
-                    <a href="#" class="xe-user-name">
+                    <a href="{{ route('ucenter',$article->user->id) }}" class="xe-user-name">
                         <strong>{{ $article->user->nick_name }}</strong> ⋅ <time class="community-time">{{ $article->created_time->diffForHumans() }}</time>
                     </a>
 
