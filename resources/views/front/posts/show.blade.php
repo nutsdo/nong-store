@@ -127,7 +127,7 @@
                             </li>
                         </ul>
 
-                        <button type="submit" class="btn btn-single btn-xs btn-success post-story-button">评论</button>
+                        <button type="submit" class="btn btn-single btn-xs btn-success post-story-button" @if(!$loginUser) disabled @endif>评论</button>
                     {{ Form::close() }}
 
                 </div>
