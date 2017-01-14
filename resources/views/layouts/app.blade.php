@@ -522,7 +522,7 @@
 
                 <ul class="dropdown-menu user-profile-menu list-unstyled">
                     <li>
-                        <a href="#edit-profile">
+                        <a href="{{ route('user.article','publish') }}">
                             <i class="fa-edit"></i>
                             发布文章
                         </a>

@@ -52,21 +52,12 @@
 {!! Form::close() !!}
 @section('scripts')
     {!! Html::script('assets/ckeditor/ckeditor.js') !!}
-    {!! Html::script('assets/ckfinder/ckfinder.js') !!}
     <script>
         var editor = CKEDITOR.replace( 'body' ,{
             customConfig : 'custom/front_config.js',
             filebrowserImageUploadUrl:'/assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
-            //filebrowserImageUploadUrl:'/upload'
         });
-        CKFinder.setupCKEditor( editor, '/ckfinder/' );
-//
-//        editor.on('fileUploadRequest',function(evt){
-//            var xhr = evt.data.fileLoader.xhr;
-//
-//            //"X-CSRF-TOKEN" : $('meta[name=csrf-token]').attr('content')
-//            xhr.setRequestHeader( "X-CSRF-TOKEN", $('meta[name=csrf-token]').attr('content') );
-//        });
+
     </script>
 @endsection
 @elseif($loginUser->is_author==2)

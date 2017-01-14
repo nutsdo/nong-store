@@ -68,7 +68,7 @@ class ArticleController extends BaseController
         if($create){
             $result = [
                 'status_code'   => 200,
-                'data'          => $create,
+                'data'          => ['id'=>$create->id],
                 'message'       => '保存成功'
             ];
         }else{
@@ -108,7 +108,8 @@ class ArticleController extends BaseController
         if($update){
             $result = [
                 'status_code'    => 200,
-                'message'       => '更新成功'
+                'data'           => ['id'=>$id],
+                'message'        => '更新成功'
             ];
         }else{
             $result = [
