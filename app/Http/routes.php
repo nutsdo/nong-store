@@ -51,7 +51,7 @@ Route::group(['middleware' => 'web'], function()
         ]);
 
         Route::get('/experience', [
-            'as'=>'experience','uses'=>'ArticleController@experience'
+            'as'=>'experience','uses'=>'ExperienceController@index'
         ]);
 
         Route::controllers([
