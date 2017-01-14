@@ -244,4 +244,9 @@ a {
     max-width: 120px;
     max-height: 120px;
 }
-
+/*
+时间轴
+*/
+.page-body .main-content .cbp_tmtimeline:before{
+    background:purple;
+}

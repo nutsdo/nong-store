@@ -59,6 +59,13 @@ Route::group(['middleware' => 'web'], function()
             'products' => 'ProductController'
         ]);
 
+        /*
+         * 用户主页
+         * */
+        Route::get('/u/{id}','UcenterController@index')->name('ucenter');
+        Route::get('/u/{id}/article','UcenterController@article')->name('ucenter.article');
+        Route::get('/u/{id}/posts','UcenterController@posts')->name('ucenter.posts');
+
         Route::get('/about','PagesController@about')->name('about');
 
         Route::get('/contribute','PagesController@contribute')->name('contribute');

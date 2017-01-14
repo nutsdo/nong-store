@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
@@ -44,12 +45,26 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->morphMany('App\Models\Article', 'author');
     }
 
-    //关注粉丝
+    //是否关注指定用户
+    public function isFollowing($user_id)
+    {
+        $s = DB::table('user_follow')->where('user_id', $this->id)->where('follow_id', $user_id)->count();
+        return $s;
+    }
+
+    //是否被指定用户关注
+    public function isFollower($user_id)
+    {
+        $s = DB::table('user_follow')->where('user_id', $user_id)->where('follow_id', $this->id)->count();
+        return $s;
+    }
+
+    //关注粉丝列表
     public function followers()
     {
         return $this->belongsToMany('App\Models\User','user_follow','user_id','follow_id');
     }
-    //关注其他用户
+    //关注其他用户列表
     public function following()
     {
         return $this->belongsToMany('App\Models\User','user_follow','follow_id','user_id');
@@ -57,7 +72,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     //用户点赞的所有文章、帖子
     public function likes()
     {
-        return $this->morphMany('App\Models\Like', 'like');
+        //return $this->morphMany('App\Models\Like', 'like');
     }
 
     //用户收藏的文章

@@ -38,6 +38,7 @@ class Article extends Model
     {
         return $this->morphTo();
     }
+    
     /**
      * 限制查找已审核的文章。
      *
@@ -46,5 +47,15 @@ class Article extends Model
     public function scopeStatus($query,$status=1)
     {
         return $query->where('status', $status);
+    }
+
+    /**
+     * 限制查找用户的文章。
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfUserId($query,$user_id=1)
+    {
+        return $query->where('author_id', $user_id)->where('author_type','user');
     }
 }

@@ -7,35 +7,35 @@
  */
 ?>
 <!-- User Info Sidebar -->
-<div class="user-info-sidebar panel">
+<div class="user-info-sidebar panel panel-default">
 
     <a href="#" class="user-img">
-        <img src="/assets/images/user-4.png" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
+        {!! Html::image($user->avatar,'user-img',['class'=>'img-cirlce img-responsive img-thumbnail','width'=>80]) !!}
     </a>
 
     <a href="#" class="user-name">
-        Art Ramadani
+        {{ $user->nick_name }}
         <span class="user-status is-online"></span>
     </a>
 
-    <span class="user-title">
-        CEO at <strong>Google</strong>
-    </span>
+                <span class="user-title">
+                    {{ $user->signature }}
+                </span>
 
     <hr />
 
     <ul class="list-unstyled user-info-list">
         <li>
             <i class="fa-home"></i>
-            Prishtina, Kosovo
+            {{$user->country}}, {{$user->city}}
         </li>
         <li>
             <i class="fa-briefcase"></i>
-            <a href="#">Laborator</a>
+            {{ $user->company }}
         </li>
         <li>
             <i class="fa-graduation-cap"></i>
-            University of Bologna
+            {{ $user->university }}
         </li>
     </ul>
 
@@ -43,17 +43,26 @@
 
     <ul class="list-unstyled user-friends-count">
         <li>
-            <span>643</span>
-            粉丝
+            <span>{{ $user->followers->count() }}</span>
+            被关注
         </li>
         <li>
-            <span>108</span>
-            我的订阅
+            <span>{{ $user->following->count() }}</span>
+            关注
         </li>
     </ul>
 
-    <button type="button" class="btn btn-success btn-block text-left">
-        订阅
-        <i class="fa-check pull-right"></i>
+    <button type="button" class="btn btn-success btn-block text-left"
+            data-yese="ys-follow" data-url="{{ dingo_route('local','api.user.follow') }}" data-author="{{ $user->id }}">
+        @if($loginUser)
+            @if($user->isFollower($loginUser->id))
+                <span>取消关注</span>
+                <i class="fa-check pull-right"></i>
+            @else
+                <span>关注</span>
+            @endif
+        @else
+            <span>关注</span>
+        @endif
     </button>
 </div>
