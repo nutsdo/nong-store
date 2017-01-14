@@ -82,7 +82,7 @@ Route::group(['middleware' => 'web'], function()
             'as'=>'user.article.edit','uses'=>'UserController@edit'
         ]);
 
-        Route::get('collections', [
+        Route::get('collections/{type?}', [
             'as'=>'user.collections','uses'=>'UserController@collections'
         ]);
 

@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
                  ->hourly();
         //定时任务
         $schedule->call(function () {
-            Log::info('1111111');
-            Article::where('published_time','<',date('Y-m-d H:i:s'))->update(['is_checked'=>1]);
+            //Log::info('1111111');
+            Article::where('published_time','<',date('Y-m-d H:i:s'))->update(['status'=>1]);
         })->everyMinute();
 
     }

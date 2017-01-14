@@ -39,4 +39,9 @@ class CommunityArticle extends Model
     {
         return $this->morphMany('App\Models\Like', 'like');
     }
+
+    public function collection()
+    {
+        return $this->morphTo();
+    }
 }

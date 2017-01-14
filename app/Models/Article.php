@@ -32,9 +32,12 @@ class Article extends Model
     public function author()
     {
         return $this->morphTo();
-        //return $this->belongsTo('App\Models\User','author_id');
     }
 
+    public function collection()
+    {
+        return $this->morphTo();
+    }
     /**
      * 限制查找已审核的文章。
      *

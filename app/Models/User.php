@@ -59,4 +59,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->morphMany('App\Models\Like', 'like');
     }
+
+    //用户收藏的文章
+    public function article_collections()
+    {
+        return $this->morphedByMany('App\Models\Article', 'collection');
+    }
+
+    //用户收藏的帖子
+    public function posts_collections()
+    {
+        return $this->morphedByMany('App\Models\CommunityArticle', 'collection');
+    }
 }

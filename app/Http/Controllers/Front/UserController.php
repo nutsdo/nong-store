@@ -135,9 +135,28 @@ class UserController extends BaseController
      * 我的收藏
      * */
 
-    public function collections()
+    public function collections(Request $request, $type='article')
     {
-        $collections = '';
+        $user = User::find($this->login_user->id);
+        if($type == 'article'){
+            $table = 'feature_article';
+            $ctable = 'feature_article_category';
+            $field = 'category_id';
+        }elseif($type == 'posts'){
+            $table = 'bbs_article';
+            $ctable = 'bbs_category';
+            $field = 'bbs_category_id';
+        }
+
+        $collections = DB::table('collections')
+                        ->select($table.'.id',$table.'.title','collections.created_at',$ctable.'.category_name')
+                        ->leftJoin($table, 'collections.collection_id', '=', $table.'.id')
+                        ->leftJoin($ctable, $table.'.'.$field, '=', $ctable.'.id')
+                        ->where('collections.user_id', $this->login_user->id)
+                        ->where('collections.collection_type', $type)
+                        ->paginate(15);
+        //dd($collections);
+        return view('front.user.collection', compact('type', 'collections'));
     }
 
 
