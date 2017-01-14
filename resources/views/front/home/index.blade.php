@@ -64,9 +64,12 @@
         </div>
 
         <div class="col-sm-3">
-
-            @include('front.common.user-info-sidebar',['user'=>$loginUser])
-
+            @include('front.common.slogan')
+            @include('front.common.qrcode')
+            @include('front.common.last-article',['hots'=>$hot_articles])
+            @include('front.common.tags')
+            @include('front.common.products')
+            {{--@include('front.common.user-info-sidebar',['user'=>$loginUser])--}}
         </div>
     </div>
 
