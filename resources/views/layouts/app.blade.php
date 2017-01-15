@@ -614,7 +614,7 @@
     </div>
 
 </div>
-
+@yield('others')
 <!-- Bottom Scripts -->
 {!! Html::script("assets/js/bootstrap.min.js") !!}
 {!! Html::script("assets/js/TweenMax.min.js") !!}

@@ -30,8 +30,26 @@
                             </a>
 
                             <div class="user-details">
-                                <a href="#">{{ $post->user->nick_name }}</a>
-                                <time>发布于 {{ $post->created_time->diffForHumans() }}</time>
+                                <p>{{ $post->title }}</p>
+                                <time>
+                                    <a href="{{ route('ucenter',$post->user->id) }}">{{ $post->user->nick_name }}</a> · {{ $post->created_time->diffForHumans() }}
+                                    @if($loginUser && $loginUser->id == $post->user->id)
+                                    <ul class="list-unstyled list-inline pull-right">
+                                        <li>
+                                            <a href="{{ route('posts.edit',$post->id) }}" data-action="edit">
+                                                <i class="fa-edit"></i>
+                                                编辑
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" data-action="{{ route('posts.destroy',$post->id) }}" id="del_post">
+                                                <i class="fa-trash"></i>
+                                                删除
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    @endif
+                                </time>
                             </div>
 
                         </header>
@@ -39,7 +57,7 @@
                         <div class="story-content">
                             <!-- Story Content Wrapped inside Paragraph -->
                             <div class="text-gray">
-                                {{ $post->body }}
+                                {!! $post->body !!}
                             </div>
                             <!-- Story Options Links -->
                             <div class="story-options-links">
@@ -76,7 +94,7 @@
                                                 <time>{{ $comment->created_time->diffForHumans() }}</time>
                                             </a>
 
-                                            <p>{{ $comment->comment_body }}</p>
+                                            <p>{!! $comment->comment_body !!}</p>
                                         </div>
                                     </div>
 
@@ -137,13 +155,51 @@
 
             <div class="col-sm-3">
                 <div class="panel">
-                    <button class="btn btn-purple btn-icon btn-group-justified btn-no-bottom">
+                    <a href="{{ route('posts.create') }}" class="btn btn-purple btn-icon btn-group-justified btn-no-bottom">
                         <i class="fa-comment-o"></i>
-                        <span>我也要说</span>
-                    </button>
+                        <span>发帖</span>
+                    </a>
                 </div>
+                @include('front.common.user-info-sidebar',['user'=>$post->user])
+                @include('front.common.user-info-sidebar',['user'=>$post->user])
             </div>
         </div>
 
     </section>
+
+@endsection
+@section('others')
+    <div class="modal fade" id="modal-del" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-warning"></i> 提示</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    删除后不可恢复，你确定要删除吗？
+
+                </div>
+                {!! Form::open(['url'=>'','method'=>'DELETE','id'=>'delete_form']) !!}
+                <div class="modal-footer">
+                    {!! Form::submit('确认删除',['class'=>'btn btn-danger']) !!}
+                    {!! Form::button('取消',['class'=>'btn btn-info','data-dismiss'=>'modal']) !!}
+                </div>
+                {!! Form::close()!!}
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    <script>
+        $('#del_post').on('click',function(e){
+            var $ele = $(e.target);
+            var url = $ele.data('action');
+            $('#delete_form').attr('action',url);
+            $('#modal-del').modal('show');
+        });
+    </script>
+
 @endsection

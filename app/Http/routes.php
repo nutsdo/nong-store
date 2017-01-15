@@ -43,13 +43,46 @@ Route::group(['middleware' => 'web'], function()
             'as'=>'community-category','uses'=>'CommunityCategoryController@index'
         ]);
         //帖子
+        //发帖
+        Route::get('/posts/create', [
+            'middleware'=>'auth',
+            'as'=>'posts.create',
+            'uses'=>'CommunityArticleController@create'
+        ]);
+        Route::get('/posts/{id}/edit', [
+            'middleware'=>'auth',
+            'as'=>'posts.edit',
+            'uses'=>'CommunityArticleController@edit'
+        ]);
+
+        //保存帖子
+        Route::post('/posts', [
+            'middleware'=>'auth',
+            'as'=>'posts.store','uses'=>'CommunityArticleController@store'
+        ]);
+        //更新帖子
+        Route::post('/posts/{id}', [
+            'middleware'=>'auth',
+            'as'=>'posts.update','uses'=>'CommunityArticleController@update'
+        ]);
+
+        // 删除帖子
+        Route::delete('/posts/{id}', [
+            'middleware'=>'auth',
+            'as'=>'posts.destroy','uses'=>'CommunityArticleController@destroy'
+        ]);
+
         Route::get('/posts/{id?}', [
             'as'=>'posts.show','uses'=>'CommunityArticleController@show'
         ]);
-        Route::post('/posts/{id?}', [
+        Route::post('/posts/{id}/comment', [
+            'middleware'=>'auth',
             'as'=>'posts.reply','uses'=>'CommunityArticleController@reply'
         ]);
 
+
+
+        //体验师
         Route::get('/experience', [
             'as'=>'experience','uses'=>'ExperienceController@index'
         ]);

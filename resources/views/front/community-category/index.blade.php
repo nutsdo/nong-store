@@ -47,7 +47,12 @@
     </div>
     {{--sidebar--}}
     <div class="col-sm-3">
-
+        <div class="panel">
+            <a href="{{ route('posts.create',['c'=>$category->id]) }}" class="btn btn-purple btn-icon btn-group-justified btn-no-bottom">
+                <i class="fa-comment-o"></i>
+                <span>发帖</span>
+            </a>
+        </div>
     </div>
 </div>
 @endsection
