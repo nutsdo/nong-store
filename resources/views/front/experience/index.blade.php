@@ -117,12 +117,12 @@
         </div>
         <div class="col-sm-3">
             <div class="panel">
-                <div class="vertical-top">
-
+                <div class="btn-group btn-group-justified text-center">
+                    @if(!$loginUser || !$loginUser->is_experiencer)
                     <a href="{{ route('experience.apply') }}"  class="btn btn-info">
                         <span>成为体验师</span>
                     </a>
-
+                    @endif
                     <a href="{{ route('experience.create') }}"  class="btn btn-info">
                         <span>发布体验报告</span>
                     </a>

@@ -15,4 +15,5 @@ class ExperienceController extends BaseController
     {
         return view('front.experience.index');
     }
+
 }
