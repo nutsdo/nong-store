@@ -164,12 +164,12 @@
                     <!-- User info -->
                     <header>
 
-                        <a href="{{ route('ucenter',$article->user->id) }}" class="user-img">
+                        <a href="{{ route('ucenter',$comment->user->id) }}" class="user-img">
                             {!! Html::image($comment->user->avatar,null,['class'=>'img-cirlce img-responsive img-thumbnail','width'=>40]) !!}
                         </a>
 
                         <div class="user-details">
-                            <a href="{{ route('ucenter',$article->user->id) }}">{{ $comment->user->name }}</a>
+                            <a href="{{ route('ucenter',$comment->user->id) }}">{{ $comment->user->name }}</a>
                             <time><span>#{{ $key+1 }}</span>  ⋅ {{ $comment->created_time->diffForHumans() }}</time>
                         </div>
 
