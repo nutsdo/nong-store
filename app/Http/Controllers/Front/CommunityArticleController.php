@@ -37,7 +37,8 @@ class CommunityArticleController extends BaseController
 
     public function edit($id)
     {
-        $post = CommunityArticle::where('user_id', $this->login_user->id)->first($id);
+        $post = CommunityArticle::where('user_id', $this->login_user->id)
+                                    ->where('id',$id)->first();
         $categories = $this->getCategoryOptions();
         return view('front.posts.edit', compact('post','categories'));
     }
@@ -59,9 +60,10 @@ class CommunityArticleController extends BaseController
     {
         $inputs = $request->only('title', 'body','bbs_category_id');
         $inputs = array_merge($inputs,['user_id'=> $this->login_user->id]);
-        //dd($inputs);
-        $result = CommunityArticle::where('user_id', $this->login_user->id)->where('id',$id)->update($inputs);
 
+        $post = CommunityArticle::where('user_id', $this->login_user->id)->where('id',$id)->first();
+        $result = $post->update($inputs);
+        //dd($result);
         if($result){
             return redirect()->route('posts.show', $id);
         }else{

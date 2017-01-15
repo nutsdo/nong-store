@@ -16,7 +16,7 @@
             <strong>都在看</strong>
         </div>
     </div>
-    <div class="xe-body">
+    <div class="xe-body text-center">
         <div class="bs-example">
             <a class="label yese-radius label-default">爱之初体验</a>
             <a class="label yese-radius label-primary">情侣夜话</a>

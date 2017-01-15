@@ -243,24 +243,7 @@
             @if($article->author_type=='user')
             @include('front.common.user-info-sidebar',['user'=>$article->author])
             @endif
-
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <a href="#" class="thumbnail yese-ads">
-                        <img src="http://image.woshipm.com/wp-files/2016/09/yykecheng0907.png" alt="...">
-                    </a>
-                </div>
-                <div class="col-xs-12 col-md-12">
-                    <a href="#" class="thumbnail yese-ads">
-                        <img src="http://image.woshipm.com/wp-files/2016/09/yykecheng0907.png" alt="...">
-                    </a>
-                </div>
-                <div class="col-xs-12 col-md-12">
-                    <a href="#" class="thumbnail yese-ads">
-                        <img src="http://image.woshipm.com/wp-files/2016/09/yykecheng0907.png" alt="...">
-                    </a>
-                </div>
-            </div>
+            @include('front.common.ads')
             <div class="panel panel-color panel-purple yese-panel article-panel"><!-- Add class "collapsed" to minimize the panel -->
                 <div class="panel-heading">
                     <h3 class="panel-title">热门文章</h3>

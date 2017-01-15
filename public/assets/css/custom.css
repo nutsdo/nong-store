@@ -127,6 +127,11 @@ a {
     width: 60px;
     padding: 3px;
 }
+.user-list .user-img-small img{
+    margin:4px;
+    width: 40px;
+    padding: 3px;
+}
 .profile-env .user-timeline-stories .timeline-story.yese-comment{
     margin-bottom: 0;
     border-bottom: 1px solid #eeeeee;
@@ -249,4 +254,10 @@ a {
 */
 .page-body .main-content .cbp_tmtimeline:before{
     background:purple;
+}
+/*
+*
+*/
+.yese-widget.xe-todo-list .xe-header{
+    margin-bottom:0;
 }

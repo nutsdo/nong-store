@@ -111,6 +111,7 @@
                 </section>
                 <hr>
                 <div class="panel">
+                    @if($loginUser)
                     <!-- User Post form and Timeline -->
                     {!! Form::open([
                             'route'=>['posts.reply',$post->id],
@@ -147,7 +148,20 @@
 
                         <button type="submit" class="btn btn-single btn-xs btn-success post-story-button" @if(!$loginUser) disabled @endif>评论</button>
                     {{ Form::close() }}
+                    @else
+                        <div class="panel">
+                            <div class="yese-no-login">
 
+                                <div class="fake-form">
+                                    <div>
+                                        <a href="{{ url('/login') }}">登录</a> or <a href="{{ url('/register') }}">注册</a> 登录后才能发表评论哦...
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    @endif
                 </div>
 
 
@@ -161,7 +175,8 @@
                     </a>
                 </div>
                 @include('front.common.user-info-sidebar',['user'=>$post->user])
-                @include('front.common.user-info-sidebar',['user'=>$post->user])
+                @include('front.common.tags')
+                @include('front.common.qrcode')
             </div>
         </div>
 

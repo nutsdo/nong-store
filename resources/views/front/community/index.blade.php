@@ -53,6 +53,10 @@
                 <span>发帖</span>
             </a>
         </div>
+        @include('front.common.tags')
+        @include('front.common.hot-posts')
+        @include('front.common.active-users')
+        @include('front.common.qrcode')
     </div>
 </div>
 @endsection

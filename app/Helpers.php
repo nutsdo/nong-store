@@ -23,3 +23,35 @@ if (! function_exists('dingo_route')) {
             ->route($name, $params);
     }
 }
+
+if (! function_exists('random_color')) {
+    /**
+     * 随机标签颜色.
+     *
+     * @return string
+     */
+    function random_color()
+    {
+        $colors = [
+            'primary',
+            'secondary',
+            'purple',
+            'orange',
+            'pink',
+            'turquoise',
+            'success',
+            'info',
+            'blue',
+            'danger',
+            'red',
+            'warning',
+            'black',
+            'gray',
+            'warning',
+        ];
+        $count = count($colors);
+        $index = random_int(0,$count-1);
+
+        return $colors[$index];
+    }
+}

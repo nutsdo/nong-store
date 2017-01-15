@@ -11,18 +11,18 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel text-center">
-                <button class="btn btn-primary">Primary</button>
-                <button class="btn btn-secondary">Secondary</button>
-                <button class="btn btn-purple">Purple</button>
-                <button class="btn btn-orange">Orange</button>
-                <button class="btn btn-pink">Pink</button>
-                <button class="btn btn-turquoise">Turquoise</button>
-                <button class="btn btn-success">Green</button>
-                <button class="btn btn-info">Light Blue</button>
-                <button class="btn btn-blue">Blue</button>
-                <button class="btn btn-danger">Red</button>
-                <button class="btn btn-red">Dark Red</button>
-                <button class="btn btn-warning">Yellow</button>
+                <button class="btn btn-{{ random_color() }}">Primary</button>
+                <button class="btn btn-{{ random_color() }}">Secondary</button>
+                <button class="btn btn-{{ random_color() }}">Purple</button>
+                <button class="btn btn-{{ random_color() }}">Orange</button>
+                <button class="btn btn-{{ random_color() }}">Pink</button>
+                <button class="btn btn-{{ random_color() }}">Turquoise</button>
+                <button class="btn btn-{{ random_color() }}">Green</button>
+                <button class="btn btn-{{ random_color() }}">Light Blue</button>
+                <button class="btn btn-{{ random_color() }}">Blue</button>
+                <button class="btn btn-{{ random_color() }}">Red</button>
+                <button class="btn btn-{{ random_color() }}">Dark Red</button>
+                <button class="btn btn-{{ random_color() }}">Yellow</button>
             </div>
         </div>
 

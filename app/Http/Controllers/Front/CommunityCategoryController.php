@@ -34,7 +34,7 @@ class CommunityCategoryController extends Controller
                 ]);
             }
 
-            return view('front.community-category.index',compact('category','articles'));
+            return view('front.community.index',compact('category','articles'));
         }
         return redirect()->route('home');
     }

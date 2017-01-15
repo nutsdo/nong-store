@@ -44,9 +44,10 @@
         </div>
 
         <div class="col-sm-3">
-        @if($loginUser)
-        @include('front.common.user-info-sidebar',['user'=> $loginUser])
-        @endif
+            @include('front.common.slogan')
+            @include('front.common.tags')
+            @include('front.common.qrcode')
+            @include('front.common.products')
         </div>
     </div>
 @endsection
