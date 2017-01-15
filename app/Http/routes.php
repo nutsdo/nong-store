@@ -86,7 +86,14 @@ Route::group(['middleware' => 'web'], function()
         Route::get('/experience', [
             'as'=>'experience','uses'=>'ExperienceController@index'
         ]);
-
+        //体验师申请
+        Route::get('/experience/apply', [
+            'as'=>'experience.apply','uses'=>'ExperienceController@apply'
+        ]);
+        Route::get('/experience/create', [
+            'as'=>'experience.create','uses'=>'ExperienceController@create'
+        ]);
+        //
         Route::controllers([
             //'category' => 'Front\ArticleCategoryController',
             'products' => 'ProductController'
@@ -137,7 +144,7 @@ Route::group(['middleware' => 'web'], function()
     Route::group(['prefix' => 'store','namespace' => 'Store'],function(){
 
         Route::get('/', function(){
-            return '夜色商城';
+            return '工程师努力开发中...';
         })->name('store');
 
     });
