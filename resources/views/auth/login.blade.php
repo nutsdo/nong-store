@@ -7,9 +7,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 l-form-1 section-description wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
-                    <h2>Hey <strong>等你进来哦</strong> 客官</h2>
+                    <h2>Hey <strong>等你进来哦</strong></h2>
                     <div class="divider-1 wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"><span></span></div>
-                    <p>A transparent login form on a fullscreen background. Scroll down to see some other forms and find the right one for you.</p>
+                    <p>{{ $slogan }}</p>
                 </div>
             </div>
             <div class="row">
@@ -46,22 +46,22 @@
 
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 l-form-1-social-login">
-                    <h3>...第三方登录:</h3>
-                    <div class="l-form-1-social-login-buttons">
-                        <a class="btn btn-link-2" href="">
-                            <i class="fa fa-facebook"></i> Facebook
-                        </a>
-                        <a class="btn btn-link-2" href="">
-                            <i class="fa fa-twitter"></i> Twitter
-                        </a>
-                        <a class="btn btn-link-2" href="">
-                            <i class="fa fa-google-plus"></i> Google Plus
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {{--<div class="row">--}}
+                {{--<div class="col-sm-6 col-sm-offset-3 l-form-1-social-login">--}}
+                    {{--<h3>...第三方登录:</h3>--}}
+                    {{--<div class="l-form-1-social-login-buttons">--}}
+                        {{--<a class="btn btn-link-2" href="">--}}
+                            {{--<i class="fa fa-facebook"></i> Facebook--}}
+                        {{--</a>--}}
+                        {{--<a class="btn btn-link-2" href="">--}}
+                            {{--<i class="fa fa-twitter"></i> Twitter--}}
+                        {{--</a>--}}
+                        {{--<a class="btn btn-link-2" href="">--}}
+                            {{--<i class="fa fa-google-plus"></i> Google Plus--}}
+                        {{--</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>
 @endsection

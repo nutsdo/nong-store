@@ -9,7 +9,7 @@
                 <div class="col-sm-8 col-sm-offset-2 r-form-1 section-description wow fadeIn animated">
                     <h2> <strong>注册</strong></h2>
                     <div class="divider-1 wow fadeInUp animated"><span></span></div>
-                    <p>A transparent registration form on a fullscreen background. Scroll down to see some other forms and find the right one for you.</p>
+                    <p>{{ $slogan }}</p>
                 </div>
             </div>
             <div class="row">

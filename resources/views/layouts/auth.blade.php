@@ -13,7 +13,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>夜色</title>
+    <title>{{ $title }}</title>
 
     <!-- CSS -->
     {!! Html::style("https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic") !!}
@@ -50,14 +50,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">夜色</a>
+            <div class="">
+                <a href="{{ route('home') }}" class="logo">
+                    {!! Html::image('/assets/images/logo.png','',['width'=>60,'class'=>'hidden-xs']) !!}
+                    {!! Html::image('/assets/images/logo.png','',['width'=>60,'class'=>'visible-xs']) !!}
+                </a>
+                {{--<a href="#" data-toggle="settings-pane" data-animate="true">--}}
+                {{--<i class="linecons-cog"></i>--}}
+                {{--</a>--}}
+            </div>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="top-navbar-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="scroll-link" href="{{ route('home') }}">首页</a></li>
-                <li><a class="scroll-link" href=""># 2</a></li>
-                <li><a class="scroll-link" href=""># 3</a></li>
+                {{--<li><a class="scroll-link" href=""># 2</a></li>--}}
+                {{--<li><a class="scroll-link" href=""># 3</a></li>--}}
             </ul>
         </div>
     </div>
@@ -67,19 +75,20 @@
 <!-- Footer -->
 <footer>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12 footer-social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-google-plus"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-pinterest"></i></a>
-            </div>
-        </div>
+        {{--<div class="row">--}}
+            {{--<div class="col-sm-12 footer-social">--}}
+                {{--<a href="#"><i class="fa fa-facebook"></i></a>--}}
+                {{--<a href="#"><i class="fa fa-dribbble"></i></a>--}}
+                {{--<a href="#"><i class="fa fa-twitter"></i></a>--}}
+                {{--<a href="#"><i class="fa fa-google-plus"></i></a>--}}
+                {{--<a href="#"><i class="fa fa-instagram"></i></a>--}}
+                {{--<a href="#"><i class="fa fa-pinterest"></i></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <div class="row">
             <div class="col-sm-12 footer-copyright">
-                © Marco Bootstrap Template by <a href="http://iyese.love/">iyese.love</a>.
+                Copyright &copy; 2016-2017
+                <a href="http://iyese.love" target="_blank"><strong>iyese.love</strong>.</a>All Rights Reserved.石家庄柚子科技有限公司
             </div>
         </div>
     </div>

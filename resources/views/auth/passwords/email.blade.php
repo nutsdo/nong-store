@@ -38,14 +38,14 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-8 col-sm-offset-2 top-video-link medium-paragraph wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-                        <a href="#" class="launch-modal" data-modal-id="modal-how-it-works">
-                            <span class="top-video-link-icon"><i class="fa fa-play"></i></span>
-                            <span class="top-video-link-text">See how it works</span>
-                        </a>
-                    </div>
-                </div>
+                {{--<div class="row">--}}
+                    {{--<div class="col-sm-8 col-sm-offset-2 top-video-link medium-paragraph wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">--}}
+                        {{--<a href="#" class="launch-modal" data-modal-id="modal-how-it-works">--}}
+                            {{--<span class="top-video-link-icon"><i class="fa fa-play"></i></span>--}}
+                            {{--<span class="top-video-link-text">See how it works</span>--}}
+                        {{--</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
                 <div class="row">
                     <div class="col-sm-12 top-social wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
