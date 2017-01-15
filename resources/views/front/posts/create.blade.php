@@ -12,11 +12,11 @@
         <div class="col-sm-9">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    @if($loginUser->is_author==1)
-                        {!! Form::model($data,['url'=>route('posts.store'),'class'=>'validate form-horizontal','method'=>'post','id'=>'form']) !!}
-                        @include('front.posts.partials.form')
-                        {!! Form::close() !!}
-                    @endif
+                    {!! Form::model($data,['url'=>route('posts.store'),'class'=>'validate form-horizontal','method'=>'post','id'=>'form']) !!}
+
+                    @include('front.posts.partials.form')
+
+                    {!! Form::close() !!}
                 </div>
             </div>
 
