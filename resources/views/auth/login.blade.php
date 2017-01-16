@@ -1,4 +1,7 @@
 @extends('layouts.auth')
+@section('title')
+    用户登录 - @parent
+@endsection
 @section('style')
     {!! Html::style("assets/auth/css/login-forms.css") !!}
 @endsection

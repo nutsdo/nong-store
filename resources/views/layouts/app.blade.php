@@ -18,7 +18,7 @@
     <meta name="author" content="http://iyese.love" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title }}</title>
+    <title>@yield('title'){{ $title }}</title>
 
     {!! Html::style("http://fonts.useso.com/css?family=Arimo:400,700,400italic") !!}
     {!! Html::style("assets/css/fonts/linecons/css/linecons.css") !!}

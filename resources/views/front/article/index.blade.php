@@ -7,6 +7,9 @@
  */
 ?>
 @extends('layouts.app')
+@section('title')
+    {{ $article->title }} - @parent
+@endsection
 @section('main')
     <div class="row profile-env">
 

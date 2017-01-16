@@ -1,4 +1,7 @@
 @extends('layouts.auth')
+@section('title')
+    用户注册 - @parent
+@endsection
 @section('style')
     {!! Html::style("assets/auth/css/registration-forms.css") !!}
 @endsection

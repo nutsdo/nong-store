@@ -1,4 +1,7 @@
 @extends('layouts.auth')
+@section('title')
+    忘记密码 - @parent
+@endsection
 @section('style')
 {!! Html::style("assets/auth/css/media-queries.css") !!}
 {!! Html::style("assets/auth/css/style.css") !!}

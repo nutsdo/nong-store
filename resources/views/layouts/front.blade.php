@@ -12,7 +12,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{{ $title }}</title>
+    <title>@yield('title'){{ $title }}</title>
     <!--[if lt IE 9]>
     <script src="wp-content/themes/pm/js/html5.js"></script>
     <![endif]-->

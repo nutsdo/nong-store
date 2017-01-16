@@ -1,4 +1,7 @@
 @extends('layouts.auth')
+@section('title')
+    重置密码 - @parent
+@endsection
 @section('style')
     {!! Html::style("assets/auth/css/registration-forms.css") !!}
 @endsection
