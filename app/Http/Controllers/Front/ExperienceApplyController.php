@@ -13,6 +13,7 @@ class ExperienceApplyController extends BaseController
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('auth');
     }
 
     public function apply()
@@ -28,7 +29,7 @@ class ExperienceApplyController extends BaseController
         $apply = ExperienceApply::ofUser($user->id)->first();
 
         if($apply->status==1) return back();
-        
+
         $data = $request->only('title','body');
         if($apply){
             $result = ExperienceApply::ofUser($user->id)->update($data);

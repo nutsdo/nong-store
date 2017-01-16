@@ -25,6 +25,10 @@ class CommunityArticleController extends BaseController
     {
         parent::__construct();
 
+        $this->middleware('auth',[
+            'except' => ['show']
+        ]);
+
     }
 
     //发帖页面

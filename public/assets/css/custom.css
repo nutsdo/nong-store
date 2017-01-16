@@ -97,6 +97,15 @@ a {
 .article-panel .panel-body{
     padding-top: 0;
 }
+.yese-panel.panel-color .panel-heading{
+    padding: 10px 20px;
+}
+.yese-panel .panel-heading > .panel-title{
+    font-size: 14px;
+}
+.yese-panel .yese-body{
+    padding-top: 0;
+}
 .article-panel .list-group-item{
     padding: 10px 10px;
     /*border-top: none;*/
@@ -256,8 +265,12 @@ a {
     background:purple;
 }
 /*
-*
+* 体验师页面
 */
 .yese-widget.xe-todo-list .xe-header{
     margin-bottom:0;
+}
+.grid .grid-item{
+    padding-left: 10px;
+    padding-right: 10px;
 }
