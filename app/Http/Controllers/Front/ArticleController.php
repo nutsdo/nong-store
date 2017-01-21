@@ -24,7 +24,7 @@ class ArticleController extends BaseController
         Article::where('id',$id)->increment('views'); //阅读量加1
 
         $article = Article::status()->with(['comments'=>function($query){
-                                    $query->take(10);
+                                    $query->take(30);
                                 }])->find($id);
 
         $views   = Article::status()->where('author_id',$article->author_id)
@@ -67,7 +67,11 @@ class ArticleController extends BaseController
         $article = Article::find($id);
 
         $res = $article->comments()->save($comment);
-        return $res;
+        return [
+            'status_code'   => 200,
+            'message'       => '评论成功',
+            'data'          => $res
+        ];
     }
 
 }

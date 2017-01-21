@@ -160,8 +160,8 @@ Route::group(['middleware' => ['web'],'prefix' => 'dashboard','namespace' => 'Da
     Route::get('auth/login', 'AuthController@getLogin');
     Route::post('auth/login', 'AuthController@postLogin');
     Route::get('auth/logout', 'AuthController@getLogout');
-    Route::get('auth/register', 'AuthController@getRegister');
-    Route::post('auth/register', 'AuthController@postRegister');
+//    Route::get('auth/register', 'AuthController@getRegister');
+//    Route::post('auth/register', 'AuthController@postRegister');
 
     //首页
     Route::get('/', [

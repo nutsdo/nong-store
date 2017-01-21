@@ -20,7 +20,7 @@
 
     <title>@yield('title'){{ $title }}</title>
 
-    {!! Html::style("http://fonts.useso.com/css?family=Arimo:400,700,400italic") !!}
+    {{--{!! Html::style("http://fonts.useso.com/css?family=Arimo:400,700,400italic") !!}--}}
     {!! Html::style("assets/css/fonts/linecons/css/linecons.css") !!}
     {!! Html::style("assets/css/fonts/fontawesome/css/font-awesome.min.css") !!}
     {!! Html::style("assets/css/bootstrap.css") !!}
@@ -221,34 +221,35 @@
     <div class="main-content">
 
         @yield('main')
-        <!-- Main Footer -->
-        <!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
-        <!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
-        <!-- Or class "fixed" to  always fix the footer to the end of page -->
-        <footer class="main-footer sticky footer-type-1">
 
-            <div class="footer-inner">
-
-                <!-- Add your copyright text here -->
-                <div class="footer-text">
-                    Copyright &copy; 2016-2017
-                    <a href="http://iyese.love" target="_blank"><strong>iyese.love</strong>.</a>All Rights Reserved.石家庄柚子科技有限公司
-                </div>
-                <!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
-                <div class="go-up">
-
-                    <a href="#" rel="go-top">
-                        <i class="fa-angle-up"></i>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </footer>
     </div>
 
 </div>
+<!-- Main Footer -->
+<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
+<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
+<!-- Or class "fixed" to  always fix the footer to the end of page -->
+<footer class="main-footer sticky footer-type-1">
+
+    <div class="footer-inner">
+
+        <!-- Add your copyright text here -->
+        <div class="footer-text">
+            Copyright &copy; 2016-2017
+            <a href="http://iyese.love" target="_blank"><strong>iyese.love</strong>.</a>All Rights Reserved.石家庄柚子科技有限公司
+        </div>
+        <!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
+        <div class="go-up">
+
+            <a href="#" rel="go-top">
+                <i class="fa-angle-up"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
 @yield('others')
 <!-- Bottom Scripts -->
 {!! Html::script("assets/js/bootstrap.min.js") !!}

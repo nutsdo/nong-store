@@ -274,3 +274,6 @@ a {
     padding-left: 10px;
     padding-right: 10px;
 }
+.profile-env .profile-post-form textarea ~ .post-story-button{
+    opacity: 1;
+}

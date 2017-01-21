@@ -10,6 +10,10 @@
 @section('title')
     {{ $article->title }} - @parent
 @endsection
+@section('styles')
+    {!! Html::style('assets/js/emojionearea/dist/emojionearea.min.css') !!}
+    {!! Html::style('assets/js/Ranks-emojify/dist/css/basic/emojify.min.css') !!}
+@endsection
 @section('main')
     <div class="row profile-env">
 
@@ -43,9 +47,6 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <blockquote>
-                        <p>{!! $article->body !!}</p>
-                    </blockquote>
                     <article>
                         {!! $article->body !!}
                     </article>
@@ -160,7 +161,7 @@
                 <!-- Timeline Story Type: Status -->
                 @unless($article->comments->isEmpty())
                     @foreach($article->comments as $key=>$comment)
-                <article class="timeline-story yese-comment">
+                <div class="timeline-story yese-comment">
 
                     <i class="fa-file-text-o block-icon"></i>
 
@@ -179,12 +180,10 @@
                     </header>
 
                     <div class="story-content">
-                        <p>
-                            {{ $comment->comment_body }}
-                        </p>
+                        <p>{!! $comment->comment_body !!}</p>
                     </div>
 
-                </article>
+                </div>
                     @endforeach
                 @endunless
             </section>
@@ -197,33 +196,33 @@
                     'id'=>'commentform'
             ]) !!}
 
-                <textarea class="form-control input-unstyled input-lg autogrow" name="comment_body" placeholder="发表你的看法?"></textarea>
-                <i class="el-edit block-icon"></i>
+                <textarea class="form-control input-unstyled input-lg autogrow" id="emoji" name="comment_body" placeholder="发表你的看法?"></textarea>
+
 
                 <ul class="list-unstyled list-inline form-action-buttons">
                     <li>
-                        <button type="button" class="btn btn-unstyled">
-                            <i class="el-camera"></i>
+                        <button type="button" class="btn btn-unstyled fa fa-smile-o" id="btnemoji">
+
                         </button>
                     </li>
-                    <li>
-                        <button type="button" class="btn btn-unstyled">
-                            <i class="el-attach"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-unstyled">
-                            <i class="el-mic"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-unstyled">
-                            <i class="el-music"></i>
-                        </button>
-                    </li>
+                    {{--<li>--}}
+                        {{--<button type="button" class="btn btn-unstyled">--}}
+                            {{--<i class="el-attach"></i>--}}
+                        {{--</button>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<button type="button" class="btn btn-unstyled">--}}
+                            {{--<i class="el-mic"></i>--}}
+                        {{--</button>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<button type="button" class="btn btn-unstyled">--}}
+                            {{--<i class="el-music"></i>--}}
+                        {{--</button>--}}
+                    {{--</li>--}}
                 </ul>
 
-                <button type="submit" class="btn btn-single btn-xs btn-success post-story-button">提交评论</button>
+                <button type="button" class="btn btn-single btn-xs btn-success post-story-button reply">提交评论</button>
             {!! Form::close() !!}
             @else
                 <div class="panel">
@@ -264,4 +263,43 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+
+    {{--{!! Html::script('assets/js/emojionearea/dist/emojionearea.min.js') !!}--}}
+    {!! Html::script('assets/js/emojionearea/dist/emojionearea.js') !!}
+    {!! Html::script('assets/js/Ranks-emojify/dist/js/emojify.min.js') !!}
+    <script>
+
+        $(document).ready(function(){
+            window.emojione = window.emojione || {};
+            emojione.imagePathPNG = '/assets/js/Ranks-emojify/dist/images/basic/';
+            $("#emoji").emojioneArea({
+                autoHideFilters: true,
+                saveEmojisAs:'shortname',
+                useInternalCDN:false
+            });
+
+            emojify.setConfig({img_dir : '/assets/js/Ranks-emojify/dist/images/basic'});
+            emojify.run();
+
+            $('.reply').on('click',function(e){
+                var $ele = $(e.target);
+
+                var form = $ele.parents().closest('form');
+
+                $.ajax({
+                    url:form.attr('action'),
+                    type:'post',
+                    data:form.serialize(),
+                    dataType:'json',
+                }).done(function(data){
+                    if (data.status_code==200){
+                        location.href = '/article/'+data.data.article_id;
+                    }
+
+                });
+            });
+        });
+    </script>
 @endsection
