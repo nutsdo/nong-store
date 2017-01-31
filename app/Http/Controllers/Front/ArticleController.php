@@ -19,7 +19,7 @@ class ArticleController extends BaseController
         parent::__construct();
     }
 
-    public function show($id)
+    public function show(Request $request,$id)
     {
         Article::where('id',$id)->increment('views'); //阅读量加1
 
@@ -73,5 +73,6 @@ class ArticleController extends BaseController
             'data'          => $res
         ];
     }
+
 
 }

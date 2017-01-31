@@ -42,6 +42,8 @@ return array(
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
+    'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
+    'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common'),
     'Dingo\\Blueprint\\' => array($vendorDir . '/dingo/blueprint/src'),
     'Dingo\\Api\\' => array($vendorDir . '/dingo/api/src'),
     'Collective\\Html\\' => array($vendorDir . '/laravelcollective/html/src'),

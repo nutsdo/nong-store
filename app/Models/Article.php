@@ -58,4 +58,14 @@ class Article extends Model
     {
         return $query->where('author_id', $user_id)->where('author_type','user');
     }
+
+    /**
+     * 搜索。
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch($query,$keyword)
+    {
+        return $query->where('title','like', "%$keyword%");
+    }
 }

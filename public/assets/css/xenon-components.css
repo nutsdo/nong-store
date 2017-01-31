@@ -1075,7 +1075,7 @@ lesshat-selector {
 @-webkit-keyframes glowAnimation{ 0%{ box-shadow: rgba(104, 184, 40, 0.2) 0 0 0 1px; } 100%{ box-shadow: rgba(104, 184, 40, 0.8) 0 0 3px 1px; }}
 @-moz-keyframes glowAnimation{ 0%{ box-shadow: rgba(104, 184, 40, 0.2) 0 0 0 1px; } 100%{ box-shadow: rgba(104, 184, 40, 0.8) 0 0 3px 1px; }}
 @-o-keyframes glowAnimation{ 0%{ box-shadow: rgba(104, 184, 40, 0.2) 0 0 0 1px; } 100%{ box-shadow: rgba(104, 184, 40, 0.8) 0 0 3px 1px; }}
-@keyframes glowAnimation{ 0%{ box-shadow: rgba(104, 184, 40, 0.2) 0 0 0 1px; } 100%{ box-shadow: rgba(104, 184, 40, 0.8) 0 0 3px 1px; };
+@keyframes glowAnimation{ 0%{ box-shadow: rgba(104, 184, 40, 0.2) 0 0 0 1px; } 100%{ box-shadow: rgba(104, 184, 40, 0.8) 0 0 3px 1px; }
 }
 .modal-gallery-image {
   margin: -31px;
@@ -5453,8 +5453,7 @@ button.toast-close-button {
 @-webkit-keyframes weatherBgMove{ 0% { left: 0%; } 50% { left: 10%; } 100% { left: 0%; }}
 @-moz-keyframes weatherBgMove{ 0% { left: 0%; } 50% { left: 10%; } 100% { left: 0%; }}
 @-o-keyframes weatherBgMove{ 0% { left: 0%; } 50% { left: 10%; } 100% { left: 0%; }}
-@keyframes weatherBgMove{ 0% { left: 0%; } 50% { left: 10%; } 100% { left: 0%; };
-}
+@keyframes weatherBgMove{ 0% { left: 0%; } 50% { left: 10%; } 100% { left: 0%; }}
 @media screen and (max-width: 768px) {
   .xe-widget.xe-weather .xe-background {
     top: auto;

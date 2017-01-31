@@ -341,3 +341,11 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
     });
 
 });
+
+$api->version('app',['middleware'=>['api'], 'namespace' => 'App\Http\Api\App\Controllers'],function($api){
+    //注册接口
+    $api->post('register',[
+        'as'    => 'api.register',
+        'uses'  => 'UserController@register'
+    ]);
+});
