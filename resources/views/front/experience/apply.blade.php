@@ -12,7 +12,7 @@
         <div class="col-sm-9">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {!! Form::model($apply,['url'=>route('experience.store'),'class'=>'validate form-horizontal','method'=>'post','id'=>'form']) !!}
+                    {!! Form::model($apply,['url'=>route('experience.apply-store'),'class'=>'validate form-horizontal','method'=>'post','id'=>'form']) !!}
 
                     @include('front.experience.partials.form')
 

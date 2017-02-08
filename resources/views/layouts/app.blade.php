@@ -126,7 +126,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('experience') }}">
+                <a href="{{ route('experience.index') }}">
                     <i class="fa-female"></i>
                     <span class="title">情趣体验师</span>
                 </a>

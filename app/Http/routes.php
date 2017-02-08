@@ -79,16 +79,14 @@ Route::group(['middleware' => 'web'], function()
 
 
         //体验师
-        Route::get('/experience', [
-            'as'=>'experience','uses'=>'ExperienceController@index'
-        ]);
+//        Route::get('/experience', [
+//            'as'=>'experience','uses'=>'ExperienceController@index'
+//        ]);
         //体验文章
-        Route::get('/experience/create', [
-            'as'=>'experience.create','uses'=>'ExperienceController@create'
-        ]);
+        Route::resource('experience', 'ExperienceController');
         //体验师申请
         Route::get('/experience/apply', 'ExperienceApplyController@apply')->name('experience.apply');
-        Route::post('/experience/apply', 'ExperienceApplyController@store')->name('experience.store');
+        Route::post('/experience/apply', 'ExperienceApplyController@store')->name('experience.apply-store');
 
         //
         Route::controllers([
@@ -347,5 +345,23 @@ $api->version('app',['middleware'=>['api'], 'namespace' => 'App\Http\Api\App\Con
     $api->post('register',[
         'as'    => 'api.register',
         'uses'  => 'UserController@register'
+    ]);
+
+    //登录接口
+    $api->post('login',[
+        'as'    => 'api.login',
+        'uses'  => 'OAuthController@authenticate'
+    ]);
+
+    //刷新token
+    $api->put('refresh',[
+        'as'    => 'api.token.refresh',
+        'uses'  => 'OAuthController@refresh'
+    ]);
+
+    //我的资料
+    $api->get('me',[
+        'as'    => 'api.me',
+        'uses'  => 'UserController@me'
     ]);
 });

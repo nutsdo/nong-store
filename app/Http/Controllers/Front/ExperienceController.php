@@ -9,8 +9,10 @@
 namespace App\Http\Controllers\Front;
 
 
+use App\Http\Requests\StoreExperiencePostRequest;
 use App\Models\ExperienceArticle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExperienceController extends BaseController
 {
@@ -41,5 +43,45 @@ class ExperienceController extends BaseController
     public function create()
     {
         return view('front.experience.create');
+    }
+
+    public function store(StoreExperiencePostRequest $request)
+    {
+        $inputs = $request->except('_method','_token');
+
+        $inputs['user_id'] = $this->login_user->id;
+
+        $article = ExperienceArticle::create($inputs);
+
+        if($article){
+            $result = [
+                'status_code'   => 200,
+                'message'       => '发布成功',
+                'data'          => $article
+            ];
+        }else{
+            $result = [
+                'status_code'   => 201,
+                'message'       => '发布失败',
+            ];
+        }
+
+        return response()->json($result);
+
+    }
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function delete($id)
+    {
+
     }
 }
