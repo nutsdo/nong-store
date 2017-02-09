@@ -38,7 +38,13 @@ class UploadController extends Controller{
                     if($type=='avatar'){
                         Image::make($file)->resize(80,80)->save($fullFileName);
                     }else{
-                        $file->move($savePath,$saveFileName);
+                        $x = $request->input('x');
+                        $y = $request->input('y');
+                        $w = $request->input('w');
+                        $h = $request->input('h');
+//                        dd($request->input());
+                        Image::make($file)->crop($w, $h, $x, $y)->save($fullFileName);
+//                        $file->move($savePath,$saveFileName);
                     }
 
                     $result = ['status'=>'success','msg'=>'上传成功！','path'=>$fullFileName];

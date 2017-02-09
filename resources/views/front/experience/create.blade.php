@@ -37,7 +37,7 @@
     {!! Html::script("assets/js/jquery-file-upload/js/jquery.iframe-transport.js") !!}
     {!! Html::script("assets/js/jquery-file-upload/js/jquery.fileupload.js") !!}
 
-    {!! Html::script('assets/js/cropperjs/dist/cropper.js') !!}
+    {!! Html::script('assets/js/cropper/dist/cropper.min.js') !!}
     {!! Html::script('assets/ckeditor/ckeditor.js') !!}
     {{--{!! Html::script('assets/js/cropperjs/main.js') !!}--}}
     <script>
@@ -50,53 +50,71 @@
         {
             'use strict';
 
-            var Cropper = window.Cropper;
-            var container = document.querySelector('.img-container');
-            var image = document.querySelector('.img-container img');
+            var $image = $('#image');
 
             var options = {
                 aspectRatio: 16 / 9,
                 preview: '.img-preview',
-
-                cropend: function (e) {
-                    $("input[name=x]").val(e.detail.x),
-                    $("input[name=y]").val(e.detail.y),
-                    $("input[name=w]").val(e.detail.width),
-                    $("input[name=h]").val(e.detail.height);
-                },
                 crop: function (e) {
-                    $("input[name=x]").val(e.detail.x),
-                    $("input[name=y]").val(e.detail.y),
-                    $("input[name=w]").val(e.detail.width),
-                    $("input[name=h]").val(e.detail.height);
+                    $("input[name=x]").val(Math.round(e.x));
+                    $("input[name=y]").val(Math.round(e.y));
+                    $("input[name=w]").val(Math.round(e.width));
+                    $("input[name=h]").val(Math.round(e.height));
                 }
             };
-            var cropper = new Cropper(image, options);
+            var originalImageURL = $image.attr('src');
+            var uploadedImageURL;
+            $image.on({
+                ready: function (e) {
+                    console.log(e.type);
+                },
+                cropstart: function (e) {
+                    console.log(e.type, e.action);
+                },
+                cropmove: function (e) {
+                    console.log(e.type, e.action);
+                },
+                cropend: function (e) {
+                    console.log(e.type, e.action);
+                },
+                crop: function (e) {
+                    console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
+                },
+                zoom: function (e) {
+                    console.log(e.type, e.ratio);
+                }
+            }).cropper(options);
+
             // Import image
-            var inputImage = document.getElementById('inputImage');
+            var $inputImage = $('#inputImage');
 
             if (URL) {
-                inputImage.onchange = function () {
+                $inputImage.change(function () {
                     var files = this.files;
                     var file;
 
-                    if (cropper && files && files.length) {
+                    if (!$image.data('cropper')) {
+                        return;
+                    }
+
+                    if (files && files.length) {
                         file = files[0];
 
-                        if (/^image\/\w+/.test(file.type)) {
+                        if (/^image\/\w+$/.test(file.type)) {
+                            if (uploadedImageURL) {
+                                URL.revokeObjectURL(uploadedImageURL);
+                            }
 
-                            image.src = URL.createObjectURL(file);
-                            cropper.destroy();
-                            cropper = new Cropper(image, options);
-                            //inputImage.value = null;
+                            uploadedImageURL = URL.createObjectURL(file);
+                            $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                            //$inputImage.val('');
                         } else {
                             window.alert('Please choose an image file.');
                         }
                     }
-                };
+                });
             } else {
-                inputImage.disabled = true;
-                inputImage.parentNode.className += ' disabled';
+                $inputImage.prop('disabled', true).parent().addClass('disabled');
             }
 
             var preview_size = [240, 135]
@@ -124,13 +142,16 @@
                 autoUpload:false,
 //                formData: {type: 'posts',x:$x,y:$y,w:$w,h:$h},
                 add: function (e, data) {
-                    var $x = $("input[name=x]").val(),
-                            $y = $("input[name=y]").val(),
-                            $w = $("input[name=w]").val(),
-                            $h = $("input[name=h]").val();
-                    data.formData = {type: 'posts',x:$x,y:$y,w:$w,h:$h};
+
+
                     data.context = $('#crop-img').text('上传')
                             .click(function () {
+                                var $x = $("input[name=x]").val(),
+                                        $y = $("input[name=y]").val(),
+                                        $w = $("input[name=w]").val(),
+                                        $h = $("input[name=h]").val();
+                                data.formData = {type: 'posts',x:$x,y:$y,w:$w,h:$h};
+
                                 e.preventDefault();
                                 data.submit();
                                 return false;
@@ -142,7 +163,7 @@
                     if (json.status=='success'){
                         $('#crop-img').text('上传成功')
                         $('input[name=thumb_url]').val(json.path);
-                        $('.img-container img').attr('src', '/'+json.path);
+//                        $('.img-container img').attr('src', '/'+json.path);
                     }else {
 
                     }

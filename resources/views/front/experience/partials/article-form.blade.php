@@ -42,7 +42,7 @@
             <br />
 
             <div class="img-container">
-                <img src="/uploads/bg_main.jpg" class="img-responsive" />
+                <img src="/uploads/bg_main.jpg" id="image" class="img-responsive" />
             </div>
 
         </div>
