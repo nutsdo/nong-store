@@ -24,7 +24,7 @@
 <div class="xe-widget xe-todo-list yese-widget">
     <div class="xe-header">
         <div class="xe-icon">
-            <i class="el-fire"></i>
+            <i class="el-fire text-red"></i>
         </div>
         <div class="xe-label">
             <strong>明星体验师</strong>
@@ -33,21 +33,17 @@
     </div>
     <div class="xe-body">
         <div class="user-list text-center">
-            <a href="#" class="user-img-small">
-                <img src="/assets/images/user-4.png" alt="user-img" class="img-cirlce img-responsive img-thumbnail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
+            @foreach($experiencers as $u)
+            <a href="{{ route('ucenter',$u->id) }}" class="user-img-small">
+                {{ Html::image($u->avatar,$u->nick_name,[
+                    'alt'   => 'user-img',
+                    'class' => 'img-cirlce img-responsive img-thumbnail',
+                    'data-toggle'=>'tooltip',
+                    'data-placement'=>'top',
+                    'data-original-title'=> $u->nickname
+                ]) }}
             </a>
-            <a href="#" class="user-img-small">
-                <img src="/assets/images/user-4.png" alt="user-img" class="img-cirlce img-responsive img-thumbnail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
-            </a>
-            <a href="#" class="user-img-small">
-                <img src="/assets/images/user-4.png" alt="user-img" class="img-cirlce img-responsive img-thumbnail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
-            </a>
-            <a href="#" class="user-img-small">
-                <img src="/assets/images/user-4.png" alt="user-img" class="img-cirlce img-responsive img-thumbnail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
-            </a>
-            <a href="#" class="user-img-small">
-                <img src="/assets/images/user-4.png" alt="user-img" class="img-cirlce img-responsive img-thumbnail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
-            </a>
+            @endforeach
         </div>
     </div>
 

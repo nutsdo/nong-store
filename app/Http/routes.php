@@ -82,11 +82,12 @@ Route::group(['middleware' => 'web'], function()
 //        Route::get('/experience', [
 //            'as'=>'experience','uses'=>'ExperienceController@index'
 //        ]);
-        //体验文章
-        Route::resource('experience', 'ExperienceController');
         //体验师申请
         Route::get('/experience/apply', 'ExperienceApplyController@apply')->name('experience.apply');
         Route::post('/experience/apply', 'ExperienceApplyController@store')->name('experience.apply-store');
+
+        //体验文章
+        Route::resource('experience', 'ExperienceController');
 
         //
         Route::controllers([

@@ -142,8 +142,7 @@
                 autoUpload:false,
 //                formData: {type: 'posts',x:$x,y:$y,w:$w,h:$h},
                 add: function (e, data) {
-
-
+                    $('.crop-box').removeClass('hide');
                     data.context = $('#crop-img').text('上传')
                             .click(function () {
                                 var $x = $("input[name=x]").val(),
@@ -163,7 +162,7 @@
                     if (json.status=='success'){
                         $('#crop-img').text('上传成功')
                         $('input[name=thumb_url]').val(json.path);
-//                        $('.img-container img').attr('src', '/'+json.path);
+
                     }else {
 
                     }

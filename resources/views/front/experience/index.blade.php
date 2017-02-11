@@ -8,25 +8,16 @@
 ?>
 @extends('layouts.app')
 @section('main')
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel text-center">
-                <button class="btn btn-{{ random_color() }}">Primary</button>
-                <button class="btn btn-{{ random_color() }}">Secondary</button>
-                <button class="btn btn-{{ random_color() }}">Purple</button>
-                <button class="btn btn-{{ random_color() }}">Orange</button>
-                <button class="btn btn-{{ random_color() }}">Pink</button>
-                <button class="btn btn-{{ random_color() }}">Turquoise</button>
-                <button class="btn btn-{{ random_color() }}">Green</button>
-                <button class="btn btn-{{ random_color() }}">Light Blue</button>
-                <button class="btn btn-{{ random_color() }}">Blue</button>
-                <button class="btn btn-{{ random_color() }}">Red</button>
-                <button class="btn btn-{{ random_color() }}">Dark Red</button>
-                <button class="btn btn-{{ random_color() }}">Yellow</button>
-            </div>
-        </div>
+    {{--<div class="row">--}}
+        {{--<div class="col-sm-12">--}}
+            {{--<div class="panel text-center">--}}
+                {{--@foreach($products as $product)--}}
+                {{--<a href="{{ route('product.show', $product->id) }}" class="btn btn-{{ random_color() }}">{{ $product->title }}</a>--}}
+                {{--@endforeach--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
-    </div>
+    {{--</div>--}}
     <div class="row">
         <div class="col-sm-9">
 
@@ -42,87 +33,45 @@
                     {{--</div>--}}
                 {{--</div>--}}
                 <div class="panel-body yese-body grid">
-
+                    @foreach($experiences as $item)
                     <div class="col-sm-4 grid-item">
 
                         <div class="xe-widget xe-single-news">
                             <div class="xe-image">
-                                <img src="assets/images/news-image-widget-4.png" class="img-responsive" />
+                                {!! Html::image($item->thumb_url,$item->title) !!}
                                 <span class="xe-gradient"></span>
                             </div>
 
                             <div class="xe-details">
                                 <div class="category">
-                                    <a href="#">Business</a>
+                                    <a href="#">情趣内衣</a>
                                 </div>
 
                                 <h3>
-                                    <a href="#">We're at tipping point on climate</a>
+                                    <a href="{{ route('experience.show', $item->id) }}">{{ $item->title }}</a>
                                 </h3>
 
-                                <time>Monday, 17 July</time>
+                                <time><a href="{{ route('ucenter',$item->author->id) }}" class="text-white">{{ $item->author->nick_name }}</a>·{{ $item->created_time->diffForHumans() }}</time>
                             </div>
                         </div>
 
                     </div>
-                    <div class="col-sm-4 grid-item">
-
-                        <div class="xe-widget xe-single-news">
-                            <div class="xe-image">
-                                <img src="assets/images/news-image-widget-4.png" class="img-responsive" />
-                                <span class="xe-gradient"></span>
-                            </div>
-
-                            <div class="xe-details">
-                                <div class="category">
-                                    <a href="#">Business</a>
-                                </div>
-
-                                <h3>
-                                    <a href="#">We're at tipping point on climate</a>
-                                </h3>
-
-                                <time>Monday, 17 July</time>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4 grid-item">
-
-                        <div class="xe-widget xe-single-news">
-                            <div class="xe-image">
-                                <img src="assets/images/news-image-widget-4.png" class="img-responsive" />
-                                <span class="xe-gradient"></span>
-                            </div>
-
-                            <div class="xe-details">
-                                <div class="category">
-                                    <a href="#">Business</a>
-                                </div>
-
-                                <h3>
-                                    <a href="#">We're at tipping point on climate</a>
-                                </h3>
-
-                                <time>Monday, 17 July</time>
-                            </div>
-                        </div>
-
-                    </div>
+                    @endforeach
 
                 </div>
 
             </div>
-
+            @if($experiences->hasMorePages())
             <div class="panel">
                 <button class="btn btn-purple btn-block load-more" data-next="{{ $experiences->nextPageUrl() }}">
                     <i class="fa-bars"></i>
                     加载更多...
                 </button>
             </div>
+            @endif
         </div>
         <div class="col-sm-3">
-            @include('front.experience.partials.sidebar')
+            @include('front.experience.partials.sidebar',['experiencers',$experiencers])
         </div>
     </div>
 @endsection
@@ -133,7 +82,7 @@
             // init Masonry
             var $grid = $('.grid').masonry({
                 itemSelector: '.grid-item',
-                fitWidth: true,
+                fitWidth: false,
                 transitionDuration: '0.8s'
             });
 

@@ -34,7 +34,7 @@
         </label>
         {!! Form::hidden('thumb_url') !!}
     </div>
-    <div class="col-sm-offset-2 col-sm-10 row">
+    <div class="col-sm-offset-2 col-sm-10 row crop-box hide">
         <div class="col-md-8">
 
             <strong class="text-primary">原始图片</strong>

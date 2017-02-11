@@ -11,6 +11,8 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Requests\StoreExperiencePostRequest;
 use App\Models\ExperienceArticle;
+use App\Models\Products;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +29,9 @@ class ExperienceController extends BaseController
 
     public function index(Request $request)
     {
-        $experiences = ExperienceArticle::status()->paginate(1);
+//        $products = Products::where('is_show',1)->take(12)->get();
+
+        $experiences = ExperienceArticle::status()->paginate(18);
         if($request->ajax()){
             $list = view('front.experience.partials.list')->with('list',$experiences)->render();
             return response()->json([
@@ -37,7 +41,10 @@ class ExperienceController extends BaseController
                 'data'         => $list
             ]);
         }
-        return view('front.experience.index', compact('experiences'));
+
+        $experiencers = User::inRandomOrder()->take(10)->get();
+        //dd($experiencers);
+        return view('front.experience.index', compact('experiences','experiencers'));
     }
 
     public function create()
@@ -47,9 +54,11 @@ class ExperienceController extends BaseController
 
     public function store(StoreExperiencePostRequest $request)
     {
-        $inputs = $request->except('_method','_token');
+        $inputs = $request->only('title','experiencer_product_id','body','thumb_url');
 
         $inputs['user_id'] = $this->login_user->id;
+
+        $inputs['experiencer_product_id'] = 1;
 
         $article = ExperienceArticle::create($inputs);
 
@@ -66,6 +75,7 @@ class ExperienceController extends BaseController
             ];
         }
 
+        return back();
         return response()->json($result);
 
     }

@@ -38,4 +38,9 @@ class ExperienceArticle extends Model
     {
         return $query->where('user_id', $user_id);
     }
+
+    public function author()
+    {
+        return $this->belongsTo('App\Models\User','user_id');
+    }
 }
