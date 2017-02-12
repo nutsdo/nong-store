@@ -44,7 +44,7 @@
 
                             <div class="xe-details">
                                 <div class="category">
-                                    <a href="#">情趣内衣</a>
+                                    <a href="#">{{ $item->blog->name }}</a>
                                 </div>
 
                                 <h3>

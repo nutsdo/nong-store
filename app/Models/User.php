@@ -86,4 +86,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->morphedByMany('App\Models\CommunityArticle', 'collection');
     }
+
+    //用户专栏
+    public function blog()
+    {
+        return $this->hasOne('App\Models\Blog');
+    }
 }

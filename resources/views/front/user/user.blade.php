@@ -22,6 +22,8 @@
 
             <div class="col-sm-3">
 
+                @yield('blog')
+
                 <!-- User Info Sidebar -->
                 <div class="user-info-sidebar panel panel-default">
 
@@ -75,13 +77,18 @@
                 </div>
                 <!-- Menu -->
                 <div class="list-group list-group-minimal"><!-- Add class "list-group-minimal" for less padding between list items -->
+
+                    <a href="{{ route('user.profile') }}" class="list-group-item @if($currentRoute=='user.profile') active @endif">
+                        <i class="fa-cog"></i>
+                        资料设置
+                    </a>
                     <a href="{{ route('user.article') }}" class="list-group-item @if($currentRoute=='user.article') active @endif">
                         <i class="fa-file-image-o"></i>
                         我的文章
                     </a>
-                    <a href="{{ route('user.profile') }}" class="list-group-item @if($currentRoute=='user.profile') active @endif">
-                        <i class="fa-cog"></i>
-                        资料设置
+                    <a href="{{ route('user.blogs.index') }}" class="list-group-item @if(strstr($currentRoute, 'user.blogs')) active @endif">
+                        <i class="fa-file-image-o"></i>
+                        我的专栏
                     </a>
                     <a href="{{ route('user.collections') }}" class="list-group-item @if($currentRoute=='user.collections') active @endif">
                         <i class="fa-star-o"></i>

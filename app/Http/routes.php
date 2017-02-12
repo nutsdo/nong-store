@@ -135,7 +135,10 @@ Route::group(['middleware' => 'web'], function()
         Route::get('comments/{type?}', [
             'as'=>'user.comments','uses'=>'UserController@comments'
         ]);
-
+        //专栏
+        Route::get('blogs/edit', 'BlogController@edit')->name('user.blogs.edit');
+        Route::patch('blogs/update', 'BlogController@update')->name('user.blogs.update');
+        Route::resource('blogs', 'BlogController', ['except'=>['edit','update']]);
     });
     Route::group(['prefix' => 'store','namespace' => 'Store'],function(){
 

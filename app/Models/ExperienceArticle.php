@@ -43,4 +43,9 @@ class ExperienceArticle extends Model
     {
         return $this->belongsTo('App\Models\User','user_id');
     }
+
+    public function blog()
+    {
+        return $this->belongsTo('App\Models\Blog','user_id','user_id');
+    }
 }
