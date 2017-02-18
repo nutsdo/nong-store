@@ -142,9 +142,8 @@ Route::group(['middleware' => 'web'], function()
     });
     Route::group(['prefix' => 'store','namespace' => 'Store'],function(){
 
-        Route::get('/', function(){
-            return '工程师努力开发中...';
-        })->name('store');
+        Route::get('/', 'HomeController@index')->name('store.home');
+        Route::get('products/{id}/show', 'ProductController@show')->name('product.show');
 
     });
 
@@ -340,6 +339,12 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
             'as'    =>  'api.article.collect',
             'uses'  =>  'ArticleController@doCollect'
         ]);
+
+
+        /*
+         * 商城相关
+         * */
+        $api->resource('products', 'ShoppingCartController');
     });
 
 });
@@ -369,3 +374,6 @@ $api->version('app',['middleware'=>['api'], 'namespace' => 'App\Http\Api\App\Con
         'uses'  => 'UserController@me'
     ]);
 });
+
+Route::get('cart/{hashid}', 'Store\ShoppingCartController@show');
+Route::post('cart/{hashid}', 'Store\ShoppingCartController@store');

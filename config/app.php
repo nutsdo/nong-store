@@ -164,7 +164,9 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Vinkla\Hashids\HashidsServiceProvider::class
 
     ],
 
@@ -221,8 +223,9 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
         'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory'=> Tymon\JWTAuth\Facades\JWTFactory::class,
-        'Image'     => Intervention\Image\Facades\Image::class
-
+        'Image'     => Intervention\Image\Facades\Image::class,
+        'Cart'      => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class
     ],
 
 ];

@@ -2,12 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: lvdingtao
- * Date: 2017/1/1
- * Time: 下午8:51
+ * Date: 2017/2/13
+ * Time: 下午11:01
  */
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +32,7 @@
     {!! Html::style("assets/css/fonts/elusive/css/elusive.css") !!}
     @yield('styles')
     {!! Html::script("assets/js/jquery-1.11.1.min.js") !!}
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -53,7 +53,7 @@
                 {!! Html::image('/assets/images/logo.png','',['width'=>60,'class'=>'visible-xs']) !!}
             </a>
             {{--<a href="#" data-toggle="settings-pane" data-animate="true">--}}
-                {{--<i class="linecons-cog"></i>--}}
+            {{--<i class="linecons-cog"></i>--}}
             {{--</a>--}}
         </div>
 
@@ -145,51 +145,51 @@
 
             {{--@include('front.common.notice')--}}
             @if($loginUser)
-            <li class="dropdown user-profile">
+                <li class="dropdown user-profile">
 
-                <a href="#" data-toggle="dropdown">
-                    {!! Html::image($loginUser->avatar,'user-image',['class'=>'img-circle img-inline userpic-32','width'=>28]) !!}
-                    <span>
+                    <a href="#" data-toggle="dropdown">
+                        {!! Html::image($loginUser->avatar,'user-image',['class'=>'img-circle img-inline userpic-32','width'=>28]) !!}
+                        <span>
                         {{ $loginUser->name }}
-                        <i class="fa-angle-down"></i>
+                            <i class="fa-angle-down"></i>
                     </span>
-                </a>
+                    </a>
 
-                <ul class="dropdown-menu user-profile-menu list-unstyled">
-                    <li>
-                        <a href="{{ route('user.article','publish') }}">
-                            <i class="fa-edit"></i>
-                            发布文章
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#settings">
-                            <i class="fa-wrench"></i>
-                            基本设置
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('user.profile') }}">
-                            <i class="fa-user"></i>
-                            个人资料
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('user.collections') }}">
-                            <i class="fa-star"></i>
-                            我的收藏
-                        </a>
-                    </li>
+                    <ul class="dropdown-menu user-profile-menu list-unstyled">
+                        <li>
+                            <a href="{{ route('user.article','publish') }}">
+                                <i class="fa-edit"></i>
+                                发布文章
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#settings">
+                                <i class="fa-wrench"></i>
+                                基本设置
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user.profile') }}">
+                                <i class="fa-user"></i>
+                                个人资料
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user.collections') }}">
+                                <i class="fa-star"></i>
+                                我的收藏
+                            </a>
+                        </li>
 
-                    <li class="last">
-                        <a href="{{ url('logout') }}">
-                            <i class="fa-lock"></i>
-                            退出
-                        </a>
-                    </li>
-                </ul>
+                        <li class="last">
+                            <a href="{{ url('logout') }}">
+                                <i class="fa-lock"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
 
-            </li>
+                </li>
             @else
                 <li>
                     <a href="{{ url('login') }}">
@@ -251,7 +251,7 @@
 
 </footer>
 @yield('others')
-<!-- Bottom Scripts -->
+        <!-- Bottom Scripts -->
 {!! Html::script("assets/js/bootstrap.min.js") !!}
 {!! Html::script("assets/js/TweenMax.min.js") !!}
 {!! Html::script("assets/js/resizeable.js") !!}
@@ -259,10 +259,17 @@
 {!! Html::script("assets/js/xenon-api.js") !!}
 {!! Html::script("assets/js/xenon-toggles.js") !!}
 
-<!-- JavaScripts initializations and stuff -->
+        <!-- JavaScripts initializations and stuff -->
 {!! Html::script("assets/js/xenon-custom.js") !!}
 {!! Html::script("front/build/js/app.js") !!}
 
 @yield('scripts')
+<script type="text/javascript">
+    jQuery(document).ready(function($)
+    {
+        show_loading_bar(100);
+    });
+
+</script>
 </body>
 </html>
