@@ -28,10 +28,10 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot($router);
 
-        $router->bind('products', function ($value) {
-            $product =  \App\Models\Product::whereHashOrSlug($value)->firstOrFail();
-            return $product;
-        });
+//        $router->bind('products', function ($value) {
+//            $product =  \App\Models\Product::whereHashOrSlug($value)->firstOrFail();
+//            return $product;
+//        });
     }
 
     /**

@@ -35,16 +35,22 @@ class UploadController extends Controller{
 
                     $fullFileName = $savePath.'/'.$saveFileName;
                     //使用Intervention/image 扩展
-                    if($type=='avatar'){
-                        Image::make($file)->resize(80,80)->save($fullFileName);
-                    }else{
-                        $x = $request->input('x');
-                        $y = $request->input('y');
-                        $w = $request->input('w');
-                        $h = $request->input('h');
+                    try{
+                        if($type=='avatar'){
+                            Image::make($file)->resize(80,80)->save($fullFileName);
+                        }elseif($type=='product'){
+                            Image::make($file)->save($fullFileName);
+                        }else{
+                            $x = $request->input('x');
+                            $y = $request->input('y');
+                            $w = $request->input('w');
+                            $h = $request->input('h');
 //                        dd($request->input());
-                        Image::make($file)->crop($w, $h, $x, $y)->save($fullFileName);
+                            Image::make($file)->crop($w, $h, $x, $y)->save($fullFileName);
 //                        $file->move($savePath,$saveFileName);
+                        }
+                    }catch (\Exception $e){
+                        return ['status'=>'failed','msg'=> $e->getMessage()];
                     }
 
                     $result = ['status'=>'success','msg'=>'上传成功！','path'=>$fullFileName];

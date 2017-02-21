@@ -11,7 +11,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Category;
 use App\Http\Requests\PostProductRequest;
-use App\Models\Products;
+use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Kalnoy\Nestedset\Collection;
 
@@ -24,7 +25,7 @@ class ProductController extends BaseController{
 
     public function index()
     {
-        $products = Products::paginate(15);
+        $products = Product::paginate(15);
         return view('dashboard.products.index',compact('products'));
     }
 
@@ -47,7 +48,7 @@ class ProductController extends BaseController{
     {
         $data = $request->except('_token');
         $data['publisher_id'] = $this->login_user->id;
-        $product = Products::create($data);
+        $product = Product::create($data);
         return redirect()->route('dashboard.products.index');
     }
 
@@ -56,7 +57,7 @@ class ProductController extends BaseController{
      * */
     public function edit(Request $request,$id)
     {
-        $product = Products::find($id);
+        $product = Product::find($id);
 
         $data = $request->only('category_id');
 
@@ -71,8 +72,20 @@ class ProductController extends BaseController{
 
     public function update(PostProductRequest $request,$id)
     {
-        $product = Products::find($id);
-        $product->update($request->except('_token'));
+        $product = Product::find($id);
+        $images = $request->input('images')?:[];
+
+        $data = $request->except('_token','file','_method','images');
+
+        $product->fill($data)->save();
+        //dd(array_values($arr));
+        if(count($images)>0){
+            foreach($images as $image){
+                $product->images()->firstOrCreate(['image_url'=>$image]);
+            }
+
+        }
+
         return redirect()->route('dashboard.products.edit',$id);
     }
 
@@ -82,7 +95,7 @@ class ProductController extends BaseController{
 
     public function destroy($id)
     {
-        $product = Products::find($id);
+        $product = Product::find($id);
         $product->delete();
         return ['status'=>'success','msg'=>'删除成功'];
     }

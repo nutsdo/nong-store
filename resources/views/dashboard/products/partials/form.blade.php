@@ -90,6 +90,39 @@
  </div>
 @endif
 <div class="form-group">
+    {!! Form::label('images', '添加图片',['class'=>'control-label col-sm-2']) !!}
+    <div class="col-sm-9">
+        <span class="btn btn-success fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>添加图片</span>
+                <!-- The file input field used as target for the file upload widget -->
+            <input id="fileupload" type="file" name="file" multiple>
+        </span>
+        {{--<button type="button" class="btn btn-primary start">--}}
+            {{--<i class="glyphicon glyphicon-upload"></i>--}}
+            {{--<span>开始上传</span>--}}
+        {{--</button>--}}
+        {{--<button type="button" class="btn btn-warning cancel">--}}
+            {{--<i class="glyphicon glyphicon-ban-circle"></i>--}}
+            {{--<span>取消上传</span>--}}
+        {{--</button>--}}
+        {{--<button type="button" class="btn btn-danger delete">--}}
+            {{--<i class="glyphicon glyphicon-trash"></i>--}}
+            {{--<span>删除</span>--}}
+        {{--</button>--}}
+        {{--<input type="checkbox" class="toggle">--}}
+        {{--<!-- The global file processing state -->--}}
+        {{--<span class="fileupload-process"></span>--}}
+    </div>
+    <div class="col-sm-offset-2 image-list">
+        @foreach($product->images as $image)
+            <img width="100" src="{{ asset($image->image_url) }}" />
+            {{ Form::hidden('images[]', $image->image_url) }}
+        @endforeach
+    </div>
+</div>
+
+<div class="form-group">
     {!! Form::label('is_show', '是否上架',['class'=>'control-label col-sm-2']) !!}
     <div class="checkbox">
         <div class="col-sm-2">

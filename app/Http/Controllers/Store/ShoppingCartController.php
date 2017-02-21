@@ -8,10 +8,9 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Vinkla\Hashids\Facades\Hashids;
 
-class ShoppingCartController extends Controller
+class ShoppingCartController extends BaseController
 {
     public function store(Request $request)
     {

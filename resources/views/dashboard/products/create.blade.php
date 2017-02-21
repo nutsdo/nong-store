@@ -7,6 +7,10 @@
  */
  ?>
 @extends('layouts.dashboard')
+@section('styles')
+    {!! Html::style('assets/js/jquery-file-upload/css/style.css') !!}
+    {!! Html::style('assets/js/jquery-file-upload/css/jquery.fileupload.css') !!}
+@endsection
 @section('main')
 <div class="panel panel-default">
   <div class="panel-heading">添加商品</div>

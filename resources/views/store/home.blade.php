@@ -7,65 +7,501 @@
  */
 ?>
 @extends('layouts.store')
-@section('main')
-    <section class="gallery-env">
+@section('banner')
+    <!-- Slider
+    ================================================== -->
+<div class="container fullwidth-element home-slider">
 
-        <div class="row">
+    <div class="tp-banner-container">
+        <div class="tp-banner">
+            <ul>
+                <!-- Slide 1  -->
+                <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" >
+                    {!! Html::image('assets/store/images/slider.jpg', '', [
+                        'data-bgfit' => 'cover',
+                        'data-bgposition' => 'left top',
+                        'data-bgrepeat' => 'no-repeat',
+                    ]) !!}
+                    <div class="caption sfb fadeout" data-x="145" data-y="170" data-speed="400" data-start="800"  data-easing="Power4.easeOut">
+                        <h2>Dress Sharp</h2>
+                        <h3>Learn from the classics</h3>
+                        <a href="shop-with-sidebar.html" class="caption-btn">Shop The Collection</a>
+                    </div>
+                </li>
 
-            <!-- Gallery Album Optipns and Images -->
-            <div class="col-sm-12 gallery-right">
+                <!-- Slide 2  -->
+                <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1000">
+                    {!! Html::image('assets/store/images/slider2.jpg', '', [
+                        'data-bgfit' => 'cover',
+                        'data-bgposition' => 'left top',
+                        'data-bgrepeat' => 'no-repeat',
+                    ]) !!}
+                    <div class="caption dark sfb fadeout" data-x="750" data-y="170" data-speed="400" data-start="800"  data-easing="Power4.easeOut">
+                        <h2>Urban Style</h2>
+                        <h3>Every cut and colour</h3>
+                        <a href="shop-with-sidebar.html" class="caption-btn">Shop The Collection</a>
+                    </div>
+                </li>
 
-                <!-- Album Header -->
-                <div class="album-header">
-                    <h2>推荐</h2>
-                </div>
+                <!-- Slide 3  -->
+                <li data-transition="fadetotopfadefrombottom" data-slotamount="7" data-masterspeed="1000">
+                    {!! Html::image('assets/store/images/slider3.jpg', '', [
+                        'data-bgfit' => 'cover',
+                        'data-bgposition' => 'left top',
+                        'data-bgrepeat' => 'no-repeat',
+                    ]) !!}
+                    <div class="caption dark sfb fadeout" data-x="850" data-y="170" data-speed="400" data-start="800"  data-easing="Power4.easeOut">
+                        <h2>New In</h2>
+                        <h3>Pants and T-Shirts</h3>
+                        <a href="shop-with-sidebar.html" class="caption-btn">Shop The Collection</a>
+                    </div>
+                </li>
 
-                <!-- Album Images -->
-                <div class="album-images row grid">
-                    @include('store.products.partials.list')
-                </div>
-                @if($products->nextPageUrl())
-                <button class="btn btn-white btn-block load-more" data-next="{{ $products->nextPageUrl() }}">
-                    <i class="fa-bars"></i>
-                    加载更多
-                </button>
-                @endif
-            </div>
-
+            </ul>
         </div>
+    </div>
 
-    </section>
+</div>
 @endsection
-@section('scripts')
-    {!! Html::script('assets/js/masonry.pkgd.min.js') !!}
-    <script>
-        $(function() {
-            // init Masonry
-            var $grid = $('.grid').masonry({
-                itemSelector: '.grid-item',
-                fitWidth: false,
-                transitionDuration: '0.8s'
-            });
 
-            $('.load-more').on( 'click', function(e) {
-                var $ele = $(e.target);
-                var next = $ele.data('next');
+@section('main')
+        <!-- Featured
+    ================================================== -->
+<div class="container" >
 
-                if (next!='') {
-                    $.get( next, function( response ) {
+    <div class="one-third column">
+        <a href="#" class="img-caption" >
+            <figure>
+                {!! Html::image('assets/store/images/featured_img_1.jpg') !!}
+                <figcaption>
+                    <h3>Men's Shirts</h3>
+                    <span>25% Off Summer Styles</span>
+                </figcaption>
+            </figure>
+        </a>
+    </div>
 
-                        if (response.next==null){
-                            $ele.data('next','');
-                            $ele.attr('disabled',true).text('没有更多内容了');
-                        }
-                        // wrap content in jQuery object
-                        var $content = $( response.data );
+    <div class="one-third column">
+        <a href="#" class="img-caption" >
+            <figure>
+                {!! Html::image('assets/store/images/featured_img_2.jpg') !!}
+                <figcaption>
+                    <h3>Running Shoes</h3>
+                    <span>Sports Discount</span>
+                </figcaption>
+            </figure>
+        </a>
+    </div>
 
-                        // add jQuery object
-                        $grid.append( $content ).masonry( 'appended', $content );
-                    });
-                }
-            });
-        });
-    </script>
+    <div class="one-third column">
+        <a href="#" class="img-caption" >
+            <figure>
+                {!! Html::image('assets/store/images/featured_img_3.jpg') !!}
+                <figcaption>
+                    <h3>Winter Jackets</h3>
+                    <span>End-of Season Sales</span>
+                </figcaption>
+            </figure>
+        </a>
+    </div>
+
+</div>
+<div class="clearfix"></div>
+
+<!-- New Arrivals
+================================================== -->
+<div class="container">
+
+    <!-- Headline -->
+    <div class="sixteen columns">
+        <h3 class="headline">New Arrivals</h3>
+        <span class="line margin-bottom-0"></span>
+    </div>
+
+    <!-- Carousel -->
+    <div id="new-arrivals" class="showbiz-container sixteen columns" >
+
+        <!-- Navigation -->
+        <div class="showbiz-navigation">
+            <div id="showbiz_left_1" class="sb-navigation-left"><i class="fa fa-angle-left"></i></div>
+            <div id="showbiz_right_1" class="sb-navigation-right"><i class="fa fa-angle-right"></i></div>
+        </div>
+        <div class="clearfix"></div>
+
+        <!-- Products -->
+        <div class="showbiz" data-left="#showbiz_left_1" data-right="#showbiz_right_1" data-play="#showbiz_play_1" >
+            <div class="overflowholder">
+
+                <ul>
+
+                    <!-- Product #1 -->
+                    <li>
+                        <figure class="product">
+                            <div class="mediaholder">
+                                <a href="variable-product-page.html">
+                                    {!! Html::image('assets/store/images/shop_item_01.jpg') !!}
+                                    <div class="cover">
+                                        {!! Html::image('assets/store/images/shop_item_01_hover.jpg') !!}
+                                    </div>
+                                </a>
+                                <a href="#" class="product-button"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                            </div>
+
+                            <a href="variable-product-page.html">
+                                <section>
+                                    <span class="product-category">Skirts</span>
+                                    <h5>Brown Mini Skirt</h5>
+                                    <span class="product-price">$79.00</span>
+                                </section>
+                            </a>
+                        </figure>
+                    </li>
+
+
+                    <!-- Product #2 -->
+                    <li>
+                        <figure class="product">
+                            <div class="mediaholder">
+                                <a href="variable-product-page.html">
+                                    {!! Html::image('assets/store/images/shop_item_02.jpg') !!}
+                                    <div class="cover">
+                                        {!! Html::image('assets/store/images/shop_item_02_hover.jpg') !!}
+                                    </div>
+                                </a>
+                                <a href="#" class="product-button"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                            </div>
+
+                            <a href="variable-product-page.html">
+                                <section>
+                                    <span class="product-category">Shoes</span>
+                                    <h5>Glory High Shoes</h5>
+                                    <span class="product-price">$99.00</span>
+                                </section>
+                            </a>
+                        </figure>
+                    </li>
+
+
+                    <!-- Product #3 -->
+                    <li>
+                        <figure class="product">
+                            <div class="product-discount">SALE</div>
+                            <div class="mediaholder">
+                                <a href="single-product-page.html">
+                                    {!! Html::image('assets/store/images/shop_item_03.jpg') !!}
+                                    <div class="cover">
+                                        {!! Html::image('assets/store/images/shop_item_03_hover.jpg') !!}
+                                    </div>
+                                </a>
+                                <a href="#" class="product-button"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                            </div>
+
+                            <a href="single-product-page.html">
+                                <section>
+                                    <span class="product-category">Suits</span>
+                                    <h5>Wool Two-Piece Suit</h5>
+                                    <span class="product-price-discount">$499.00<i>$399.00</i></span>
+                                </section>
+                            </a>
+                        </figure>
+                    </li>
+
+
+                    <!-- Product #4 -->
+                    <li>
+                        <figure class="product">
+                            <div class="mediaholder">
+                                <a href="variable-product-page.html">
+                                    {!! Html::image('assets/store/images/shop_item_04.jpg') !!}
+                                    <div class="cover">
+                                        {!! Html::image('assets/store/images/shop_item_04_hover.jpg') !!}
+                                    </div>
+                                </a>
+                                <a href="#" class="product-button"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                            </div>
+
+                            <a href="variable-product-page.html">
+                                <section>
+                                    <span class="product-category">Longsleeves</span>
+                                    <h5>Vintage Stripe Jumper</h5>
+                                    <span class="product-price">$49.00</span>
+                                </section>
+                            </a>
+                        </figure>
+                    </li>
+
+
+                    <!-- Product #5 -->
+                    <li>
+                        <figure class="product">
+                            <div class="mediaholder">
+                                <a href="single-product-page.html">
+                                    {!! Html::image('assets/store/images/shop_item_05.jpg') !!}
+                                    <div class="cover">
+                                        {!! Html::image('assets/store/images/shop_item_05_hover.jpg') !!}
+                                    </div>
+                                </a>
+                                <a href="#" class="product-button"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                            </div>
+
+                            <a href="singlee-product-page.html">
+                                <section>
+                                    <span class="product-category">Accessories</span>
+                                    <h5>Vintage Sunglasses</h5>
+                                    <span class="product-price">$29.00</span>
+                                </section>
+                            </a>
+                        </figure>
+                    </li>
+
+
+                    <!-- Product #6 -->
+                    <li>
+                        <figure class="product">
+                            <div class="mediaholder">
+                                <a href="single-product-page.html">
+                                    {!! Html::image('assets/store/images/shop_item_06.jpg') !!}
+                                    <div class="cover">
+                                        {!! Html::image('assets/store/images/shop_item_06_hover.jpg') !!}
+                                    </div>
+                                </a>
+                                <a href="#" class="product-button"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                            </div>
+
+                            <a href="single-product-page.html">
+                                <section>
+                                    <span class="product-category">Shirts</span>
+                                    <h5>Solid Blue Polo Shirt</h5>
+                                    <span class="product-price">$29.00</span>
+                                </section>
+                            </a>
+                        </figure>
+                    </li>
+
+                </ul>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Parallax Banner
+================================================== -->
+<div class="parallax-banner fullwidth-element"  data-background="#000" data-opacity="0.45" data-height="200">
+    {!! Html::image('assets/store/images/parallax.jpg') !!}
+    <div class="parallax-overlay"></div>
+    <div class="parallax-title">End of season sale <span>Up to 35% off Women’s Denim</span></div>
+</div>
+
+<!-- Product Lists
+================================================== -->
+<div class="container margin-bottom-25">
+
+    <!-- Best Sellers -->
+    <div class="one-third column">
+
+        <!-- Headline -->
+        <h3 class="headline">Best Sellers</h3>
+        <span class="line margin-bottom-0"></span>
+        <div class="clearfix"></div>
+
+
+        <ul class="product-list">
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_01.jpg') !!}
+                    <div class="product-list-desc">Canvas Backpack <i>$59.00</i></div>
+                </a></li>
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_02.jpg') !!}
+                    <div class="product-list-desc">Long Sleeve Shirt <i>$29.00</i></div>
+                </a></li>
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_03.jpg') !!}
+                    <div class="product-list-desc">Tommy Hilfiger Shirt Beat <i>$89.00</i></div>
+                </a></li>
+
+            <li><div class="clearfix"></div></li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- Top Rated -->
+    <div class="one-third column">
+
+        <!-- Headline -->
+        <h3 class="headline">Top Rated</h3>
+        <span class="line margin-bottom-0"></span>
+        <div class="clearfix"></div>
+
+
+        <ul class="product-list top-rated">
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_04.jpg') !!}
+                    <div class="product-list-desc with-rating">Brogue Boots in Leather <i>$99.00</i>
+                        <div class="rating five-stars">
+                            <div class="star-rating"></div>
+                            <div class="star-bg"></div>
+                        </div>
+                    </div>
+                </a></li>
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_05.jpg') !!}
+                    <div class="product-list-desc with-rating">Slim Jeans With Blue Tint <i>$79.00</i>
+                        <div class="rating four-stars">
+                            <div class="star-rating"></div>
+                            <div class="star-bg"></div>
+                        </div>
+                    </div>
+                </a></li>
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_06.jpg') !!}
+                    <div class="product-list-desc with-rating">New Look Fairisle Scarf <i>$19.00</i>
+                        <div class="rating three-stars">
+                            <div class="star-rating"></div>
+                            <div class="star-bg"></div>
+                        </div>
+                    </div>
+                </a></li>
+
+            <li><div class="clearfix"></div></li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- Weekly Sales -->
+    <div class="one-third column">
+
+        <!-- Headline -->
+        <h3 class="headline">Weekly Sales</h3>
+        <span class="line margin-bottom-0"></span>
+        <div class="clearfix"></div>
+
+
+        <ul class="product-list discount">
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_07.jpg') !!}
+                    <div class="product-list-desc">Short Sleeve Polo Shirt <i>$29.00<b>$19.00</b></i></div>
+                </a></li>
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_08.jpg') !!}
+                    <div class="product-list-desc">Long Sleeve Shirt <i>$99.00<b>$79.00</b></i></div>
+                </a></li>
+
+            <li><a href="#">
+                    {!! Html::image('assets/store/images/small_product_list_09.jpg') !!}
+                    <div class="product-list-desc">Tommy Hilfiger Shirt Beat <i>$499.00<b>$399.00</b></i></div>
+                </a></li>
+
+            <li><div class="clearfix"></div></li>
+
+        </ul>
+
+    </div>
+
+</div>
+<div class="clearfix"></div>
+
+<!-- Latest Articles
+================================================== -->
+<div class="container" >
+
+    <!-- Headline -->
+    <div class="sixteen columns" >
+        <h3 class="headline">Latest Articles</h3>
+        <span class="line margin-bottom-30"></span>
+    </div>
+
+    <!-- Post #1 -->
+    <div class="four columns">
+        <article class="from-the-blog">
+
+            <figure class="from-the-blog-image">
+                <a href="blog-single-post.html">{!! Html::image('assets/store/images/from_the_blog_01.jpg') !!}</a>
+                <div class="hover-icon"></div>
+            </figure>
+
+            <section class="from-the-blog-content">
+                <a href="blog-single-post.html"><h5>Amazon Raises Threshold for Free Shipping</h5></a>
+                <i>By Vasterad on May 31, 2014</i>
+                <span>Pellentesque ultricies vehicula eleifend. Aenean eu nunc semper faucibus sapien viverra.</span>
+                <a href="blog-single-post.html" class="button gray">Read More</a>
+            </section>
+
+        </article>
+    </div>
+
+    <!-- Post #2 -->
+    <div class="four columns">
+        <article class="from-the-blog">
+
+            <figure class="from-the-blog-image">
+                <a href="blog-single-post.html">{!! Html::image('assets/store/images/from_the_blog_02.jpg') !!}</a>
+                <div class="hover-icon"></div>
+            </figure>
+
+            <section class="from-the-blog-content">
+                <a href="blog-single-post.html"><h5>How To Read The Symbols on Your Clothing Tags</h5></a>
+                <i>By Vasterad on May 16, 2014</i>
+                <span>Morbi quis magna nec lacus nunc eratu pharetra lorem sed sapien velit adipiscing. </span>
+                <a href="blog-single-post.html" class="button gray">Read More</a>
+            </section>
+
+        </article>
+    </div>
+
+    <!-- Post #3 -->
+    <div class="four columns">
+        <article class="from-the-blog">
+
+            <figure class="from-the-blog-image">
+                <a href="blog-single-post.html">{!! Html::image('assets/store/images/from_the_blog_03.jpg') !!}</a>
+                <div class="hover-icon"></div>
+            </figure>
+
+            <section class="from-the-blog-content">
+                <a href="blog-single-post.html"><h5>Online Shopping Hit New Highs on Mobile Sales</h5></a>
+                <i>By Vasterad on May 10, 2014</i>
+                <span>Donec non egestas nisl. Aliquam tincidunt sem sed nisl dictum. Fusce gravida arius gravida.</span>
+                <a href="blog-single-post.html" class="button gray">Read More</a>
+            </section>
+
+        </article>
+    </div>
+
+    <!-- Post #4 -->
+    <div class="four columns">
+        <article class="from-the-blog">
+
+            <figure class="from-the-blog-image">
+                <a href="blog-single-post.html">{!! Html::image('assets/store/images/from_the_blog_04.jpg') !!}</a>
+                <div class="hover-icon"></div>
+            </figure>
+
+            <section class="from-the-blog-content">
+                <a href="blog-single-post.html"><h5>How to Choose Size - Does Your Shirt Fit Properly?</h5></a>
+                <i>By Vasterad on April 20, 2014</i>
+                <span>Nullam eget ante cursus, dignissim velit sit amet, tempus massa bibendum venenatis.</span>
+                <a href="blog-single-post.html" class="button gray">Read More</a>
+            </section>
+
+        </article>
+    </div>
+
+</div>
+
 @endsection

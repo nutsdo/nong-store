@@ -7,269 +7,513 @@
  */
 ?>
 <!DOCTYPE html>
-<html lang="zh-cn">
+<!--[if IE 8 ]><html class="ie ie8" lang="ch-zn"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="ch-zn"> <!--<![endif]-->
 <head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ $title }}</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="{{ $keywords }}">
-    <meta name="description" content="{{ $description }}" />
-    <meta name="author" content="http://iyese.love" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <title>@yield('title'){{ $title }}</title>
+    <!-- CSS
+    ================================================== -->
+    {!! Html::style('assets/store/css/style.css') !!}
+    {!! Html::style('assets/store/css/colors/green.css',['id'=>'colors']) !!}
 
-    {{--{!! Html::style("http://fonts.useso.com/css?family=Arimo:400,700,400italic") !!}--}}
-    {!! Html::style("assets/css/fonts/linecons/css/linecons.css") !!}
-    {!! Html::style("assets/css/fonts/fontawesome/css/font-awesome.min.css") !!}
-    {!! Html::style("assets/css/bootstrap.css") !!}
-    {!! Html::style("assets/css/xenon-core.css") !!}
-    {!! Html::style("assets/css/xenon-forms.css") !!}
-    {!! Html::style("assets/css/xenon-components.css") !!}
-    {!! Html::style("assets/css/xenon-skins.css") !!}
-    {!! Html::style("assets/css/custom.css") !!}
-    {!! Html::style("assets/css/fonts/elusive/css/elusive.css") !!}
-    @yield('styles')
-    {!! Html::script("assets/js/jquery-1.11.1.min.js") !!}
-            <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    {!! Html::script("https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js") !!}
+    {!! Html::script("https://oss.maxcdn.com/respond/1.4.2/respond.min.js") !!}
     <![endif]-->
 
-
 </head>
-<body class="page-body">
 
-<nav class="navbar horizontal-menu navbar-fixed-top"><!-- set fixed position by adding class "navbar-fixed-top" -->
+<body class="boxed">
+<div id="wrapper">
 
-    <div class="navbar-inner">
 
-        <!-- Navbar Brand -->
-        <div class="navbar-brand">
-            <a href="{{ route('home') }}" class="logo">
-                {!! Html::image('/assets/images/logo.png','',['width'=>60,'class'=>'hidden-xs']) !!}
-                {!! Html::image('/assets/images/logo.png','',['width'=>60,'class'=>'visible-xs']) !!}
-            </a>
-            {{--<a href="#" data-toggle="settings-pane" data-animate="true">--}}
-            {{--<i class="linecons-cog"></i>--}}
-            {{--</a>--}}
-        </div>
+    <!-- Top Bar
+    ================================================== -->
+    <div id="top-bar">
+        <div class="container">
 
-        <!-- Mobile Toggles Links -->
-        <div class="nav navbar-mobile">
+            <!-- Top Bar Menu -->
+            <div class="ten columns">
+                <ul class="top-bar-menu">
+                    <li><i class="fa fa-phone"></i> (564) 123 4567</li>
+                    <li><i class="fa fa-envelope"></i> <a href="#">service@iyese.love</a></li>
+                    <li>
+                        <div class="top-bar-dropdown">
+                            <span>简体中文</span>
+                            <ul class="options">
+                                <li><div class="arrow"></div></li>
+                                <li><a href="#">简体中文</a></li>
+                                <li><a href="#">繁体中文</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="top-bar-dropdown">
+                            <span>人民币</span>
+                            <ul class="options">
+                                <li><div class="arrow"></div></li>
+                                <li><a href="#">USD</a></li>
+                                <li><a href="#">人民币</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-            <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
-            <div class="mobile-menu-toggle">
-                <!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
-                <a href="#" data-toggle="settings-pane" data-animate="true">
-                    <i class="linecons-cog"></i>
-                </a>
-
-                <a href="#" data-toggle="user-info-menu-horizontal">
-                    <i class="fa-bell-o"></i>
-                    <span class="badge badge-success">7</span>
-                </a>
-
-                <!-- data-toggle="mobile-menu-horizontal" will show horizontal menu links only -->
-                <!-- data-toggle="mobile-menu" will show sidebar menu links only -->
-                <!-- data-toggle="mobile-menu-both" will show sidebar and horizontal menu links -->
-                <a href="#" data-toggle="mobile-menu-horizontal">
-                    <i class="fa-bars"></i>
-                </a>
+            <!-- Social Icons -->
+            <div class="six columns">
+                <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a class="dribbble" href="#"><i class="icon-dribbble"></i></a></li>
+                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+                    <li><a class="pinterest" href="#"><i class="icon-pinterest"></i></a></li>
+                </ul>
             </div>
 
         </div>
+    </div>
 
-        <div class="navbar-mobile-clear"></div>
-
-
-
-        <!-- main menu -->
-
-        <ul class="navbar-nav">
-            <li @if($currentRoute=='home') class="active" @endif>
-                <a href="{{ route('home') }}">
-                    <i class="fa-home"></i>
-                    <span class="title">首页</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="fa-eye"></i>
-                    <span class="title">发现</span>
-                </a>
-                <ul>
-                    @foreach($articleCategory as $key=>$category)
-                        <li>
-                            <a href="{{ route('article-category',$category->id) }}">
-                                <span class="title">{{ $category->category_name }}</span>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="fa-comments-o"></i>
-                    <span class="title">浪漫夜色</span>
-                </a>
-                <ul>
-                    @foreach($communityCategory as $key=>$category)
-                        <li>
-                            <a href="{{ route('community-category',$category->id) }}">
-                                <span class="title">{{ $category->category_name }}</span>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-            <li>
-                <a href="{{ route('experience.index') }}">
-                    <i class="fa-female"></i>
-                    <span class="title">情趣体验师</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('store.home') }}">
-                    <i class="fa-shopping-cart"></i>
-                    <span class="title">夜色商城</span>
-                </a>
-            </li>
-        </ul>
+    <div class="clearfix"></div>
 
 
-        <!-- notifications and other links -->
-        <ul class="nav nav-userinfo navbar-right">
+    <!-- Header
+    ================================================== -->
+    <div class="container">
 
-            {{--@include('front.common.notice')--}}
-            @if($loginUser)
-                <li class="dropdown user-profile">
 
-                    <a href="#" data-toggle="dropdown">
-                        {!! Html::image($loginUser->avatar,'user-image',['class'=>'img-circle img-inline userpic-32','width'=>28]) !!}
-                        <span>
-                        {{ $loginUser->name }}
-                            <i class="fa-angle-down"></i>
-                    </span>
+        <!-- Logo -->
+        <div class="four columns">
+            <div id="logo">
+                <h1>
+                    <a href="{{ route('store.home') }}">
+                        {!! Html::image('assets/store/images/logo.png' ,$title) !!}
                     </a>
+                </h1>
+            </div>
+        </div>
 
-                    <ul class="dropdown-menu user-profile-menu list-unstyled">
+
+        <!-- Additional Menu -->
+        <div class="twelve columns">
+            <div id="additional-menu">
+                <ul>
+                    <li><a href="shopping-cart.html">购物车</a></li>
+                    <li><a href="wishlist.html">购物清单 <span>(2)</span></a></li>
+                    <li><a href="checkout-billing-details.html">结算</a></li>
+                    <li><a href="my-account.html">我的账户</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Shopping Cart -->
+        <div class="twelve columns">
+
+            <div id="cart">
+
+                <!-- Button -->
+                <div class="cart-btn">
+                    <a href="#" class="button adc">¥178.00</a>
+                </div>
+
+                <div class="cart-list">
+
+                    <div class="arrow"></div>
+
+                    <div class="cart-amount">
+                        <span>2个商品</span>
+                    </div>
+
+                    <ul>
                         <li>
-                            <a href="{{ route('user.article','publish') }}">
-                                <i class="fa-edit"></i>
-                                发布文章
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#settings">
-                                <i class="fa-wrench"></i>
-                                基本设置
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user.profile') }}">
-                                <i class="fa-user"></i>
-                                个人资料
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user.collections') }}">
-                                <i class="fa-star"></i>
-                                我的收藏
-                            </a>
+                            <a href="#">{!! Html::image('assets/store/images/small_product_list_08.jpg') !!}</a>
+                            <a href="#">匡威全明星训练鞋</a>
+                            <span>1 x ¥79.00</span>
+                            <div class="clearfix"></div>
                         </li>
 
-                        <li class="last">
-                            <a href="{{ url('logout') }}">
-                                <i class="fa-lock"></i>
-                                退出
-                            </a>
+                        <li>
+                            <a href="#">{!! Html::image('assets/store/images/small_product_list_09.jpg') !!}</a>
+                            <a href="#">汤米·希尔费格 <br /> 衬衫</a>
+                            <span>1 x ¥99.00</span>
+                            <div class="clearfix"></div>
                         </li>
                     </ul>
 
-                </li>
-            @else
-                <li>
-                    <a href="{{ url('login') }}">
-                        <i class="fa-sign-in"></i>
-                        登录
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('register') }}">
-                        <i class="fa-user"></i>
-                        注册
-                    </a>
-                </li>
-            @endif
-            <li>
-                <a href="#" data-toggle="chat">
-                    <i class="fa-comments-o"></i>
-                </a>
-            </li>
+                    <div class="cart-buttons button">
+                        <a href="shopping-cart.html" class="view-cart" ><span data-hover="View Cart"><span>查看购物车</span></span></a>
+                        <a href="checkout-billing-details.html" class="checkout"><span data-hover="Checkout">结算</span></a>
+                    </div>
+                    <div class="clearfix">
 
-        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Search -->
+            <nav class="top-search">
+                <form action="#" method="get">
+                    <button><i class="fa fa-search"></i></button>
+                    <input class="search-field" type="text" placeholder="Search" value="">
+                </form>
+            </nav>
+
+        </div>
 
     </div>
 
-</nav>
 
-<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+    <!-- Navigation
+    ================================================== -->
+    <div class="container">
+        <div class="sixteen columns">
+
+            <a href="#menu" class="menu-trigger"><i class="fa fa-bars"></i> 菜单</a>
+
+            <nav id="navigation">
+                <ul class="menu" id="responsive">
+
+                    <li><a href="index.html" class="current homepage" id="current">Home</a></li>
+
+                    <li class="dropdown">
+                        <a href="#">Shop</a>
+                        <ul>
+                            <li><a href="shop-with-sidebar.html">Shop With Sidebar</a></li>
+                            <li><a href="shop-full-width.html">Shop Full Width</a></li>
+                            <li><a href="checkout-billing-details.html">Checkout Pages</a></li>
+                            <li><a href="shop-categories-grid.html">Categories Grid</a></li>
+                            <li><a href="single-product-page.html">Single Product Page</a></li>
+                            <li><a href="variable-product-page.html">Variable Product Page</a></li>
+                            <li><a href="wishlist.html">Wishlist Page</a></li>
+                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="#">Features</a>
+                        <div class="mega">
+                            <div class="mega-container">
+
+                                <div class="one-column">
+                                    <ul>
+                                        <li><span class="mega-headline">Example Pages</span></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="services.html">Services</a></li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><a href="404-page.html">404 Page</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="one-column">
+                                    <ul>
+                                        <li><span class="mega-headline">Featured Pages</span></li>
+                                        <li><a href="index-2.html">Business Homepage</a></li>
+                                        <li><a href="shop-with-sidebar.html">Default Shop</a></li>
+                                        <li><a href="blog-masonry.html">Masonry Blog</a></li>
+                                        <li><a href="variable-product-page.html">Variable Product</a></li>
+                                        <li><a href="portfolio-dynamic-grid.html">Dynamic Grid</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="one-column hidden-on-mobile">
+                                    <ul>
+                                        <li><span class="mega-headline">Paragraph</span></li>
+                                        <li><p>This <a href="#">Mega Menu</a> can handle everything. Lists, paragraphs, forms...</p></li>
+                                    </ul>
+                                </div>
+
+                                <div class="one-fourth-column hidden-on-mobile">
+                                    <a href="#" class="img-caption margin-reset">
+                                        <figure>
+                                            {!! Html::image('assets/store/images/menu-banner-01.jpg') !!}
+                                            <figcaption>
+                                                <h3>Jeans</h3>
+                                                <span>Pack for Style</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                </div>
+
+                                <div class="one-fourth-column hidden-on-mobile">
+                                    <a href="#" class="img-caption margin-reset">
+                                        <figure>
+                                            {!! Html::image('assets/store/images/menu-banner-02.jpg') !!}
+                                            <figcaption>
+                                                <h3>Sunglasses</h3>
+                                                <span>Nail the Basics</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#">Shortcodes</a>
+                        <ul>
+                            <li><a href="elements.html">Elements</a></li>
+                            <li><a href="typography.html">Typography</a></li>
+                            <li><a href="pricing-tables.html">Pricing Tables</a></li>
+                            <li><a href="icons.html">Icons</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#">Portfolio</a>
+                        <ul>
+                            <li><a href="portfolio-3-columns.html">3 Columns</a></li>
+                            <li><a href="portfolio-4-columns.html">4 Columns</a></li>
+                            <li><a href="portfolio-dynamic-grid.html">Dynamic Grid</a></li>
+                            <li><a href="single-project.html">Single Project</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#">Blog</a>
+                        <ul>
+                            <li><a href="blog-standard.html">Blog Standard</a></li>
+                            <li><a href="blog-masonry.html">Blog Masonry</a></li>
+                            <li><a href="blog-single-post.html">Single Post</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="demo-button">
+                        <a href="#">Get This Theme</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+
     @yield('banner')
-    <div class="main-content">
 
-        @yield('main')
+    @yield('breadcrumbs')
+
+    @yield('main')
+
+    <div class="margin-top-50"></div>
+
+    <!-- Footer
+    ================================================== -->
+    <div id="footer">
+
+        <!-- Container -->
+        <div class="container">
+
+            <div class="four columns">
+                {!! Html::image('assets/store/images/logo-footer.png', $title, ['class'=>'margin-top-10']) !!}
+                <p class="margin-top-15">Nulla facilisis feugiat magna, ut molestie metus hendrerit vitae. Vivamus tristique lectus at varius rutrum. Integer lobortis mauris non consectetur eleifend.</p>
+            </div>
+
+            <div class="four columns">
+
+                <!-- Headline -->
+                <h3 class="headline footer">Customer Service</h3>
+                <span class="line"></span>
+                <div class="clearfix"></div>
+
+                <ul class="footer-links">
+                    <li><a href="#">Order Status</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Delivery & Returns</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+
+            </div>
+
+            <div class="four columns">
+
+                <!-- Headline -->
+                <h3 class="headline footer">My Account</h3>
+                <span class="line"></span>
+                <div class="clearfix"></div>
+
+                <ul class="footer-links">
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Order History</a></li>
+                    <li><a href="#">Wish List</a></li>
+                </ul>
+
+            </div>
+
+            <div class="four columns">
+
+                <!-- Headline -->
+                <h3 class="headline footer">Newsletter</h3>
+                <span class="line"></span>
+                <div class="clearfix"></div>
+                <p>Sign up to receive email updates on new product announcements, gift ideas, special promotions, sales and more.</p>
+
+                <form action="#" method="get">
+                    <button class="newsletter-btn" type="submit">Join</button>
+                    <input class="newsletter" type="text" placeholder="mail@example.com" value="">
+                </form>
+            </div>
+
+        </div>
+        <!-- Container / End -->
 
     </div>
+    <!-- Footer / End -->
+
+    <!-- Footer Bottom / Start -->
+    <div id="footer-bottom">
+
+        <!-- Container -->
+        <div class="container">
+
+            <div class="eight columns">© Copyright 2014 by <a href="#">trizzy</a>. All Rights Reserved.</div>
+            <div class="eight columns">
+                <ul class="payment-icons">
+                    <li>{!! Html::image('assets/store/images/visa.png') !!}</li>
+                    <li>{!! Html::image('assets/store/images/mastercard.png') !!}</li>
+                    <li>{!! Html::image('assets/store/images/skrill.png') !!}</li>
+                    <li>{!! Html::image('assets/store/images/moneybookers.png') !!}</li>
+                    <li>{!! Html::image('assets/store/images/paypal.png') !!}</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- Container / End -->
+
+    </div>
+    <!-- Footer Bottom / End -->
+
+    <!-- Back To Top Button -->
+    <div id="backtotop"><a href="#"></a></div>
 
 </div>
-<!-- Main Footer -->
-<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
-<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
-<!-- Or class "fixed" to  always fix the footer to the end of page -->
-<footer class="main-footer sticky footer-type-1">
 
-    <div class="footer-inner">
 
-        <!-- Add your copyright text here -->
-        <div class="footer-text">
-            Copyright &copy; 2016-2017
-            <a href="http://iyese.love" target="_blank"><strong>iyese.love</strong>.</a>All Rights Reserved.石家庄柚子科技有限公司
+<!-- Java Script
+================================================== -->
+{!! Html::script("http://code.jquery.com/jquery-1.11.0.min.js") !!}
+{!! Html::script("http://code.jquery.com/jquery-migrate-1.2.1.min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.jpanelmenu.js") !!}
+{!! Html::script("assets/store/scripts/jquery.themepunch.plugins.min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.themepunch.revolution.min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.themepunch.showbizpro.min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.magnific-popup.min.js") !!}
+{!! Html::script("assets/store/scripts/hoverIntent.js") !!}
+{!! Html::script("assets/store/scripts/superfish.js") !!}
+{!! Html::script("assets/store/scripts/jquery.pureparallax.js") !!}
+{!! Html::script("assets/store/scripts/jquery.pricefilter.js") !!}
+{!! Html::script("assets/store/scripts/jquery.selectric.min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.royalslider.min.js") !!}
+{!! Html::script("assets/store/scripts/SelectBox.js") !!}
+{!! Html::script("assets/store/scripts/modernizr.custom.js") !!}
+{!! Html::script("assets/store/scripts/waypoints.min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.flexslider-min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.counterup.min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.tooltips.min.js") !!}
+{!! Html::script("assets/store/scripts/jquery.isotope.min.js") !!}
+{!! Html::script("assets/store/scripts/puregrid.js") !!}
+{!! Html::script("assets/store/scripts/stacktable.js") !!}
+{!! Html::script("assets/store/scripts/custom.js") !!}
+
+<!-- Style Switcher
+================================================== -->
+{!! Html::script("assets/store/scripts/switcher.js") !!}
+
+<div id="style-switcher">
+    <h2>Style Switcher <a href="#"></a></h2>
+
+    <div><h3>Predefined Colors</h3>
+        <ul class="colors" id="color1">
+            <li><a href="#" class="green" title="Green"></a></li>
+            <li><a href="#" class="blue" title="Blue"></a></li>
+            <li><a href="#" class="orange" title="Orange"></a></li>
+            <li><a href="#" class="navy" title="Navy"></a></li>
+            <li><a href="#" class="yellow" title="Yellow"></a></li>
+            <li><a href="#" class="peach" title="Peach"></a></li>
+            <li><a href="#" class="beige" title="Beige"></a></li>
+            <li><a href="#" class="purple" title="Purple"></a></li>
+            <li><a href="#" class="celadon" title="Celadon"></a></li>
+            <li><a href="#" class="pink" title="Pink"></a></li>
+            <li><a href="#" class="red" title="Red"></a></li>
+            <li><a href="#" class="brown" title="Brown"></a></li>
+            <li><a href="#" class="cherry" title="Cherry"></a></li>
+            <li><a href="#" class="cyan" title="Cyan"></a></li>
+            <li><a href="#" class="gray" title="Gray"></a></li>
+            <li><a href="#" class="darkcol" title="Dark"></a></li>
+        </ul>
+
+        <h3>Layout Style</h3>
+        <div class="layout-style">
+            <select id="layout-style">
+                <option value="1">Boxed</option>
+                <option value="2">Wide</option>
+            </select>
         </div>
-        <!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
-        <div class="go-up">
 
-            <a href="#" rel="go-top">
-                <i class="fa-angle-up"></i>
-            </a>
+        <h3>Background Image</h3>
+        <ul class="colors bg" id="bg">
+            <li><a href="#" class="bg1"></a></li>
+            <li><a href="#" class="bg2"></a></li>
+            <li><a href="#" class="bg3"></a></li>
+            <li><a href="#" class="bg4"></a></li>
+            <li><a href="#" class="bg5"></a></li>
+            <li><a href="#" class="bg6"></a></li>
+            <li><a href="#" class="bg7"></a></li>
+            <li><a href="#" class="bg8"></a></li>
+            <li><a href="#" class="bg9"></a></li>
+            <li><a href="#" class="bg10"></a></li>
+            <li><a href="#" class="bg11"></a></li>
+            <li><a href="#" class="bg12"></a></li>
+            <li><a href="#" class="bg13"></a></li>
+            <li><a href="#" class="bg14"></a></li>
+            <li><a href="#" class="bg15"></a></li>
+            <li><a href="#" class="bg16"></a></li>
+        </ul>
 
-        </div>
-
+        <h3>Background Color</h3>
+        <ul class="colors bgsolid" id="bgsolid">
+            <li><a href="#" class="green-bg" title="Green"></a></li>
+            <li><a href="#" class="blue-bg" title="Blue"></a></li>
+            <li><a href="#" class="orange-bg" title="Orange"></a></li>
+            <li><a href="#" class="navy-bg" title="Navy"></a></li>
+            <li><a href="#" class="yellow-bg" title="Yellow"></a></li>
+            <li><a href="#" class="peach-bg" title="Peach"></a></li>
+            <li><a href="#" class="beige-bg" title="Beige"></a></li>
+            <li><a href="#" class="purple-bg" title="Purple"></a></li>
+            <li><a href="#" class="red-bg" title="Red"></a></li>
+            <li><a href="#" class="pink-bg" title="Pink"></a></li>
+            <li><a href="#" class="celadon-bg" title="Celadon"></a></li>
+            <li><a href="#" class="brown-bg" title="Brown"></a></li>
+            <li><a href="#" class="cherry-bg" title="Cherry"></a></li>
+            <li><a href="#" class="cyan-bg" title="Cyan"></a></li>
+            <li><a href="#" class="gray-bg" title="Gray"></a></li>
+            <li><a href="#" class="dark-bg" title="Dark"></a></li>
+        </ul>
     </div>
 
-</footer>
-@yield('others')
-        <!-- Bottom Scripts -->
-{!! Html::script("assets/js/bootstrap.min.js") !!}
-{!! Html::script("assets/js/TweenMax.min.js") !!}
-{!! Html::script("assets/js/resizeable.js") !!}
-{!! Html::script("assets/js/joinable.js") !!}
-{!! Html::script("assets/js/xenon-api.js") !!}
-{!! Html::script("assets/js/xenon-toggles.js") !!}
+    <div id="reset"><a href="#" class="button color">Reset</a></div>
 
-        <!-- JavaScripts initializations and stuff -->
-{!! Html::script("assets/js/xenon-custom.js") !!}
-{!! Html::script("front/build/js/app.js") !!}
+</div>
 
-@yield('scripts')
-<script type="text/javascript">
-    jQuery(document).ready(function($)
-    {
-        show_loading_bar(100);
-    });
 
-</script>
 </body>
 </html>

@@ -25,7 +25,7 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductComment');
     }
-    
+
     public function scopeWhereHashOrSlug($query, $value){
         //check for hashid (decode method returns empty array when hash is invalid)
         if(count(Hashids::decode($value)) > 0){
@@ -36,6 +36,11 @@ class Product extends Model
 //        else {
 //            return $query->whereSlug($value);
 //        }
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\ProductImage');
     }
 
 }
