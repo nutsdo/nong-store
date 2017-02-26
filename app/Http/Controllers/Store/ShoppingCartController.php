@@ -2,30 +2,27 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Models\Product;
-use App\Transformers\ProductTransformer;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Vinkla\Hashids\Facades\Hashids;
+use App\Http\Controllers\Controller;
 
 class ShoppingCartController extends BaseController
 {
-    public function store(Request $request)
+    public function __construct()
     {
-        dd(Hashids::encode(1)); //$hashid = oRdLWKVP
-        $id = $request->input('id')?:1;
-        $qry = $request->input('qry')?:1;
-        $title = $request->input('title')?:'情趣内衣';
-        $price = $request->input('price')?:9.99;
-        Cart::add($id,$title,$qry,$price);
-        $result = [];
-        return response()->json($result);
+        parent::__construct();
     }
 
-    public function show(Product $product)
+    public function index()
     {
-        return response()->collection($product, new ProductTransformer);
+        $user = $this->loginUser;
+
+        $cart = Cart::content();
+        $total = Cart::total();
+        $count = Cart::count();
+
+        return view('store.cart.index', compact('cart','total','count'));
     }
 }

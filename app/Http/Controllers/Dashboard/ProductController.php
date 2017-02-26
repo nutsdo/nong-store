@@ -73,6 +73,7 @@ class ProductController extends BaseController{
     public function update(PostProductRequest $request,$id)
     {
         $product = Product::find($id);
+
         $images = $request->input('images')?:[];
 
         $data = $request->except('_token','file','_method','images');
@@ -83,7 +84,6 @@ class ProductController extends BaseController{
             foreach($images as $image){
                 $product->images()->firstOrCreate(['image_url'=>$image]);
             }
-
         }
 
         return redirect()->route('dashboard.products.edit',$id);

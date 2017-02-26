@@ -10,18 +10,15 @@ namespace App\Http\Controllers\Store;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller
 {
-    public $template;
+    public $loginUser;
 
     public function __construct()
     {
-        $this->template = config('template.name').'.';
+        $this->loginUser = Auth::guard('web')->user();
     }
-//
-//    public function view($view = null, $data = [], $mergeData = [])
-//    {
-//        return view($this->template.$view, $data, $mergeData);
-//    }
+
 }

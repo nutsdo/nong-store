@@ -17,10 +17,9 @@
 
             <nav id="breadcrumbs">
                 <ul>
-                    <li><a href="#">首页</a></li>
-                    <li><a href="#">情趣内衣</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li>Hats</li>
+                    <li><a href="{{ route('store.home') }}">首页</a></li>
+                    <li><a href="{{ route('store.category.index',$product->category->id) }}">{{ $product->category->category_name }}</a></li>
+                    <li><a>{{ $product->title }}</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,18 +36,11 @@
         <div class="eight columns" >
             <div class="slider-padding">
                 <div id="product-slider-vertical" class="royalSlider rsDefault">
-                    <a href="/assets/store/images/product_item_04a-big.jpg" class="mfp-gallery" title="First Title">
-                        {!! Html::image('assets/store/images/product_item_04a.jpg', $title, ['class'=>'rsImg', 'data-rsTmb'=>'/assets/store/images/product_item_04a.jpg']) !!}
+                    @foreach($product->images as $image)
+                    <a href="{{ url($image->image_url) }}" class="mfp-gallery" title="{{ $image->image_desc }}">
+                        {!! Html::image(url($image->image_url), $title, ['class'=>'rsImg', 'data-rsTmb'=> url($image->image_url)]) !!}
                     </a>
-                    <a href="/assets/store/images/product_item_04b-big.jpg" class="mfp-gallery" title="Second Title">
-                        {!! Html::image('assets/store/images/product_item_04b.jpg', $title, ['class'=>'rsImg', 'data-rsTmb'=>'/assets/store/images/product_item_04b.jpg']) !!}
-                    </a>
-                    <a href="/assets/store/images/product_item_04c-big.jpg" class="mfp-gallery" title="Third Title">
-                        {!! Html::image('assets/store/images/product_item_04c.jpg', $title, ['class'=>'rsImg', 'data-rsTmb'=>'/assets/store/images/product_item_04c.jpg']) !!}
-                    </a>
-                    <a href="/assets/store/images/product_item_04a-big.jpg" class="mfp-gallery" title="First Title">
-                        {!! Html::image('assets/store/images/product_item_04a.jpg', $title, ['class'=>'rsImg', 'data-rsTmb'=>'/assets/store/images/product_item_04a.jpg']) !!}
-                    </a>
+                    @endforeach
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -62,13 +54,15 @@
 
                 <!-- Headline -->
                 <section class="title">
-                    <h2>情趣内衣</h2>
-                    <span class="product-price">¥49.00</span>
+                    <h2>{{ $product->title }}</h2>
+                    <span class="product-price">¥{{ $product->sale_price }}</span>
                 </section>
 
                 <!-- Text Parapgraph -->
                 <section>
-                    <p class="margin-reset">Maecenas consequat mauris nec semper tristique. Etiam fermentum augue ac vulputate pulvinar. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque <a href="#">ThemeForest</a> arcu sed mollis. Nulla egestas nulla elit, eu condimentum diam fringilla blandit.</p>
+                    <p class="margin-reset">
+                        Maecenas consequat mauris nec semper tristique. Etiam fermentum augue ac vulputate pulvinar. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque <a href="#">ThemeForest</a> arcu sed mollis. Nulla egestas nulla elit, eu condimentum diam fringilla blandit.
+                    </p>
 
                     <!-- Share Buttons -->
                     <div class="share-buttons">
@@ -93,7 +87,7 @@
                         <div class="qtyplus"></div>
                     </form>
 
-                    <a href="#" class="button adc">加入购物车</a>
+                    <a href="javascript:;" data-pid="{{ $product->id }}" class="button adc">加入购物车</a>
                     <div class="clearfix"></div>
 
                 </section>
@@ -117,7 +111,7 @@
             <div class="tabs-container">
 
                 <div class="tab-content" id="tab1">
-                    <p>Lorem ipsum pharetra lorem felis. Aliquam egestas consectetur elementum class aptentea taciti sociosqu ad litora torquent perea conubia nostra lorem consectetur adipiscing elit. Donec vestibulum justo a diam ultricies pellentesque. Fusce vehicula libero arcu, vitae ornare turpis elementum at. Etiam posuere quam nec ligula dignissim iaculis donec eleifend laoreet ornare. Quisque mattis luctus est, a placerat elit pharetra.</p>
+                    {!! $product->body !!}
                 </div>
 
                 <div class="tab-content" id="tab2">
@@ -145,7 +139,7 @@
 
                     <!-- Reviews -->
                     <section class="comments">
-                        <p class="margin-bottom-10">There are no reviews yet.</p>
+                        <p class="margin-bottom-10">还没有评论～</p>
 
                         <a href="#small-dialog" class="popup-with-zoom-anim button color margin-left-0">评论</a>
 
@@ -308,3 +302,19 @@
 
 @endsection
 
+@section('scripts')
+    <script>
+        $('.adc').on('click', function(){
+            var pid = $(this).data('pid'),
+                    qty = $('input[name=quantity]').val();
+            $.ajax({
+                url:'{{ dingo_route('local','api.cart.store') }}',
+                type:'post',
+                data:{pid:pid,qty:qty},
+                dataType:'json'
+            }).done(function(response){
+                console.log(response);
+            });
+        });
+    </script>
+@endsection

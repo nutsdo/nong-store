@@ -14,6 +14,8 @@
     <!-- Basic Page Needs
     ================================================== -->
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ $title }}</title>
 
     <!-- Mobile Specific Metas
@@ -32,7 +34,7 @@
 
 </head>
 
-<body class="boxed">
+<body class="fullwidth">
 <div id="wrapper">
 
 
@@ -97,7 +99,7 @@
             <div id="logo">
                 <h1>
                     <a href="{{ route('store.home') }}">
-                        {!! Html::image('assets/store/images/logo.png' ,$title) !!}
+                        {!! Html::image('assets/images/logo.png' ,$title) !!}
                     </a>
                 </h1>
             </div>
@@ -108,7 +110,7 @@
         <div class="twelve columns">
             <div id="additional-menu">
                 <ul>
-                    <li><a href="shopping-cart.html">购物车</a></li>
+                    <li><a href="shopping-cart.html">购物车</a><span>({{ $shoppingCart['count'] }})</span></li>
                     <li><a href="wishlist.html">购物清单 <span>(2)</span></a></li>
                     <li><a href="checkout-billing-details.html">结算</a></li>
                     <li><a href="my-account.html">我的账户</a></li>
@@ -124,7 +126,7 @@
 
                 <!-- Button -->
                 <div class="cart-btn">
-                    <a href="#" class="button adc">¥178.00</a>
+                    <a href="#" class="button adc">¥{{ $shoppingCart['total'] }}</a>
                 </div>
 
                 <div class="cart-list">
@@ -132,28 +134,23 @@
                     <div class="arrow"></div>
 
                     <div class="cart-amount">
-                        <span>2个商品</span>
+                        <span>{{ $shoppingCart['count'] }}个商品</span>
                     </div>
 
                     <ul>
+                        @foreach($shoppingCart['content'] as $row)
                         <li>
-                            <a href="#">{!! Html::image('assets/store/images/small_product_list_08.jpg') !!}</a>
-                            <a href="#">匡威全明星训练鞋</a>
-                            <span>1 x ¥79.00</span>
+                            <a href="#">{!! Html::image($row->model->thumb_url) !!}</a>
+                            <a href="#">{{ $row->name }}</a>
+                            <span>{{ $row->qty }} x ¥{{ $row->price }}</span>
                             <div class="clearfix"></div>
                         </li>
-
-                        <li>
-                            <a href="#">{!! Html::image('assets/store/images/small_product_list_09.jpg') !!}</a>
-                            <a href="#">汤米·希尔费格 <br /> 衬衫</a>
-                            <span>1 x ¥99.00</span>
-                            <div class="clearfix"></div>
-                        </li>
+                        @endforeach
                     </ul>
 
                     <div class="cart-buttons button">
-                        <a href="shopping-cart.html" class="view-cart" ><span data-hover="View Cart"><span>查看购物车</span></span></a>
-                        <a href="checkout-billing-details.html" class="checkout"><span data-hover="Checkout">结算</span></a>
+                        <a href="{{ route('store.cart') }}" class="view-cart" ><span data-hover="View Cart"><span>查看购物车</span></span></a>
+                        <a href="javascript:;" class="checkout"><span data-hover="Checkout">结算</span></a>
                     </div>
                     <div class="clearfix">
 
@@ -166,7 +163,7 @@
             <nav class="top-search">
                 <form action="#" method="get">
                     <button><i class="fa fa-search"></i></button>
-                    <input class="search-field" type="text" placeholder="Search" value="">
+                    <input class="search-field" type="text" placeholder="搜索" value="">
                 </form>
             </nav>
 
@@ -330,16 +327,16 @@
             <div class="four columns">
 
                 <!-- Headline -->
-                <h3 class="headline footer">Customer Service</h3>
+                <h3 class="headline footer">客户服务</h3>
                 <span class="line"></span>
                 <div class="clearfix"></div>
 
                 <ul class="footer-links">
-                    <li><a href="#">Order Status</a></li>
-                    <li><a href="#">Payment Methods</a></li>
-                    <li><a href="#">Delivery & Returns</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">订单状态</a></li>
+                    <li><a href="#">支付方式</a></li>
+                    <li><a href="#">发货 & 退货</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">法律声明</a></li>
                 </ul>
 
             </div>
@@ -347,14 +344,14 @@
             <div class="four columns">
 
                 <!-- Headline -->
-                <h3 class="headline footer">My Account</h3>
+                <h3 class="headline footer">我的账户</h3>
                 <span class="line"></span>
                 <div class="clearfix"></div>
 
                 <ul class="footer-links">
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">Order History</a></li>
-                    <li><a href="#">Wish List</a></li>
+                    <li><a href="#">我的账户</a></li>
+                    <li><a href="#">历史订单</a></li>
+                    <li><a href="#">愿望清单</a></li>
                 </ul>
 
             </div>
@@ -433,87 +430,11 @@
 {!! Html::script("assets/store/scripts/puregrid.js") !!}
 {!! Html::script("assets/store/scripts/stacktable.js") !!}
 {!! Html::script("assets/store/scripts/custom.js") !!}
-
-<!-- Style Switcher
-================================================== -->
-{!! Html::script("assets/store/scripts/switcher.js") !!}
-
-<div id="style-switcher">
-    <h2>Style Switcher <a href="#"></a></h2>
-
-    <div><h3>Predefined Colors</h3>
-        <ul class="colors" id="color1">
-            <li><a href="#" class="green" title="Green"></a></li>
-            <li><a href="#" class="blue" title="Blue"></a></li>
-            <li><a href="#" class="orange" title="Orange"></a></li>
-            <li><a href="#" class="navy" title="Navy"></a></li>
-            <li><a href="#" class="yellow" title="Yellow"></a></li>
-            <li><a href="#" class="peach" title="Peach"></a></li>
-            <li><a href="#" class="beige" title="Beige"></a></li>
-            <li><a href="#" class="purple" title="Purple"></a></li>
-            <li><a href="#" class="celadon" title="Celadon"></a></li>
-            <li><a href="#" class="pink" title="Pink"></a></li>
-            <li><a href="#" class="red" title="Red"></a></li>
-            <li><a href="#" class="brown" title="Brown"></a></li>
-            <li><a href="#" class="cherry" title="Cherry"></a></li>
-            <li><a href="#" class="cyan" title="Cyan"></a></li>
-            <li><a href="#" class="gray" title="Gray"></a></li>
-            <li><a href="#" class="darkcol" title="Dark"></a></li>
-        </ul>
-
-        <h3>Layout Style</h3>
-        <div class="layout-style">
-            <select id="layout-style">
-                <option value="1">Boxed</option>
-                <option value="2">Wide</option>
-            </select>
-        </div>
-
-        <h3>Background Image</h3>
-        <ul class="colors bg" id="bg">
-            <li><a href="#" class="bg1"></a></li>
-            <li><a href="#" class="bg2"></a></li>
-            <li><a href="#" class="bg3"></a></li>
-            <li><a href="#" class="bg4"></a></li>
-            <li><a href="#" class="bg5"></a></li>
-            <li><a href="#" class="bg6"></a></li>
-            <li><a href="#" class="bg7"></a></li>
-            <li><a href="#" class="bg8"></a></li>
-            <li><a href="#" class="bg9"></a></li>
-            <li><a href="#" class="bg10"></a></li>
-            <li><a href="#" class="bg11"></a></li>
-            <li><a href="#" class="bg12"></a></li>
-            <li><a href="#" class="bg13"></a></li>
-            <li><a href="#" class="bg14"></a></li>
-            <li><a href="#" class="bg15"></a></li>
-            <li><a href="#" class="bg16"></a></li>
-        </ul>
-
-        <h3>Background Color</h3>
-        <ul class="colors bgsolid" id="bgsolid">
-            <li><a href="#" class="green-bg" title="Green"></a></li>
-            <li><a href="#" class="blue-bg" title="Blue"></a></li>
-            <li><a href="#" class="orange-bg" title="Orange"></a></li>
-            <li><a href="#" class="navy-bg" title="Navy"></a></li>
-            <li><a href="#" class="yellow-bg" title="Yellow"></a></li>
-            <li><a href="#" class="peach-bg" title="Peach"></a></li>
-            <li><a href="#" class="beige-bg" title="Beige"></a></li>
-            <li><a href="#" class="purple-bg" title="Purple"></a></li>
-            <li><a href="#" class="red-bg" title="Red"></a></li>
-            <li><a href="#" class="pink-bg" title="Pink"></a></li>
-            <li><a href="#" class="celadon-bg" title="Celadon"></a></li>
-            <li><a href="#" class="brown-bg" title="Brown"></a></li>
-            <li><a href="#" class="cherry-bg" title="Cherry"></a></li>
-            <li><a href="#" class="cyan-bg" title="Cyan"></a></li>
-            <li><a href="#" class="gray-bg" title="Gray"></a></li>
-            <li><a href="#" class="dark-bg" title="Dark"></a></li>
-        </ul>
-    </div>
-
-    <div id="reset"><a href="#" class="button color">Reset</a></div>
-
-</div>
-
-
+<script>
+    $.ajaxSetup({
+        headers: { "X-CSRF-TOKEN" : $('meta[name=csrf-token]').attr('content') }
+    });
+</script>
+@yield('scripts')
 </body>
 </html>

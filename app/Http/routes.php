@@ -143,7 +143,11 @@ Route::group(['middleware' => 'web'], function()
     Route::group(['prefix' => 'store','namespace' => 'Store'],function(){
 
         Route::get('/', 'HomeController@index')->name('store.home');
-        Route::get('products/{id}/show', 'ProductController@show')->name('product.show');
+        Route::get('products/{id}/show', 'ProductController@show')->name('store.product.show');
+        Route::get('category/{id}', 'CategoryController@show')->name('store.category.index');
+
+        //购物车
+        Route::get('cart', 'ShoppingCartController@index')->name('store.cart');
 
     });
 
@@ -248,9 +252,7 @@ Route::group(['middleware'=>['api']], function(){
     ]);
 
 });
-Route::group(['middleware'=>['api']], function(){
 
-});
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Local\Controllers'], function ($api) {
@@ -285,6 +287,10 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
         'uses'  => 'ArticleController@getArticlesByCategoryId'
     ]);
 
+    /*
+     * 商城相关
+     * */
+    $api->resource('cart', 'ShoppingCartController');
     /*
      * 登录后操作
      * */
@@ -341,10 +347,7 @@ $api->version('local',['middleware' => ['web'], 'namespace' => 'App\Http\Api\Loc
         ]);
 
 
-        /*
-         * 商城相关
-         * */
-        $api->resource('products', 'ShoppingCartController');
+
     });
 
 });

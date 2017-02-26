@@ -28,6 +28,7 @@ class ComposerServiceProvider extends ServiceProvider {
             'App\Http\ViewComposers\CommonComposer' => 'dashboard.sidebar',
             'App\Http\ViewComposers\BreadcrumbComposer' => 'dashboard.breadcrumb',
             'App\Http\ViewComposers\FrontComposer' => ['layouts.front', 'front.*', '*'],
+            'App\Http\ViewComposers\StoreCommonComposer' => ['store.*'],
         ]);
 
     }

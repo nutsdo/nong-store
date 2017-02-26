@@ -675,7 +675,7 @@
 		$(window).on("load", function() {
 			if (pixelRatio > 1) {
 				$('#logo img').each(function() {
-					$(this).attr('src', $(this).attr('src').replace(".","@2x."));
+					$(this).attr('src', $(this).attr('src').replace(".png","@2x.png"));
 				});
 			}
 		});
